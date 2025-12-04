@@ -1,11 +1,11 @@
 export default function HeroSection() {
   // Random professional profile images for trust indicators
   const randomProfileImages = [
-    "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=200&h=200&fit=crop&crop=face", // Female doctor
-    "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=200&h=200&fit=crop&crop=face", // Male doctor
-    "https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?w=200&h=200&fit=crop&crop=face", // Female nurse
-    "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=200&h=200&fit=crop&crop=face", // Male medical student
-    "https://images.unsplash.com/photo-1591608971362-f08b2a75731a?w=200&h=200&fit=crop&crop=face", // Older physician
+    "/doc1.jpg", 
+    "/doc5.jpg", 
+    "/doc3.jpg", 
+    "/doc4.jpg", 
+    "/doc5.jpg",
   ];
 
   return (
@@ -134,7 +134,7 @@ export default function HeroSection() {
               
               {/* Edition Badge */}
               <div className="absolute -top-4 -right-4 bg-white px-4 py-2 rounded-xl shadow-lg border border-teal-100">
-                <span className="text-sm font-bold text-teal-700">Updated 2024 Edition</span>
+                <span className="text-sm font-bold text-teal-700">Updated 2026 Edition</span>
               </div>
               
               {/* Testimonial Card */}
