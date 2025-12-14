@@ -1,0 +1,571 @@
+2025-12-12T15:19:36.718120Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2025-12-12T15:19:36.744307Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "G:\\GitHub\\medical-spanish-landing", pattern: "**/*", negated: false }
+2025-12-12T15:19:36.766195Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2025-12-12T15:19:36.766217Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "G:\\GitHub\\medical-spanish-landing" }
+2025-12-12T15:19:36.863794Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.866164Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T15:19:36.866338Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T15:19:36.866653Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\AboutBook.tsx"
+2025-12-12T15:19:36.866726Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\BonusSection.tsx"
+2025-12-12T15:19:36.866786Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Hero.tsx"
+2025-12-12T15:19:36.866847Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\WhatYouWillLearn.tsx"
+2025-12-12T15:19:36.866939Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\globals.css"
+2025-12-12T15:19:36.866999Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\layout.tsx"
+2025-12-12T15:19:36.867058Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\page.tsx"
+2025-12-12T15:19:36.867139Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\eslint.config.mjs"
+2025-12-12T15:19:36.867208Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\next.config.ts"
+2025-12-12T15:19:36.867404Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\package.json"
+2025-12-12T15:19:36.867464Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\postcss.config.mjs"
+2025-12-12T15:19:36.867584Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T15:19:36.867749Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public\\file.svg"
+2025-12-12T15:19:36.867826Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public\\globe.svg"
+2025-12-12T15:19:36.867902Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public\\next.svg"
+2025-12-12T15:19:36.867977Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public\\vercel.svg"
+2025-12-12T15:19:36.868050Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public\\window.svg"
+2025-12-12T15:19:36.868126Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\README.md"
+2025-12-12T15:19:36.868195Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\tsconfig.json"
+2025-12-12T15:19:36.868328Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.868339Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.868345Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.868349Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 17 file(s)
+2025-12-12T15:19:36.869542Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\package.json"
+2025-12-12T15:19:36.869558Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\layout.tsx"
+2025-12-12T15:19:36.869575Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\page.tsx"
+2025-12-12T15:19:36.869575Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\eslint.config.mjs"
+2025-12-12T15:19:36.869598Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\postcss.config.mjs"
+2025-12-12T15:19:36.869591Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\AboutBook.tsx"
+2025-12-12T15:19:36.869626Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Hero.tsx"
+2025-12-12T15:19:36.869636Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\public\\file.svg"
+2025-12-12T15:19:36.869665Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\WhatYouWillLearn.tsx"
+2025-12-12T15:19:36.869664Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\tsconfig.json"
+2025-12-12T15:19:36.869699Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\public\\window.svg"
+2025-12-12T15:19:36.869808Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\next.config.ts"
+2025-12-12T15:19:36.869873Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\BonusSection.tsx"
+2025-12-12T15:19:36.869928Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\public\\vercel.svg"
+2025-12-12T15:19:36.874913Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\public\\globe.svg"
+2025-12-12T15:19:36.880064Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\README.md"
+2025-12-12T15:19:36.890692Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\public\\next.svg"
+2025-12-12T15:19:36.911009Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.911026Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.911031Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.911721Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.911736Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.911741Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.911744Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T15:19:36.911859Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\globals.css"
+2025-12-12T15:19:36.911868Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.911875Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.911878Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.911985Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.911999Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.912361Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.912779Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.912789Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.913949Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T15:19:36.914103Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T15:19:36.914820Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T15:19:36.921517Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.921696Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.921784Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.921792Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T15:19:36.922971Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T15:19:36.923116Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T15:19:36.923779Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T15:19:36.924146Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T15:19:36.939571Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:27.901252Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:27.917089Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:01:27.917268Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:01:27.917565Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:01:27.918393Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:01:27.918822Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:27.918834Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:27.918839Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:27.918842Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:01:27.918886Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:01:27.918895Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:27.918899Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:27.918903Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:27.918907Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:27.918911Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:27.918916Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:27.919202Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:27.919209Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:27.920342Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:01:27.920494Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:01:27.921188Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:01:27.921546Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:27.933856Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:27.933987Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:27.933997Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:32.959019Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:32.960279Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:01:32.960437Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:01:32.960640Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:01:32.961189Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:01:32.961573Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:32.961583Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:32.961587Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:32.961590Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:01:32.961662Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:01:32.961671Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:32.961675Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:32.961679Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:32.961864Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:32.961879Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:32.961964Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:32.962274Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:32.962283Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:32.963310Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:01:32.963464Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:01:32.964287Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:01:32.964717Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:32.964802Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:32.964902Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:32.964910Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:55.238074Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:55.239404Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:01:55.239637Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:01:55.239904Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:01:55.240525Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:01:55.240996Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:55.241010Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:55.241016Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:55.241020Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:01:55.241113Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:01:55.241124Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:55.241129Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:55.241133Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:55.241369Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:55.266599Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:55.266865Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:55.267191Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:55.267198Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:55.268369Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:01:55.268523Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:01:55.269291Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:01:55.269719Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:55.269846Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:55.269952Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:55.269959Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:58.330644Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:58.331887Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:01:58.332062Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:01:58.332263Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:01:58.332819Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:01:58.333215Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:58.333226Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:58.333231Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:58.333234Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:01:58.333312Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:01:58.333325Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:58.333329Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:58.333333Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:58.333491Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:58.333504Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:58.333578Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:58.333830Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:58.333837Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:58.334892Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:01:58.335044Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:01:58.335759Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:01:58.336133Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:58.336227Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:01:58.336303Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:01:58.336309Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:05.170910Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:05.172019Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:02:05.172180Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:02:05.172540Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\page.tsx"
+2025-12-12T21:02:05.172926Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:02:05.173299Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:05.173308Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:05.173313Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:05.173316Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:02:05.173375Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\page.tsx"
+2025-12-12T21:02:05.173384Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:05.173388Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:05.173391Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:05.173515Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:05.173533Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:05.173599Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:05.173970Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:05.173979Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:05.175091Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:02:05.175249Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:02:05.175934Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:02:05.176296Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:05.176376Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:05.176448Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:05.176455Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:09.075086Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:09.076501Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:02:09.076671Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:02:09.077118Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\page.tsx"
+2025-12-12T21:02:09.077534Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:02:09.077965Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:09.077978Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:09.077983Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:09.077986Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:02:09.078051Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\page.tsx"
+2025-12-12T21:02:09.078064Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:09.078068Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:09.078071Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:09.078191Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:09.078210Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:09.078292Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:09.078613Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:09.078620Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:09.079729Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:02:09.079888Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:02:09.080628Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:02:09.081008Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:09.081130Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:09.081540Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:09.081552Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:53.646490Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:53.647766Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:02:53.647925Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:02:53.648120Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:02:53.648758Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:02:53.649160Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:53.649171Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:53.649176Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:53.649180Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:02:53.649271Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:02:53.649282Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:53.649286Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:53.649290Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:53.649460Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:53.649477Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:53.649577Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:53.649912Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:53.649924Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:53.650969Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:02:53.651120Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:02:53.651821Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:02:53.652189Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:53.652279Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:53.652336Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:53.652343Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:56.918575Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:56.920012Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:02:56.920235Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:02:56.920451Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:02:56.921111Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:02:56.921590Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:56.921603Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:56.921609Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:56.921612Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:02:56.921688Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:02:56.921697Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:56.921702Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:56.921705Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:56.921831Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:56.921846Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:56.921988Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:56.922248Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:56.922255Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:56.923391Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:02:56.923544Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:02:56.924279Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:02:56.924643Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:56.924732Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:02:56.924800Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:02:56.924822Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:18.181620Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:18.183074Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:04:18.183248Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:04:18.183449Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:04:18.184016Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:04:18.184401Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:18.184411Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:18.184416Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:18.184419Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:04:18.184487Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:04:18.184497Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:18.184502Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:18.184505Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:18.184701Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:18.184716Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:18.184791Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:18.185194Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:18.185204Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:18.186313Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:04:18.186466Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:04:18.187489Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:04:18.187882Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:18.188029Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:18.188105Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:18.188112Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:21.609011Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:21.610468Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:04:21.610663Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:04:21.610855Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:04:21.611393Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:04:21.611769Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:21.611778Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:21.611783Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:21.611786Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:04:21.611861Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:04:21.611870Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:21.611874Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:21.611878Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:21.612025Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:21.612039Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:21.612157Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:21.612402Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:21.612408Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:21.613413Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:04:21.613587Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:04:21.614255Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:04:21.614667Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:21.614752Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:21.614808Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:21.614813Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:38.506323Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:38.507977Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:04:38.508148Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:04:38.508375Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:04:38.509020Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:04:38.509405Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:38.509415Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:38.509421Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:38.509424Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:04:38.509499Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:04:38.509508Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:38.509512Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:38.509515Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:38.509665Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:38.509681Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:38.509772Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:38.510101Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:38.510113Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:38.511367Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:04:38.511533Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:04:38.512222Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:04:38.512584Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:38.512680Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:38.512729Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:38.512734Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:42.118073Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:42.119423Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:04:42.119583Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:04:42.119779Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:04:42.120413Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:04:42.120797Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:42.120806Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:42.120811Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:42.120814Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:04:42.120875Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:04:42.120883Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:42.120888Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:42.120895Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:42.121026Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:42.121035Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:42.121123Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:42.121353Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:42.121360Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:42.122298Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:04:42.122444Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:04:42.123112Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:04:42.123463Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:42.123568Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:04:42.123616Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:04:42.123622Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:23.469040Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:23.470406Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:07:23.470582Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:07:23.470796Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:07:23.471354Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:07:23.471749Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:23.471759Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:23.471764Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:23.471768Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:07:23.471840Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:07:23.471850Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:23.471855Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:23.471858Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:23.472019Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:23.472033Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:23.472113Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:23.472400Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:23.472407Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:23.473483Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:07:23.473633Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:07:23.474322Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:07:23.474877Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:23.475007Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:23.475104Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:23.475116Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:26.369516Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:26.370899Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:07:26.371060Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:07:26.371253Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:07:26.371794Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:07:26.372169Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:26.372179Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:26.372184Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:26.372187Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:07:26.372262Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:07:26.372272Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:26.372276Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:26.372279Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:26.372414Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:26.372429Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:26.372502Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:26.372805Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:26.372813Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:26.373900Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:07:26.374052Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:07:26.374717Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:07:26.375086Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:26.375205Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:07:26.375263Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:07:26.375269Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:37.169768Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:37.171208Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:10:37.171521Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:10:37.172830Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:10:37.173532Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:37.173553Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:37.173560Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:37.173564Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 0 file(s)
+2025-12-12T21:10:37.173571Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:37.173577Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:37.173582Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:37.173588Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:37.173592Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:37.173606Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:37.174041Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:37.174052Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:37.175834Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:10:37.176106Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:10:37.177223Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:10:37.177888Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:37.178056Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:37.178166Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:37.178178Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:38.855065Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:38.856724Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:10:38.856976Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:10:38.858139Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:10:38.858834Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:38.858858Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:38.858864Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:38.858868Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 0 file(s)
+2025-12-12T21:10:38.858872Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:38.858876Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:38.858880Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:38.858883Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:38.858887Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:38.858891Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:38.859182Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:38.859188Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:38.861035Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:10:38.861314Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:10:38.862725Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:10:38.863418Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:38.863616Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:10:38.863725Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:10:38.863735Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:03.815642Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:03.817553Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:11:03.817847Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:11:03.818385Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\layout.tsx"
+2025-12-12T21:11:03.819043Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:11:03.819634Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:03.819650Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:03.819658Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:03.819663Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:11:03.819753Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\layout.tsx"
+2025-12-12T21:11:03.819773Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:03.819781Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:03.819787Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:03.819944Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:03.819963Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:03.820053Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:03.820659Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:03.820670Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:03.822164Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:11:03.822435Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:11:03.823315Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:11:03.823701Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:03.823839Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:03.823916Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:03.823926Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:11.723587Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:11.724883Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:11:11.725042Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:11:11.725378Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\layout.tsx"
+2025-12-12T21:11:11.725792Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:11:11.726193Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:11.726202Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:11.726207Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:11.726210Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:11:11.726272Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\layout.tsx"
+2025-12-12T21:11:11.726282Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:11.726286Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:11.726289Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:11.726428Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:11.726442Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:11.726506Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:11.726787Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:11.726795Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:11.727856Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:11:11.728007Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:11:11.728745Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:11:11.729120Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:11.729216Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:11:11.729287Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:11:11.729294Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:12:01.865469Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:12:01.867111Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:12:01.867276Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:12:01.867478Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:12:01.868036Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:12:01.868422Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:12:01.868432Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:12:01.868437Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:12:01.868440Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:12:01.868508Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:12:01.868517Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:12:01.868522Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:12:01.868525Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:12:01.868661Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:12:01.868677Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:12:01.868757Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:12:01.869064Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:12:01.869072Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:12:01.870139Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:12:01.870291Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:12:01.870981Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:12:01.871351Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:12:01.871443Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:12:01.871512Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:12:01.871519Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:13:02.555729Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:13:02.558307Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:13:02.558501Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:13:02.558731Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:13:02.559380Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:13:02.559841Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:13:02.559855Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-12T21:13:02.559861Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:13:02.559864Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-12T21:13:02.559937Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\medical-spanish-landing\\app\\components\\Footer.tsx"
+2025-12-12T21:13:02.559947Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:13:02.559951Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:13:02.559955Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-12T21:13:02.560190Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-12T21:13:02.560207Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-12T21:13:02.560404Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-12T21:13:02.560712Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-12T21:13:02.560721Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-12T21:13:02.561857Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app"
+2025-12-12T21:13:02.562014Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\app\\components"
+2025-12-12T21:13:02.562734Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\medical-spanish-landing\\public"
+2025-12-12T21:13:02.563114Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-12T21:13:02.563227Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-12T21:13:02.563304Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-12T21:13:02.563309Z  INFO get_globs: tailwindcss_oxide::scanner: exit

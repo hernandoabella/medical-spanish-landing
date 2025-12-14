@@ -1,217 +1,228 @@
-export default function AboutBook() {
+"use client";
+
+import { CheckCircle, BookOpen, Users, Heart, Award, Target, FileText } from "lucide-react";
+
+const AboutBook = () => {
   return (
-    <section className="py-20 px-4 md:px-6 bg-gradient-to-b from-white to-blue-50">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-gradient-to-b from-blue-50 to-white py-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
-            Evidence-Based Language Learning
+        {/* Header Section */}
+        <div className="text-center max-w-4xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <BookOpen className="w-4 h-4" />
+            Essential Resource for Healthcare
           </div>
+          
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            The <span className="text-teal-600">Practical Guide</span> to Medical Spanish
+            Medical Spanish for Healthcare Professionals
+            <span className="block text-2xl md:text-3xl text-blue-600 mt-3">
+              Intermediate Edition
+            </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Stop struggling with language barriers. Start building meaningful connections with Spanish-speaking patients.
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Master clinical communication through real-world dialogues and 
+            essential medical phrases designed for actual practice.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          
-          {/* Left Column: Book Details */}
-          <div className="space-y-8">
-            {/* Main Description */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center">
-                  <span className="text-2xl">📚</span>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">What's Inside?</h3>
-              </div>
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                <strong className="text-teal-700">Medical Spanish Mastery</strong> is a practical, 
-                clinical-focused guide designed specifically for healthcare providers who need to 
-                communicate clearly, safely, and effectively in Spanish within real medical settings.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                This isn't theoretical Spanish. It's <strong>real-world medical communication</strong>, 
-                with <strong>essential clinical phrases</strong>, <strong>medical vocabulary</strong>, and 
-                <strong> doctor-patient dialogues</strong> you can apply immediately in hospitals, 
-                clinics, emergency rooms, and private practice.
-              </p>
-            </div>
+        {/* Stats Banner */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 max-w-5xl mx-auto">
+          <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+            <div className="text-3xl font-bold text-blue-600 mb-2">200+</div>
+            <div className="text-gray-600">Clinical Dialogues</div>
+          </div>
+          <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+            <div className="text-3xl font-bold text-blue-600 mb-2">12</div>
+            <div className="text-gray-600">Medical Systems Covered</div>
+          </div>
+          <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+            <div className="text-3xl font-bold text-blue-600 mb-2">3</div>
+            <div className="text-gray-600">Real Clinical Cases</div>
+          </div>
+          <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+            <div className="text-3xl font-bold text-blue-600 mb-2">1000+</div>
+            <div className="text-gray-600">Essential Terms</div>
+          </div>
+        </div>
 
-            {/* Perfect For Section */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <span className="text-teal-600">✅</span>
-                Who This Book Is For
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  {
-                    icon: "👨‍⚕️",
-                    title: "Physicians & Residents",
-                    desc: "Doctors needing better patient communication in Spanish"
-                  },
-                  {
-                    icon: "👩‍⚕️",
-                    title: "Nurses & Nurse Practitioners",
-                    desc: "For daily patient care and assessment in Spanish"
-                  },
-                  {
-                    icon: "🎓",
-                    title: "Medical Students",
-                    desc: "Prepare for rotations in Spanish-speaking communities"
-                  },
-                  {
-                    icon: "🏥",
-                    title: "Physician Assistants & Techs",
-                    desc: "Essential for procedures and patient interviews"
-                  },
-                  {
-                    icon: "🗣️",
-                    title: "Healthcare Interpreters",
-                    desc: "Build medical vocabulary and context understanding"
-                  },
-                  {
-                    icon: "❤️",
-                    title: "Clinics & Hospitals",
-                    desc: "Staff training for serving Latino/Hispanic communities"
-                  }
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-4 group hover:bg-teal-50/50 p-3 rounded-lg transition-colors">
-                    <span className="text-2xl">{item.icon}</span>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">{item.title}</h4>
-                      <p className="text-gray-600 text-sm mt-1">{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
+        {/* Main Content */}
+        <div className="max-w-6xl mx-auto">
+          {/* Core Features Grid */}
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                <Users className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Real Clinical Dialogues</h3>
+              <p className="text-gray-600 mb-4">
+                Authentic patient interactions covering history taking, physical exams, 
+                emergencies, diagnostics, treatment plans, and informed consent.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-gray-700">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  History & Physical Exams
+                </li>
+                <li className="flex items-center gap-2 text-gray-700">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  Emergency Scenarios
+                </li>
+                <li className="flex items-center gap-2 text-gray-700">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  Diagnostic Conversations
+                </li>
               </ul>
             </div>
-          </div>
 
-          {/* Right Column: Features & Not For */}
-          <div className="space-y-8">
-            {/* Key Features */}
-            <div className="bg-gradient-to-br from-teal-50 to-blue-50 p-8 rounded-2xl shadow-lg border border-teal-100">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
-                  <span className="text-2xl">⚡</span>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">What You'll Master</h3>
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-6">
+                <Heart className="w-6 h-6 text-green-600" />
               </div>
-              
-              <div className="grid gap-4">
-                {[
-                  "Patient History Taking & Assessment",
-                  "Explaining Diagnoses & Treatment Plans",
-                  "Obtaining Informed Consent in Spanish",
-                  "Emergency & Urgent Care Communication",
-                  "Medication Instructions & Side Effects",
-                  "Cultural Competence in Healthcare",
-                  "Medical Documentation Key Terms",
-                  "Specialty-Specific Vocabulary (ER, Peds, OB/GYN, etc.)"
-                ].map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-teal-600 text-sm">✓</span>
-                    </div>
-                    <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Bonus Features */}
-              <div className="mt-8 pt-8 border-t border-teal-100">
-                <h4 className="font-bold text-gray-900 mb-4 text-lg">+ Exclusive Digital Bonuses:</h4>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: "Audio Pronunciations", color: "bg-blue-100 text-blue-800" },
-                    { label: "Cheat Sheets", color: "bg-emerald-100 text-emerald-800" },
-                    { label: "Flashcards", color: "bg-amber-100 text-amber-800" },
-                    { label: "Community Access", color: "bg-purple-100 text-purple-800" }
-                  ].map((bonus, index) => (
-                    <span key={index} className={`${bonus.color} px-3 py-2 rounded-lg text-sm font-medium text-center`}>
-                      {bonus.label}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Not For Section */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <span className="text-red-500">⚠️</span>
-                Not For General Spanish Learners
-              </h3>
-              <p className="text-gray-600 mb-6">
-                This is a specialized medical resource. If you're looking for these, this might not be the right fit:
+              <h3 className="text-xl font-bold text-gray-900 mb-4">System-Based Coverage</h3>
+              <p className="text-gray-600 mb-4">
+                Comprehensive medical systems coverage with specialized phrases 
+                and questions for each specialty.
               </p>
-              <div className="space-y-4">
-                {[
-                  {
-                    icon: "🚫",
-                    title: "Complete Beginners",
-                    desc: "Requires basic Spanish knowledge (A2 level minimum)"
-                  },
-                  {
-                    icon: "🚫",
-                    title: "Grammar Theory",
-                    desc: "Focuses on practical communication, not grammar rules"
-                  },
-                  {
-                    icon: "🚫",
-                    title: "Tourist Spanish",
-                    desc: "Specifically medical/clinical contexts only"
-                  },
-                  {
-                    icon: "🚫",
-                    title: "Literature/Reading",
-                    desc: "Practical speaking/listening focus for patient care"
-                  }
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start gap-4 p-3 bg-red-50/50 rounded-lg">
-                    <span className="text-xl">{item.icon}</span>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">{item.title}</h4>
-                      <p className="text-gray-600 text-sm mt-1">{item.desc}</p>
-                    </div>
+              <div className="grid grid-cols-2 gap-3">
+                {['Respiratory', 'Cardiovascular', 'GI', 'Neuro', 'OB/GYN', 'MSK'].map((system) => (
+                  <div key={system} className="bg-gray-50 px-3 py-2 rounded-lg text-sm text-gray-700">
+                    {system}
                   </div>
                 ))}
               </div>
-              
-              {/* Note */}
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-800">
-                  <strong>Note:</strong> Perfect if you already know basic Spanish but need 
-                  <strong> medical-specific language skills</strong> for your healthcare practice.
-                </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                <Award className="w-6 h-6 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Practical Clinical Cases</h3>
+              <p className="text-gray-600 mb-4">
+                Apply your knowledge with three detailed real-world cases 
+                including symptoms, diagnostics, and treatment discussions.
+              </p>
+              <div className="space-y-3">
+                {['Dengue Fever', 'Diabetic Foot', 'Pregnancy Complications'].map((caseName, idx) => (
+                  <div key={caseName} className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 font-semibold">
+                      {idx + 1}
+                    </div>
+                    <span className="text-gray-700 font-medium">{caseName}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </div>
 
-        {/* CTA at bottom */}
-        <div className="text-center mt-16 p-8 bg-gradient-to-r from-teal-600 to-teal-700 rounded-2xl shadow-xl">
-          <h3 className="text-3xl font-bold text-white mb-4">
-            Ready to Bridge the Language Gap?
-          </h3>
-          <p className="text-teal-100 text-lg mb-6 max-w-2xl mx-auto">
-            Join thousands of healthcare professionals who now communicate confidently with Spanish-speaking patients.
-          </p>
-          <button className="px-8 py-4 bg-white text-teal-700 font-bold rounded-xl hover:scale-105 transition-transform shadow-lg hover:shadow-xl">
-            Get the Book Now
-          </button>
-          <p className="text-teal-200 text-sm mt-4">
-            30-day money-back guarantee • Lifetime access to updates
-          </p>
-        </div>
+          {/* Detailed Features */}
+          <div className="grid md:grid-cols-2 gap-10 mb-20">
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                <Target className="w-7 h-7 text-blue-600" />
+                Core Learning Features
+              </h3>
+              <div className="space-y-6">
+                <Feature
+                  title="Pronunciation Guide"
+                  description="Easy phonetic support with audio references for all dialogues and key medical terms."
+                />
+                <Feature
+                  title="Complete Glossary"
+                  description="1,000+ essential medical terms covering symptoms, anatomy, diagnoses, and procedures."
+                />
+                <Feature
+                  title="Treatment Explanations"
+                  description="Clear language for explaining medications, dosages, warnings, and side effects."
+                />
+              </div>
+            </div>
 
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                <FileText className="w-7 h-7 text-blue-600" />
+                Professional Benefits
+              </h3>
+              <div className="space-y-6">
+                <Feature
+                  title="Enhanced Patient Trust"
+                  description="Build stronger relationships through clear, compassionate communication."
+                />
+                <Feature
+                  title="Reduced Medical Errors"
+                  description="Accurate understanding of symptoms and treatment compliance."
+                />
+                <Feature
+                  title="Cultural Competence"
+                  description="Navigate healthcare conversations with cultural sensitivity and awareness."
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Target Audience */}
+          <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-10 text-white mb-16">
+            <div className="max-w-3xl mx-auto text-center">
+              <h3 className="text-2xl font-bold mb-6">Who This Book Is For</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {['Doctors', 'Nurses', 'Medical Students', 'Therapists', 'PAs/NPs', 'EMTs/Paramedics', 'Public Health', 'Interpreters'].map((role) => (
+                  <div key={role} className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                    <div className="text-lg font-semibold">{role}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-10 border border-blue-200">
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                Start Improving Patient Communication Today
+              </h3>
+              <p className="text-gray-600 text-lg mb-8">
+                Join thousands of healthcare professionals who have transformed their 
+                Spanish communication skills and patient outcomes.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="/buy"
+                  className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl"
+                >
+                  <BookOpen className="w-5 h-5" />
+                  Buy the Book
+                </a>
+                <a
+                  href="/preview"
+                  className="inline-flex items-center justify-center gap-3 bg-white text-blue-600 px-10 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all border-2 border-blue-200"
+                >
+                  Preview Sample Chapter
+                </a>
+              </div>
+              <p className="text-gray-500 text-sm mt-6">
+                Instant digital download + optional print edition
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
-}
+};
+
+const Feature = ({ title, description }: { title: string; description: string }) => (
+  <div className="flex gap-4">
+    <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
+    <div>
+      <h4 className="font-semibold text-gray-900 text-lg mb-1">
+        {title}
+      </h4>
+      <p className="text-gray-600">
+        {description}
+      </p>
+    </div>
+  </div>
+);
+
+export default AboutBook;
