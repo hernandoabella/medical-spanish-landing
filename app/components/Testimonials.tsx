@@ -4,25 +4,25 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    name: "Dr. Emily Carter",
+    name: "Dr. Pedro Gomez",
     role: "Family Medicine Physician",
     quote:
       "This book helped me communicate confidently with Spanish-speaking patients. The clinical cases are incredibly practical.",
-    avatar: "/avatars/doctor1.jpg"
+    avatar: "/doc1.jpg"
   },
   {
     name: "Dr. Luis Hernández",
     role: "Emergency Medicine",
     quote:
       "The glossary and audio tracks make a huge difference. I use it almost every day during my shifts.",
-    avatar: "/avatars/doctor2.jpg"
+    avatar: "/doc2.jpg"
   },
   {
     name: "Sarah Mitchell",
     role: "Medical Student",
     quote:
       "Clear explanations, real examples, and excellent pronunciation guides. Highly recommended.",
-    avatar: "/avatars/doctor3.jpg"
+    avatar: "/doc4.jpg"
   }
 ];
 
