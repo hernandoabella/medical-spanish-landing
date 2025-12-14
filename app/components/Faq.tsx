@@ -16,34 +16,7 @@ const faqs = [
     question: "Are the audio tracks included?",
     answer: "Yes—you receive free lifetime access to downloadable MP3 audio files featuring native Spanish-speaking healthcare professionals. The audio library includes pronunciation of all medical terms, complete dialogues from clinical scenarios, and both slow and normal-speed recordings for practice."
   },
-  {
-    question: "Is this book for beginners?",
-    answer: "It's designed for intermediate learners, but motivated beginners can follow it thanks to comprehensive pronunciation guides, foundational phrases, and progressive learning structure. We recommend basic Spanish familiarity, but many beginners have successfully used this resource by starting with the pronunciation guides and basic dialogue sections."
-  },
-  {
-    question: "How is this different from other medical Spanish books?",
-    answer: "Unlike generic phrasebooks, this resource was created by and for healthcare professionals. It focuses specifically on real clinical scenarios, includes authentic dialogues from actual practice, and provides cultural competence notes that are crucial for effective patient communication in medical settings."
-  },
-  {
-    question: "What formats are available for the book and bonuses?",
-    answer: "You'll receive instant access to the digital edition (PDF), which is optimized for viewing on all devices. The audio bonuses are provided as downloadable MP3 files. Optional print editions are also available. All materials are accessible through our secure member portal."
-  },
-  {
-    question: "How long will it take to complete the material?",
-    answer: "The book is designed for busy healthcare professionals. You can complete it in 4-6 weeks studying 30 minutes per day. However, many users report being able to apply useful phrases immediately. The modular format allows you to focus on the sections most relevant to your practice first."
-  },
-  {
-    question: "Can I use these materials in my hospital/clinic?",
-    answer: "Absolutely. All materials are designed for professional use. The Medical History Forms Pack includes HIPAA-compliant bilingual templates that you can customize and use directly with patients. The conversation templates are practical tools for daily clinical use."
-  },
-  {
-    question: "Do you offer any guarantee?",
-    answer: "Yes, we offer a 30-day money-back guarantee. If you're not satisfied that this resource improves your ability to communicate with Spanish-speaking patients, simply email us for a full refund. No questions asked."
-  },
-  {
-    question: "Is this suitable for nurses, PAs, and other providers (not just doctors)?",
-    answer: "Yes! The book is designed for the entire healthcare team. We include scenarios relevant to nurses (medication administration, patient education), physician assistants (history taking, procedures), therapists, technicians, and support staff. The language is adaptable to various clinical roles."
-  }
+
 ];
 
 const Faq = () => {
