@@ -9,30 +9,30 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="w-full min-h-[90vh] flex items-center justify-center bg-gradient-to-b from-teal-50 via-blue-50 to-white px-4 md:px-6 overflow-hidden">
+    <section className="w-full min-h-[90vh] flex items-center justify-center bg-gradient-to-b from-blue-50 via-blue-50/50 to-white px-4 md:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         
         {/* Text Content */}
         <div className="space-y-8 animate-fade-in">
           <div className="space-y-4">
             {/* Trust Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-teal-200 shadow-sm">
-              <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
-              <span className="text-sm font-medium text-teal-800">Trusted by 1,000+ healthcare professionals</span>
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-200 shadow-sm">
+              <span className="w-2 h-2 bg-[#002EC1] rounded-full animate-pulse"></span>
+              <span className="text-sm font-medium text-[#0B316D]">Trusted by 1,000+ healthcare professionals</span>
             </div>
 
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              Master <span className="text-teal-700 relative">
+              Master <span className="text-[#002EC1] relative">
                 Medical Spanish
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-teal-500/30 rounded-full"></span>
+                <span className="absolute -bottom-2 left-0 w-full h-1 bg-[#002EC1]/30 rounded-full"></span>
               </span>  
             
             </h1>
 
             {/* Description */}
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl">
-              Learn <strong className="text-teal-700">real medical phrases</strong>, specialized vocabulary, and 
+              Learn <strong className="text-[#002EC1]">real medical phrases</strong>, specialized vocabulary, and 
               clinical scenarios in Spanish to effectively work with patients and healthcare teams.
               Bridge the language gap and provide better care.
             </p>
@@ -52,7 +52,7 @@ export default function HeroSection() {
                 key={index} 
                 className="flex items-start gap-3 text-gray-700 hover:text-gray-900 transition-colors"
               >
-                <span className="text-teal-600 text-xl mt-0.5">✓</span>
+                <span className="text-[#002EC1] text-xl mt-0.5">✓</span>
                 <span className="text-base md:text-lg">{item}</span>
               </li>
             ))}
@@ -62,14 +62,14 @@ export default function HeroSection() {
           <div className="pt-4 space-y-6">
             <div className="space-y-2">
               <button 
-                className="group relative px-8 py-4 bg-gradient-to-r from-teal-600 to-teal-700 text-white text-lg font-semibold rounded-xl hover:rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-teal-500/30 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
+                className="group relative px-8 py-4 bg-gradient-to-r from-[#002EC1] to-[#0B316D] text-white text-lg font-semibold rounded-xl hover:rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-[#002EC1]/30 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
                 aria-label="Get the book with free bonuses"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <span>Get the Book + Free Bonuses</span>
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-teal-800 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0B316D] to-[#002EC1] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
               
               {/* Limited Time Offer */}
@@ -95,8 +95,8 @@ export default function HeroSection() {
                       loading="lazy"
                     />
                   ))}
-                  <div className="w-10 h-10 rounded-full bg-teal-100 border-2 border-white flex items-center justify-center shadow-sm">
-                    <span className="text-xs font-bold text-teal-800">+500</span>
+                  <div className="w-10 h-10 rounded-full bg-[#002EC1]/10 border-2 border-white flex items-center justify-center shadow-sm">
+                    <span className="text-xs font-bold text-[#002EC1]">+500</span>
                   </div>
                 </div>
               </div>
@@ -116,8 +116,8 @@ export default function HeroSection() {
         {/* Book Image Section */}
         <div className="relative flex justify-center lg:justify-end">
           {/* Background decorative elements */}
-          <div className="absolute -top-6 -right-6 w-64 h-64 bg-teal-200/30 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-6 -left-6 w-56 h-56 bg-blue-100/40 rounded-full blur-3xl"></div>
+          <div className="absolute -top-6 -right-6 w-64 h-64 bg-[#002EC1]/10 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-6 -left-6 w-56 h-56 bg-[#0B316D]/10 rounded-full blur-3xl"></div>
           
           {/* Book Container */}
           <div className="relative group">
@@ -129,34 +129,34 @@ export default function HeroSection() {
               <img
                 src="/book-mockup.jpg" // Replace with your actual book image
                 alt="Medical Spanish Guide Book - Complete language resource for healthcare providers"
-                className="w-full max-w-md lg:max-w-lg transform group-hover:rotate-[-2deg] group-hover:scale-105 transition-all duration-500 shadow-2xl shadow-teal-200/50 rounded-2xl"
+                className="w-full max-w-md lg:max-w-lg transform group-hover:rotate-[-2deg] group-hover:scale-105 transition-all duration-500 shadow-2xl shadow-[#002EC1]/20 rounded-2xl"
               />
               
               {/* Edition Badge */}
-              <div className="absolute -top-4 -right-4 bg-white px-4 py-2 rounded-xl shadow-lg border border-teal-100">
-                <span className="text-sm font-bold text-teal-700">Updated 2026 Edition</span>
+              <div className="absolute -top-4 -right-4 bg-white px-4 py-2 rounded-xl shadow-lg border border-[#002EC1]/20">
+                <span className="text-sm font-bold text-[#002EC1]">Updated 2026 Edition</span>
               </div>
               
               {/* Testimonial Card */}
-              <div className="absolute -bottom-6 -left-4 bg-white p-3 rounded-xl shadow-lg border border-teal-100 max-w-xs">
+              <div className="absolute -bottom-6 -left-4 bg-white p-3 rounded-xl shadow-lg border border-[#002EC1]/20 max-w-xs">
                 <div className="flex items-center gap-3">
                   <img
                     src={randomProfileImages[0]}
                     alt="Dr. Sarah Johnson, Emergency Physician"
-                    className="w-12 h-12 rounded-full object-cover border-2 border-teal-100"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-[#002EC1]/20"
                   />
                   <div>
                     <div className="flex text-amber-400 mb-1">
                       {"★".repeat(5)}
                     </div>
                     <p className="text-xs font-medium text-gray-900">"Game-changer for my ER shifts. Finally understand my patients."</p>
-                    <p className="text-xs text-gray-500 mt-1">- Dr. Sarah Johnson, Emergency Medicine</p>
+                    <p className="text-xs text-gray-500 mt-1">- Dr. Hamej Enson, Emergency Medicine</p>
                   </div>
                 </div>
               </div>
 
               {/* Free Bonuses Badge */}
-              <div className="absolute -top-4 -left-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-3 py-1.5 rounded-lg shadow-lg">
+              <div className="absolute -top-4 -left-4 bg-gradient-to-r from-[#002EC1] to-[#0B316D] text-white px-3 py-1.5 rounded-lg shadow-lg">
                 <span className="text-xs font-bold">+3 FREE Bonuses</span>
               </div>
             </div>
