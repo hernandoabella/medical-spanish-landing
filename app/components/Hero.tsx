@@ -1,34 +1,36 @@
+import Link from "next/link";
+
 export default function HeroSection() {
   // Random professional profile images for trust indicators
   const randomProfileImages = [
-    "/doc1.jpg", 
-    "/doc5.jpg", 
-    "/doc3.jpg", 
-    "/doc4.jpg", 
+    "/doc1.jpg",
+    "/doc5.jpg",
+    "/doc3.jpg",
+    "/doc4.jpg",
     "/doc5.jpg",
   ];
 
   return (
     <section className="w-full min-h-[90vh] flex items-center justify-center bg-gradient-to-b from-[#142B47]/5 via-[#142B47]/5 to-white px-4 md:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        
+
         {/* Text Content */}
         <div className="space-y-8 animate-fade-in">
           <div className="space-y-4">
-           
+
 
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Master <span className="text-[#0B8288] relative">
                 Medical Spanish
                 <span className="absolute -bottom-2 left-0 w-full h-1 bg-[#0B8288]/30 rounded-full"></span>
-              </span>  
-            
+              </span>
+
             </h1>
 
             {/* Description */}
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl">
-              Learn <strong className="text-[#0B8288]">real medical phrases</strong>, specialized vocabulary, and 
+              Learn <strong className="text-[#0B8288]">real medical phrases</strong>, specialized vocabulary, and
               clinical scenarios in Spanish to effectively work with patients and healthcare teams.
               Bridge the language gap and provide better care.
             </p>
@@ -44,8 +46,8 @@ export default function HeroSection() {
               "Printable cheat sheets and quick reference guides",
               "HIPAA-compliant patient interview templates"
             ].map((item, index) => (
-              <li 
-                key={index} 
+              <li
+                key={index}
                 className="flex items-start gap-3 text-gray-700 hover:text-[#142B47] transition-colors"
               >
                 <span className="text-[#0B8288] text-xl mt-0.5">✓</span>
@@ -57,17 +59,21 @@ export default function HeroSection() {
           {/* CTA Section */}
           <div className="pt-4 space-y-6">
             <div className="space-y-2">
-              <button 
-                className="group relative px-8 py-4 bg-gradient-to-r from-[#0B8288] to-[#142B47] text-white text-lg font-semibold rounded-xl hover:rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-[#0B8288]/30 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
+
+              <Link
+                target="_blank"
+                href="https://www.amazon.com/Medical-Spanish-Healthcare-Professionals-Communication/dp/B0G92L65ZB"
                 aria-label="Get the book with free bonuses"
+                className="group relative px-8 py-4 bg-gradient-to-r from-[#0B8288] to-[#142B47] text-white text-lg font-semibold rounded-xl hover:rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-[#0B8288]/30 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto inline-block"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <span>Get the Book</span>
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#142B47] to-[#0B8288] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-              
+              </Link>
+
+
               {/* Limited Time Offer */}
               <p className="text-sm text-gray-600 flex items-center gap-2">
                 <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 px-2 py-1 rounded">
@@ -76,7 +82,7 @@ export default function HeroSection() {
                 </span>
               </p>
             </div>
-            
+
             {/* Social Proof with Real Images */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-gray-600">
               <div className="flex items-center gap-3">
@@ -113,12 +119,12 @@ export default function HeroSection() {
           {/* Background decorative elements */}
           <div className="absolute -top-6 -right-6 w-64 h-64 bg-[#0B8288]/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-6 -left-6 w-56 h-56 bg-[#142B47]/10 rounded-full blur-3xl"></div>
-          
+
           {/* Book Container */}
           <div className="relative group">
             {/* Shadow effect */}
             <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-64 h-8 bg-black/10 blur-xl rounded-full"></div>
-            
+
             {/* Book Image */}
             <div className="relative">
               <img
@@ -126,7 +132,7 @@ export default function HeroSection() {
                 alt="Medical Spanish Guide Book - Complete language resource for healthcare providers"
                 className="w-full max-w-md lg:max-w-lg transform group-hover:rotate-[-2deg] group-hover:scale-105 transition-all duration-500 shadow-2xl shadow-[#0B8288]/20 rounded-2xl"
               />
-              
+
             </div>
           </div>
         </div>
