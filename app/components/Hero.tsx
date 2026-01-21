@@ -1,141 +1,108 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Link from "next/link";
+import gsap from "gsap";
 
 export default function HeroSection() {
-  // Random professional profile images for trust indicators
-  const randomProfileImages = [
-    "/doc1.jpg",
-    "/doc5.jpg",
-    "/doc3.jpg",
-    "/doc4.jpg",
-    "/doc5.jpg",
-  ];
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+
+      tl.from(".hero-content > *", {
+        y: 60,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.15,
+      })
+      .from(".hero-image-wrapper", {
+        x: 100,
+        opacity: 0,
+        duration: 1.5,
+        rotateY: -20,
+      }, "-=1");
+
+      // Floating animation for the book
+      gsap.to(".floating-book", {
+        y: -30,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className="w-full min-h-[90vh] flex items-center justify-center bg-gradient-to-b from-[#142B47]/5 via-[#142B47]/5 to-white px-4 md:px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section 
+      ref={containerRef}
+      className="relative w-full h-screen min-h-[700px] flex items-center bg-[#fdfdfd] overflow-hidden"
+    >
+      {/* Fondo decorativo Full Width */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-[#142B47]/5 skew-x-[-6deg] translate-x-20 z-0 hidden lg:block" />
 
-        {/* Text Content */}
-        <div className="space-y-8 animate-fade-in">
+      <div className="relative w-full h-full px-6 md:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-0 z-10">
+        
+        {/* Lado Izquierdo: Texto (Ocupa 7 de 12 columnas) */}
+        <div className="hero-content lg:col-span-7 flex flex-col justify-center space-y-8 py-10">
           <div className="space-y-4">
-
-
-            {/* Main Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              Master <span className="text-[#0B8288] relative">
-                Medical Spanish
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-[#0B8288]/30 rounded-full"></span>
+            <span className="inline-block px-4 py-1.5 bg-[#0B8288]/10 text-[#0B8288] font-bold rounded-full text-sm tracking-widest uppercase">
+              The Ultimate Medical Resource
+            </span>
+            <h1 className="text-6xl md:text-8xl xl:text-9xl font-black text-gray-900 leading-[0.95] tracking-tighter">
+              Master <br />
+              <span className="text-[#0B8288]">Medical</span> <br />
+              <span className="relative">
+                Spanish
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 358 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 9C118.957 4.47226 235.155 2.5 355 9" stroke="#0B8288" strokeWidth="6" strokeLinecap="round"/>
+                </svg>
               </span>
-
             </h1>
-
-            {/* Description */}
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl">
-              Learn <strong className="text-[#0B8288]">real medical phrases</strong>, specialized vocabulary, and
-              clinical scenarios in Spanish to effectively work with patients and healthcare teams.
-              Bridge the language gap and provide better care.
-            </p>
           </div>
 
-          {/* Key Benefits List */}
-          <ul className="space-y-3">
-            {[
-              "Real-world clinical cases and practical dialogues",
-              "Perfect for doctors, nurses, PA's, and medical students",
-              "Includes audio pronunciation guides by native speakers",
-              "Access to private community of healthcare professionals",
-              "Printable cheat sheets and quick reference guides",
-              "HIPAA-compliant patient interview templates"
-            ].map((item, index) => (
-              <li
-                key={index}
-                className="flex items-start gap-3 text-gray-700 hover:text-[#142B47] transition-colors"
-              >
-                <span className="text-[#0B8288] text-xl mt-0.5">✓</span>
-                <span className="text-base md:text-lg">{item}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed">
+            Bridge the gap between you and your patients. Learn <strong className="text-gray-900">practical clinical dialogues</strong> and essential vocabulary used in real-world hospitals.
+          </p>
 
-          {/* CTA Section */}
-          <div className="pt-4 space-y-6">
-            <div className="space-y-2">
-
-              <Link
-                target="_blank"
-                href="https://www.amazon.com/Medical-Spanish-Healthcare-Professionals-Communication/dp/B0G92L65ZB"
-                aria-label="Get the book with free bonuses"
-                className="group relative px-8 py-4 bg-gradient-to-r from-[#0B8288] to-[#142B47] text-white text-lg font-semibold rounded-xl hover:rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-[#0B8288]/30 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto inline-block"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <span>Get the Book</span>
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#142B47] to-[#0B8288] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </Link>
-
-
-              {/* Limited Time Offer */}
-              <p className="text-sm text-gray-600 flex items-center gap-2">
-                <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 px-2 py-1 rounded">
-                  <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
-                  Limited Time Offer
-                </span>
-              </p>
-            </div>
-
-            {/* Social Proof with Real Images */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-gray-600">
-              <div className="flex items-center gap-3">
-                <div className="flex -space-x-3">
-                  {randomProfileImages.slice(0, 4).map((imgUrl, index) => (
-                    <img
-                      key={index}
-                      src={imgUrl}
-                      alt={`Healthcare professional ${index + 1}`}
-                      className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm hover:scale-110 transition-transform duration-200"
-                      loading="lazy"
-                    />
-                  ))}
-                  <div className="w-10 h-10 rounded-full bg-[#0B8288]/10 border-2 border-white flex items-center justify-center shadow-sm">
-                    <span className="text-xs font-bold text-[#142B47]">+500</span>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-1">
-                <p className="font-medium text-[#142B47]">Healthcare professionals have improved patient communication</p>
-                <div className="flex items-center gap-2">
-                  <div className="flex text-amber-400">
-                    {"★".repeat(5)}
-                  </div>
-                  <span className="text-gray-700">4.9/5 from 487 verified reviews</span>
-                </div>
-              </div>
+          <div className="flex flex-col sm:flex-row items-center gap-6 pt-4">
+            <Link
+              href="https://www.amazon.com/dp/B0G92L65ZB"
+              className="w-full sm:w-auto px-12 py-5 bg-[#142B47] text-white text-xl font-bold rounded-full hover:bg-[#0B8288] transition-colors duration-300 text-center shadow-2xl shadow-[#142B47]/20"
+            >
+              Get the Book Now
+            </Link>
+            <div className="flex flex-col">
+              <span className="text-gray-900 font-bold text-lg">4.9/5 Rating</span>
+              <span className="text-gray-500 text-sm">from 500+ professionals</span>
             </div>
           </div>
         </div>
 
-        {/* Book Image Section */}
-        <div className="relative flex justify-center lg:justify-end">
-          {/* Background decorative elements */}
-          <div className="absolute -top-6 -right-6 w-64 h-64 bg-[#0B8288]/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-6 -left-6 w-56 h-56 bg-[#142B47]/10 rounded-full blur-3xl"></div>
-
-          {/* Book Container */}
-          <div className="relative group">
-            {/* Shadow effect */}
-            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-64 h-8 bg-black/10 blur-xl rounded-full"></div>
-
-            {/* Book Image */}
-            <div className="relative">
-              <img
-                src="/book-mockupz.jpg" // Replace with your actual book image
-                alt="Medical Spanish Guide Book - Complete language resource for healthcare providers"
-                className="w-full max-w-md lg:max-w-lg transform group-hover:rotate-[-2deg] group-hover:scale-105 transition-all duration-500 shadow-2xl shadow-[#0B8288]/20 rounded-2xl"
-              />
-
-            </div>
+        {/* Lado Derecho: Imagen (Ocupa 5 de 12 columnas) */}
+        <div className="hero-image-wrapper lg:col-span-5 flex items-center justify-center relative">
+          {/* Círculo de luz detrás del libro */}
+          <div className="absolute w-[120%] aspect-square bg-[#0B8288]/10 rounded-full blur-[100px] -z-10" />
+          
+          <div className="floating-book w-full max-w-[500px] lg:max-w-none perspective-[1000px]">
+            <img
+              src="/book-mockupz.jpg"
+              alt="Medical Spanish Book"
+              className="w-full h-auto object-contain transform-gpu drop-shadow-[0_60px_60px_rgba(0,0,0,0.18)]"
+            />
           </div>
         </div>
+
+      </div>
+
+      {/* Indicador de Scroll para "llenar" la altura visualmente */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-30">
+        <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Scroll</span>
+        <div className="w-[1px] h-12 bg-gray-900 animate-pulse" />
       </div>
     </section>
   );

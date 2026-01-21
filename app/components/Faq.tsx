@@ -1,7 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp, HelpCircle, BookOpen, Users, Clock, Download, Headphones, Mail, FileText, Volume2, GraduationCap } from "lucide-react";
+import {
+  ChevronDown,
+  HelpCircle,
+  BookOpen,
+  Users,
+  Clock,
+  Download,
+  Mail,
+  FileText,
+  Volume2,
+  GraduationCap,
+  Sparkles,
+  MessageCircle
+} from "lucide-react";
 
 const faqs = [
   {
@@ -16,7 +29,6 @@ const faqs = [
     question: "Are the audio tracks included?",
     answer: "Yes—you receive free lifetime access to downloadable MP3 audio files featuring native Spanish-speaking healthcare professionals. The audio library includes pronunciation of all medical terms, complete dialogues from clinical scenarios, and both slow and normal-speed recordings for practice."
   },
-
 ];
 
 const Faq = () => {
@@ -26,137 +38,78 @@ const Faq = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // Function to get appropriate icon for each FAQ
   const getIconForFaq = (index: number) => {
     const question = faqs[index].question.toLowerCase();
-    
-    if (question.includes('clinical case') || question.includes('case')) {
-      return <FileText className="w-5 h-5 text-[#002EC1]" />;
-    }
-    if (question.includes('glossary') || question.includes('term')) {
-      return <BookOpen className="w-5 h-5 text-[#002EC1]" />;
-    }
-    if (question.includes('audio') || question.includes('track') || question.includes('mp3')) {
-      return <Volume2 className="w-5 h-5 text-[#002EC1]" />;
-    }
-    if (question.includes('beginner') || question.includes('level') || question.includes('learning')) {
-      return <GraduationCap className="w-5 h-5 text-[#002EC1]" />;
-    }
-    if (question.includes('different') || question.includes('other') || question.includes('compare')) {
-      return <Users className="w-5 h-5 text-[#002EC1]" />;
-    }
-    if (question.includes('format') || question.includes('download') || question.includes('digital')) {
-      return <Download className="w-5 h-5 text-[#002EC1]" />;
-    }
-    if (question.includes('time') || question.includes('complete') || question.includes('long')) {
-      return <Clock className="w-5 h-5 text-[#002EC1]" />;
-    }
-    if (question.includes('hospital') || question.includes('clinic') || question.includes('use')) {
-      return <HelpCircle className="w-5 h-5 text-[#002EC1]" />;
-    }
-    if (question.includes('guarantee') || question.includes('refund') || question.includes('money')) {
-      return <HelpCircle className="w-5 h-5 text-[#002EC1]" />;
-    }
-    return <HelpCircle className="w-5 h-5 text-[#002EC1]" />;
+    const iconClass = "w-6 h-6 transition-transform duration-500 group-hover:rotate-12";
+
+    if (question.includes('case')) return <FileText className={iconClass} />;
+    if (question.includes('glossary')) return <BookOpen className={iconClass} />;
+    if (question.includes('audio')) return <Volume2 className={iconClass} />;
+    return <HelpCircle className={iconClass} />;
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-blue-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-[#002EC1]/10 text-[#002EC1] px-4 py-2 rounded-full text-sm font-semibold mb-6">
-            <HelpCircle className="w-4 h-4" />
-            Common Questions
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Frequently Asked <span className="text-[#002EC1]">Questions</span>
+    <section className="py-24 bg-[#f8faff] relative overflow-hidden">
+      {/* Círculos decorativos de fondo */}
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[600px] h-[600px] bg-[#002EC1]/5 rounded-full blur-3xl" />
+
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
+
+        {/* Header Animado */}
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">
+            Common <span className="text-[#002EC1]">Questions</span>
           </h2>
-          
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Get answers to common questions about the Medical Spanish Guide for Healthcare Professionals.
-          </p>
         </div>
 
-        {/* FAQ Grid */}
-        <div className="space-y-4 mb-12">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-2xl border border-gray-200 hover:border-[#002EC1]/30 overflow-hidden transition-all duration-300 hover:shadow-lg"
-            >
+        {/* FAQ List con Efecto de Enfoque */}
+        <div className="space-y-4 mb-20">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
               <div
-                onClick={() => toggle(index)}
-                className="p-6 cursor-pointer flex justify-between items-center"
+                key={index}
+                className={`group transition-all duration-500 rounded-[2rem] border-2 
+                  ${isOpen
+                    ? "bg-white border-[#002EC1] shadow-[0_20px_40px_rgba(0,46,193,0.08)] scale-[1.02]"
+                    : "bg-white/50 border-gray-100 hover:border-blue-200 hover:bg-white"}`}
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-2 bg-[#002EC1]/10 rounded-lg group-hover:bg-[#002EC1]/20 transition-colors">
-                    {getIconForFaq(index)}
+                <button
+                  onClick={() => toggle(index)}
+                  className="w-full p-6 md:p-8 flex justify-between items-center text-left"
+                >
+                  <div className="flex items-center gap-6">
+                    <div className={`p-4 rounded-2xl transition-all duration-500 
+                      ${isOpen ? "bg-[#002EC1] text-white" : "bg-white text-[#002EC1] shadow-sm border border-gray-50"}`}>
+                      {getIconForFaq(index)}
+                    </div>
+                    <h3 className={`text-xl font-bold transition-colors duration-300 
+                      ${isOpen ? "text-gray-900" : "text-gray-600"}`}>
+                      {faq.question}
+                    </h3>
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 pr-8">
-                    {faq.question}
-                  </h3>
-                </div>
-                
-                <div className="flex-shrink-0 ml-4">
-                  {openIndex === index ? (
-                    <div className="p-2 bg-[#002EC1]/10 rounded-full">
-                      <ChevronUp className="w-5 h-5 text-[#002EC1]" />
-                    </div>
-                  ) : (
-                    <div className="p-2 bg-gray-100 rounded-full group-hover:bg-[#002EC1]/10 transition-colors">
-                      <ChevronDown className="w-5 h-5 text-gray-600 group-hover:text-[#002EC1]" />
-                    </div>
-                  )}
-                </div>
-              </div>
-              
-              {openIndex === index && (
-                <div className="px-6 pb-6 ml-14">
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="text-gray-600 leading-relaxed">
+
+                  <div className={`transition-all duration-500 rounded-full p-2 
+                    ${isOpen ? "bg-gray-100 rotate-180" : "bg-gray-50 group-hover:bg-blue-50"}`}>
+                    <ChevronDown className={`w-6 h-6 ${isOpen ? "text-[#002EC1]" : "text-gray-400"}`} />
+                  </div>
+                </button>
+
+                <div className={`overflow-hidden transition-all duration-500 ease-in-out 
+                  ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
+                  <div className="px-8 pb-8 md:pl-[104px] md:pr-12">
+                    <div className="h-px bg-gray-100 mb-6" />
+                    <p className="text-gray-500 text-lg leading-relaxed font-medium">
                       {faq.answer}
                     </p>
                   </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
 
-        {/* Contact CTA */}
-        <div className="bg-gradient-to-r from-[#002EC1] to-[#0B316D] rounded-2xl p-8 md:p-10 text-white text-center">
-          <div className="max-w-2xl mx-auto">
-            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Mail className="w-8 h-8" />
-            </div>
-            
-            <h3 className="text-2xl font-bold mb-4">
-              Still Have Questions?
-            </h3>
-            
-            <p className="text-blue-100 mb-6">
-              Our team is here to help. Contact us directly for personalized assistance.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-6 py-3 bg-white text-[#002EC1] font-semibold rounded-xl hover:bg-gray-50 transition-all duration-300">
-                Email Our Support Team
-              </button>
-              <button className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl hover:bg-white/15 transition-all duration-300 border border-white/20">
-                Schedule a Call
-              </button>
-            </div>
-            
-            <p className="text-sm text-blue-200 mt-6">
-              Typically respond within 24 hours • Healthcare professionals available to answer clinical questions
-            </p>
-          </div>
-        </div>
-
-        
       </div>
     </section>
   );

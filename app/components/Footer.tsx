@@ -6,65 +6,8 @@ const Footer = () => {
   return (
     <footer className="py-16 px-6">
       <div className="container mx-auto max-w-6xl">
-        {/* Enhanced Logo Section - Much larger and more prominent */}
-        <div className="flex flex-col items-center mb-12">
-          <div className="mb-8 transform hover:scale-105 transition-transform duration-300">
-            <Image 
-              src="/logo.png" 
-              alt="Praxmed Logo" 
-              width={180} 
-              height={180} 
-              className="drop-shadow-2xl"
-              priority
-            />
-          </div>
-          
-          <p className="text-lg text-white/80 mt-3 max-w-2xl text-center">
-            Bringing knowledge to healthcare professionals worldwide
-          </p>
-        </div>
+        
 
-        {/* Navigation - Enhanced spacing and visual hierarchy */}
-        <div className="flex flex-wrap justify-center gap-10 md:gap-12 mb-14">
-          <a 
-            href="/" 
-            className="text-lg font-medium hover:text-[#4C8BFF] transition-all duration-300 hover:scale-110 transform hover:font-semibold"
-          >
-            Home
-          </a>
-          <a 
-            href="/books" 
-            className="text-lg font-medium hover:text-[#4C8BFF] transition-all duration-300 hover:scale-110 transform hover:font-semibold"
-          >
-            Books
-          </a>
-          <a 
-            href="/audio" 
-            className="text-lg font-medium hover:text-[#4C8BFF] transition-all duration-300 hover:scale-110 transform hover:font-semibold"
-          >
-            Audio
-          </a>
-          <a 
-            href="/resources" 
-            className="text-lg font-medium hover:text-[#4C8BFF] transition-all duration-300 hover:scale-110 transform hover:font-semibold"
-          >
-            Resources
-          </a>
-          <a 
-            href="/contact" 
-            className="text-lg font-medium hover:text-[#4C8BFF] transition-all duration-300 hover:scale-110 transform hover:font-semibold"
-          >
-            Contact
-          </a>
-          <a 
-            href="/privacy" 
-            className="text-lg font-medium hover:text-[#4C8BFF] transition-all duration-300 hover:scale-110 transform hover:font-semibold"
-          >
-            Privacy Policy
-          </a>
-        </div>
-
-        {/* Enhanced Divider */}
         <div className="w-full h-px bg-gradient-to-r from-transparent via-[#4C8BFF]/70 via-30% to-transparent mb-12"></div>
 
         {/* Contact Info & Copyright - Better organized */}
