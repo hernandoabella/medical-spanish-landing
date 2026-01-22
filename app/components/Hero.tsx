@@ -18,15 +18,13 @@ export default function HeroSection() {
         stagger: 0.15,
       })
       .from(".hero-image-wrapper", {
-        x: 100,
+        scale: 0.8,
         opacity: 0,
         duration: 1.5,
-        rotateY: -20,
       }, "-=1");
 
-      // Floating animation for the book
       gsap.to(".floating-book", {
-        y: -30,
+        y: -20,
         duration: 3,
         repeat: -1,
         yoyo: true,
@@ -40,23 +38,24 @@ export default function HeroSection() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-screen min-h-[700px] flex items-center bg-[#fdfdfd] overflow-hidden"
+      /* Cambié h-screen por min-h-screen y ajusté el padding en mobile */
+      className="relative w-full min-h-screen flex items-center bg-[#fdfdfd] overflow-hidden py-20 lg:py-0"
     >
-      {/* Fondo decorativo Full Width */}
+      {/* Fondo decorativo */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-[#142B47]/5 skew-x-[-6deg] translate-x-20 z-0 hidden lg:block" />
 
-      <div className="relative w-full h-full px-6 md:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-0 z-10">
+      <div className="relative w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 z-10">
         
-        {/* Lado Izquierdo: Texto (Ocupa 7 de 12 columnas) */}
-        <div className="hero-content lg:col-span-7 flex flex-col justify-center space-y-8 py-10">
+        {/* Lado Izquierdo: Texto - Bajamos el tamaño de fuente en mobile */}
+        <div className="hero-content lg:col-span-7 flex flex-col justify-center order-2 lg:order-1 text-center lg:text-left">
           <div className="space-y-4">
-            <span className="inline-block px-4 py-1.5 bg-[#0B8288]/10 text-[#0B8288] font-bold rounded-full text-sm tracking-widest uppercase">
+            <span className="inline-block px-4 py-1.5 bg-[#0B8288]/10 text-[#0B8288] font-bold rounded-full text-xs md:text-sm tracking-widest uppercase">
               The Ultimate Medical Resource
             </span>
-            <h1 className="text-6xl md:text-8xl xl:text-9xl font-black text-gray-900 leading-[0.95] tracking-tighter">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-gray-900 leading-[0.9] tracking-tighter">
               Master <br />
               <span className="text-[#0B8288]">Medical</span> <br />
-              <span className="relative">
+              <span className="relative inline-block">
                 Spanish
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 358 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 9C118.957 4.47226 235.155 2.5 355 9" stroke="#0B8288" strokeWidth="6" strokeLinecap="round"/>
@@ -65,44 +64,45 @@ export default function HeroSection() {
             </h1>
           </div>
 
-          <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed">
-            Bridge the gap between you and your patients. Learn <strong className="text-gray-900">practical clinical dialogues</strong> and essential vocabulary used in real-world hospitals.
+          <p className="mt-8 text-lg md:text-xl lg:text-2xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Bridge the gap between you and your patients. Learn <strong className="text-gray-900">practical clinical dialogues</strong> and essential vocabulary.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-6 pt-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-10">
             <Link
               href="https://www.amazon.com/dp/B0G92L65ZB"
-              className="w-full sm:w-auto px-12 py-5 bg-[#142B47] text-white text-xl font-bold rounded-full hover:bg-[#0B8288] transition-colors duration-300 text-center shadow-2xl shadow-[#142B47]/20"
+              className="w-full sm:w-auto px-10 py-5 bg-[#142B47] text-white text-lg md:text-xl font-bold rounded-full hover:bg-[#0B8288] transition-all duration-300 text-center shadow-xl hover:shadow-2xl active:scale-95"
             >
               Get the Book Now
             </Link>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center sm:items-start">
               <span className="text-gray-900 font-bold text-lg">4.9/5 Rating</span>
               <span className="text-gray-500 text-sm">from 500+ professionals</span>
             </div>
           </div>
         </div>
 
-        {/* Lado Derecho: Imagen (Ocupa 5 de 12 columnas) */}
-        <div className="hero-image-wrapper lg:col-span-5 flex items-center justify-center relative">
-          {/* Círculo de luz detrás del libro */}
-          <div className="absolute w-[120%] aspect-square bg-[#0B8288]/10 rounded-full blur-[100px] -z-10" />
+        {/* Lado Derecho: EL LIBRO - Ahora se ve completo en mobile */}
+        <div className="hero-image-wrapper lg:col-span-5 flex items-center justify-center relative order-1 lg:order-2">
+          {/* Brillo detrás ajustable */}
+          <div className="absolute w-[80%] lg:w-[120%] aspect-square bg-[#0B8288]/15 rounded-full blur-[60px] lg:blur-[100px] -z-10" />
           
-          <div className="floating-book w-full max-w-[500px] lg:max-w-none perspective-[1000px]">
+          <div className="floating-book w-[70%] md:w-[60%] lg:w-full max-w-[450px] perspective-[1000px]">
             <img
               src="/book-mockupz.jpg"
               alt="Medical Spanish Book"
-              className="w-full h-auto object-contain transform-gpu drop-shadow-[0_60px_60px_rgba(0,0,0,0.18)]"
+              /* Añadí shadow-2xl directamente para reforzar el efecto de GSAP */
+              className="w-full h-auto object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.2)]"
             />
           </div>
         </div>
 
       </div>
 
-      {/* Indicador de Scroll para "llenar" la altura visualmente */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-30">
+      {/* Indicador de Scroll mejorado */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-20">
         <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Scroll</span>
-        <div className="w-[1px] h-12 bg-gray-900 animate-pulse" />
+        <div className="w-[1px] h-10 bg-gray-900" />
       </div>
     </section>
   );
