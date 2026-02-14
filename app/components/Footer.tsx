@@ -19,7 +19,7 @@ const Footer = () => {
               className="text-[#4C8BFF] hover:text-[#8DA9FF] text-xl font-semibold transition-colors duration-300 inline-flex items-center justify-center gap-3 hover:gap-4"
             >
               <MdEmail className="text-2xl" />
-              contact@praxmed.com
+              contact@praxmedpublishing.com
             </a>
           </div>
           
