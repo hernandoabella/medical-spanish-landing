@@ -9,114 +9,114 @@ export default function AngerManagementSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-
-      // Animación del libro (Entrada desde la izquierda con rotación)
-      tl.from(".book-container", {
-        x: -100,
+      gsap.from(".fade-up", {
+        y: 24,
         opacity: 0,
-        duration: 1.5,
-        rotate: -5,
-      })
-      // Animación del contenido de texto
-      .from(".text-reveal > *", {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-      }, "-=1");
+        duration: 0.9,
+        stagger: 0.12,
+        ease: "power3.out",
+        delay: 0.2,
+      });
 
-      // Floating sutil infinito para el libro
-      gsap.to(".floating-book", {
-        y: -15,
-        duration: 2.5,
+      gsap.from(".book-img", {
+        opacity: 0,
+        x: -30,
+        duration: 1.1,
+        ease: "power3.out",
+        delay: 0.4,
+      });
+
+      gsap.to(".book-img", {
+        y: -10,
+        duration: 4,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const points = [
+    "Identify emotional triggers before they explode",
+    "Simple techniques to stop yelling in the moment",
+    "How to repair emotional connections after conflict",
+    "Break generational anger patterns for good",
+    "Parent with firmness without fear, guilt, or rage",
+  ];
+
   return (
-    <section 
-      ref={sectionRef} 
-      className="w-full min-h-screen flex items-center justify-center bg-[#FCFCFC] px-6 md:px-12 py-20 overflow-hidden relative"
+    <section
+      ref={sectionRef}
+      className="w-full min-h-screen flex items-center bg-white px-6 md:px-12 overflow-hidden"
     >
-      {/* Elementos decorativos de fondo para un Light Mode "Genial" */}
-      <div className="absolute top-0 right-0 w-[40%] h-full bg-[#142B47]/[0.02] -skew-x-12 translate-x-20" />
-      
-      <div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
-        
-        {/* Book Image Section - LADO IZQUIERDO */}
-        <div className="book-container relative flex justify-center lg:justify-start order-2 lg:order-1">
-          {/* Círculo de luz suave detrás del libro */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#142B47]/5 rounded-full blur-[100px]" />
-          
-          <div className="floating-book relative group transition-transform duration-700 ease-out">
+      <div className="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-24 lg:py-0">
+
+        {/* Book */}
+        <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-64 h-64 rounded-full bg-[#264C62]/6" />
+            </div>
             <img
               src="/book-mockup2.jpg"
-              alt="Anger Management for Explosive Parents Book Cover"
-              className="w-full max-w-lg lg:max-w-xl xl:max-w-2xl rounded-r-2xl shadow-[20px_40px_80px_rgba(0,0,0,0.1)] group-hover:shadow-[20px_40px_100px_rgba(20,43,71,0.15)] transition-all duration-500"
+              alt="Anger Management for Explosive Parents"
+              className="book-img relative z-10 w-full max-w-[340px] h-auto object-contain"
+              style={{ filter: "drop-shadow(0 20px 40px rgba(15,33,55,0.15))" }}
             />
           </div>
         </div>
 
-        {/* Text Content - LADO DERECHO */}
-        <div className="text-reveal space-y-10 order-1 lg:order-2">
-          <div className="space-y-6">
-                        
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 leading-[0.95] tracking-tighter">
-              Parent with <br />
-              <span className="text-[#142B47] relative inline-block">
-                Confidence
-                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 358 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3 9C118.957 4.47226 235.155 2.5 355 9" stroke="#142B47" strokeWidth="6" strokeLinecap="round" opacity="0.2"/>
-                </svg>
-              </span>
-            </h2>
+        {/* Text */}
+        <div className="flex flex-col gap-7 order-1 lg:order-2">
 
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl font-medium">
-              Stop yelling and start connecting. <strong className="text-gray-900">Anger Management for Explosive Parents</strong> is a practical, judgment-free guide to help you regain control, understand your triggers, and respond with patience—even in the most challenging moments.
-            </p>
+          <div className="fade-up flex items-center gap-3">
+            <div className="w-6 h-[2px] bg-[#264C62]" />
+            <span className="text-[#264C62] text-xs font-semibold tracking-[0.2em] uppercase">
+              Parenting Guide
+            </span>
           </div>
 
-          <ul className="space-y-5">
-            {[
-              "Identify emotional triggers before they explode",
-              "Simple techniques to stop yelling in the moment",
-              "How to repair emotional connections after conflict",
-              "Break generational anger patterns for good",
-              "Parent with firmness without fear, guilt, or rage"
-            ].map((item, index) => (
-              <li key={index} className="flex items-center gap-4 text-gray-700 group cursor-default">
-                <span className="flex-shrink-0 w-7 h-7 bg-[#0B8288]/10 text-[#0B8288] rounded-full flex items-center justify-center font-bold text-sm transition-colors group-hover:bg-[#0B8288] group-hover:text-white">
-                  ✓
-                </span>
-                <span className="text-lg md:text-xl font-semibold group-hover:text-[#142B47] transition-colors">
-                  {item}
-                </span>
+          <h2 className="fade-up text-[clamp(2.4rem,5vw,3.8rem)] font-bold text-[#0F2137] leading-[1.05] tracking-tight">
+            Parent with<br />
+            <span className="text-[#264C62]">confidence.</span>
+          </h2>
+
+          <p className="fade-up text-gray-500 text-base leading-relaxed max-w-md">
+            Stop yelling and start connecting. A practical, judgment-free guide to help you regain control, understand your triggers, and respond with patience — even in the most challenging moments.
+          </p>
+
+          <div className="fade-up w-12 h-[1px] bg-gray-200" />
+
+          <ul className="fade-up flex flex-col gap-3">
+            {points.map((item, i) => (
+              <li key={i} className="flex items-center gap-3">
+                <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-[#264C62]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span className="text-gray-600 text-sm">{item}</span>
               </li>
             ))}
           </ul>
 
-          <div className="pt-6">
+          <div className="fade-up pt-2">
             <Link
               target="_blank"
               href="https://www.amazon.com/Praxmed-Publishing-ebook/dp/B0GGJ3GPDF"
-              className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#142B47] text-white text-xl font-bold rounded-2xl hover:bg-[#0B8288] transition-all duration-500 hover:scale-[1.05] shadow-[0_20px_40px_rgba(20,43,71,0.2)] hover:shadow-[0_20px_40px_rgba(11,130,136,0.3)] w-full sm:w-auto"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#0F2137] text-white text-sm font-semibold tracking-wide hover:bg-[#264C62] transition-colors duration-300 rounded-sm"
             >
-              <span className="relative z-10">Get the Kindle Edition</span>
-              <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+              Get the Kindle Edition
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
         </div>
 
       </div>
-
-      {/* Indicador de profundidad decorativo inferior */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-50 to-transparent opacity-60" />
     </section>
   );
 }

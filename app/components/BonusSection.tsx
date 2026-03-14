@@ -1,35 +1,24 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Headphones, Download, CheckCircle, Volume2, PlayCircle, Smartphone, Car, Brain, Music, ShieldCheck } from "lucide-react";
+import { Headphones, Download, CheckCircle, Volume2, Smartphone, Car, PlayCircle, Brain } from "lucide-react";
 import gsap from "gsap";
 
 const AudioDownload = () => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [currentFile, setCurrentFile] = useState("");
-  const progressRef = useRef(null);
   const containerRef = useRef(null);
 
-  // Animación de entrada
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".audio-card", {
-        y: 30,
+      gsap.from(".fade-up", {
+        y: 24,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power3.out"
-      });
-      
-      // Animación de ondas de audio decorativas
-      gsap.to(".audio-bar", {
-        scaleY: 2,
-        duration: 0.5,
-        repeat: -1,
-        yoyo: true,
+        duration: 0.9,
         stagger: 0.1,
-        ease: "sine.inOut"
+        ease: "power3.out",
+        delay: 0.2,
       });
     }, containerRef);
     return () => ctx.revert();
@@ -45,43 +34,25 @@ const AudioDownload = () => {
     "System-based review questions",
   ];
 
-  const benefits = [
-    "Improve accent and pronunciation",
-    "Practice anytime, anywhere",
-    "Reinforce what you learn in the book",
-    "Train your ear for real patient interactions",
-  ];
-
   const handleDownloadAll = async () => {
     setIsDownloading(true);
     setDownloadProgress(0);
-    setCurrentFile("");
-
     const totalFiles = 40;
-    
+
     for (let i = 1; i <= totalFiles; i++) {
       const fileName = `AUDIO-TRACK-${i}.opus`;
-      const fileUrl = `/audio/${fileName}`;
-      
       try {
-        setCurrentFile(`Downloading: ${fileName}`);
-        
-        const link = document.createElement('a');
-        link.href = fileUrl;
+        setCurrentFile(`Downloading ${fileName}…`);
+        const link = document.createElement("a");
+        link.href = `/audio/${fileName}`;
         link.download = fileName;
-        link.style.display = 'none';
-        
+        link.style.display = "none";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        
-        const progress = Math.round((i / totalFiles) * 100);
-        setDownloadProgress(progress);
-        
-        await new Promise(resolve => setTimeout(resolve, 300));
-        
-      } catch (error) {
-        console.error(`Failed to download ${fileName}:`, error);
+        setDownloadProgress(Math.round((i / totalFiles) * 100));
+        await new Promise((r) => setTimeout(r, 300));
+      } catch {
         setCurrentFile(`Failed: ${fileName}`);
       }
     }
@@ -89,134 +60,137 @@ const AudioDownload = () => {
     setIsDownloading(false);
     setDownloadProgress(100);
     setCurrentFile("All files downloaded!");
-    
-    setTimeout(() => {
-      setDownloadProgress(0);
-      setCurrentFile("");
-    }, 2000);
+    setTimeout(() => { setDownloadProgress(0); setCurrentFile(""); }, 2000);
   };
 
   return (
-    <section ref={containerRef} className="w-full bg-[#0a0a0a] py-20 px-6 border-t border-white/5">
-      <div className="max-w-6xl mx-auto">
-        
-        <div className="audio-card bg-[#111] rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl">
-          <div className="grid lg:grid-cols-12 gap-0">
-            
-            {/* Panel Izquierdo: Info */}
-            <div className="lg:col-span-7 p-8 md:p-12 space-y-10">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 bg-[#0B8288]/20 text-[#0B8288] px-4 py-2 rounded-full border border-[#0B8288]/30">
-                  <Headphones className="w-4 h-4" />
-                  <span className="text-xs font-bold tracking-widest uppercase">AUDIO LIBRARY</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black text-white italic">
-                  SYNC YOUR <span className="text-[#0B8288]">KNOWLEDGE.</span>
-                </h2>
-              </div>
+    <section ref={containerRef} className="w-full bg-[#0F2137] py-24 px-6">
+      <div className="max-w-5xl mx-auto">
 
-              {/* Features Grid */}
-              <div className="grid sm:grid-cols-2 gap-4">
-                {audioFeatures.map((item, index) => (
-                  <div key={index} className="flex items-center gap-3 group">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#0B8288]/10 flex items-center justify-center border border-[#0B8288]/20 group-hover:bg-[#0B8288]/30 transition-colors">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#0B8288]" />
-                    </div>
-                    <span className="text-gray-400 text-sm md:text-base">{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Benefits */}
-              <div className="pt-8 border-t border-white/5">
-                <div className="flex items-center gap-3 mb-6">
-                  <Brain className="w-5 h-5 text-[#0B8288]" />
-                  <h3 className="text-xl font-bold text-white">Why Use the Audio Library?</h3>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {benefits.map((benefit, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-[#0B8288] rounded-full" />
-                      <span className="text-gray-500 text-sm">{benefit}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Panel Derecho: Engine de Descarga */}
-            <div className="lg:col-span-5 bg-white/5 p-8 md:p-12 flex flex-col justify-center border-l border-white/5 relative">
-              <div className="absolute top-0 right-0 p-8 flex gap-1 opacity-20 h-12 items-end">
-                {[1,2,3,4].map(i => <div key={i} className="audio-bar w-1 bg-[#0B8288] rounded-full h-4" />)}
-              </div>
-
-              <div className="space-y-8 relative z-10">
-                <div className="bg-[#1a1a1a] p-8 rounded-3xl border border-white/10 shadow-inner">
-                  <div className="flex items-center gap-5 mb-8">
-                    <div className="w-14 h-14 bg-[#0B8288] rounded-2xl flex items-center justify-center shadow-lg shadow-[#0B8288]/20">
-                      <Volume2 className="w-7 h-7 text-black" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-white">Complete Audio Library</h3>
-                      <p className="text-xs text-gray-500 uppercase tracking-widest">40 Tracks • HQ Opus</p>
-                    </div>
-                  </div>
-
-                  {/* Progress Section */}
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-end">
-                      <span className="text-[10px] font-black text-[#0B8288] uppercase tracking-tighter">
-                        {isDownloading ? currentFile : "SYSTEM READY"}
-                      </span>
-                      {isDownloading && <span className="text-white font-mono text-xl">{downloadProgress}%</span>}
-                    </div>
-                    
-                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-gradient-to-r from-[#0B8288] to-[#142B47] transition-all duration-300 shadow-[0_0_15px_rgba(11,130,136,0.4)]"
-                        style={{ width: `${downloadProgress}%` }}
-                      />
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={handleDownloadAll}
-                    disabled={isDownloading}
-                    className="w-full mt-8 group relative overflow-hidden bg-white text-black py-5 rounded-2xl font-black text-lg transition-all active:scale-95 disabled:opacity-20"
-                  >
-                    <span className="relative z-10 flex items-center justify-center gap-3">
-                      {isDownloading ? "DOWNLOADING..." : "DOWNLOAD ALL"}
-                      {!isDownloading && <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />}
-                    </span>
-                    <div className="absolute inset-0 bg-[#0B8288] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                  </button>
-                </div>
-
-                {/* Device Support */}
-                <div className="grid grid-cols-3 gap-2 py-4">
-                  <div className="flex flex-col items-center gap-2 text-gray-600">
-                    <Smartphone className="w-5 h-5" />
-                    <span className="text-[10px] font-bold">MOBILE</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-2 text-gray-600 border-x border-white/5">
-                    <Car className="w-5 h-5" />
-                    <span className="text-[10px] font-bold">CARPLAY</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-2 text-gray-600">
-                    <PlayCircle className="w-5 h-5" />
-                    <span className="text-[10px] font-bold">OFFLINE</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        {/* Header */}
+        <div className="fade-up flex items-center gap-3 mb-4">
+          <div className="w-6 h-[2px] bg-[#0B8288]" />
+          <span className="text-[#0B8288] text-xs font-semibold tracking-[0.2em] uppercase">
+            Audio Library
+          </span>
         </div>
 
-        {/* Footer Note */}
-        <p className="mt-8 text-center text-gray-600 text-sm">
-          Included with <span className="text-[#0B8288] font-bold">Medical Spanish for Healthcare Professionals</span>
+        <h2 className="fade-up text-[clamp(2rem,4vw,3rem)] font-bold text-white leading-tight tracking-tight mb-3">
+          Listen. Practice. <span className="text-[#0B8288]">Retain.</span>
+        </h2>
+
+        <p className="fade-up text-white/50 text-base max-w-xl mb-14 leading-relaxed">
+          40 high-quality audio tracks included with the book — native pronunciation, clinical dialogues, and real-world phrases.
         </p>
+
+        {/* Main card */}
+        <div className="fade-up grid lg:grid-cols-12 gap-0 border border-white/10 rounded-sm overflow-hidden">
+
+          {/* Left: features */}
+          <div className="lg:col-span-7 p-8 md:p-12 space-y-8">
+
+            <div className="grid sm:grid-cols-2 gap-3">
+              {audioFeatures.map((item, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <CheckCircle className="w-4 h-4 text-[#0B8288] flex-shrink-0" />
+                  <span className="text-white/60 text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="w-12 h-[1px] bg-white/10" />
+
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Brain className="w-4 h-4 text-[#0B8288]" />
+                <span className="text-sm font-semibold text-white">Why use the audio?</span>
+              </div>
+              <ul className="space-y-2 text-sm text-white/40">
+                <li>— Improve accent and pronunciation</li>
+                <li>— Practice during commutes or rounds</li>
+                <li>— Reinforce vocabulary from the book</li>
+                <li>— Train your ear for real patient interactions</li>
+              </ul>
+            </div>
+
+            {/* Device support */}
+            <div className="flex items-center gap-8 pt-2">
+              {[
+                { icon: Smartphone, label: "Mobile" },
+                { icon: Car, label: "CarPlay" },
+                { icon: PlayCircle, label: "Offline" },
+              ].map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2 text-white/30">
+                  <Icon className="w-4 h-4" />
+                  <span className="text-xs font-medium">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: download */}
+          <div className="lg:col-span-5 bg-white/5 border-l border-white/10 flex flex-col justify-center gap-8">
+
+            {/* Doctor image */}
+            <div className="relative w-full h-52 overflow-hidden">
+              <img
+                src="/doctor_with_headphones.png"
+                alt="Doctor using audio library"
+                className="w-full h-full object-cover object-top"
+              />
+              {/* Gradient fade into the panel below */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0F2137]/80" />
+            </div>
+
+            <div className="px-8 md:px-12 pb-8 md:pb-12 flex flex-col gap-8">
+
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 bg-[#0B8288] flex items-center justify-center rounded-sm">
+                <Volume2 className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-white">Complete Audio Library</p>
+                <p className="text-xs text-white/30">40 Tracks · HQ Opus</p>
+              </div>
+            </div>
+
+            {/* Progress */}
+            {isDownloading && (
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-xs text-white/40 truncate max-w-[70%]">{currentFile}</span>
+                  <span className="text-xs font-semibold text-white">{downloadProgress}%</span>
+                </div>
+                <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-[#0B8288] transition-all duration-300"
+                    style={{ width: `${downloadProgress}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
+            {!isDownloading && downloadProgress === 100 && (
+              <p className="text-sm text-[#0B8288] font-medium">All files downloaded!</p>
+            )}
+
+            <button
+              onClick={handleDownloadAll}
+              disabled={isDownloading}
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-[#0F2137] text-sm font-semibold tracking-wide hover:bg-[#0B8288] hover:text-white transition-colors duration-300 rounded-sm disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              {isDownloading ? "Downloading…" : "Download All Tracks"}
+              {!isDownloading && <Download className="w-4 h-4" />}
+            </button>
+
+            <p className="text-xs text-white/25 leading-relaxed">
+              Included with <span className="text-white/50 font-medium">Medical Spanish for Healthcare Professionals</span>
+            </p>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
