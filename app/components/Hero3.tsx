@@ -61,7 +61,7 @@ export default function AnxiousAttachmentSection() {
           <div className="fade-up flex items-center gap-3">
             <div className="w-6 h-[2px]" style={{ backgroundColor: "#11756C" }} />
             <span className="text-xs font-semibold tracking-[0.2em] uppercase" style={{ color: "#11756C" }}>
-              Secure Parenting Blueprint · Book 3
+              Secure Parenting Blueprint
             </span>
           </div>
 
@@ -170,14 +170,7 @@ export default function AnxiousAttachmentSection() {
               }}
             />
 
-            {/* Floating badge */}
-            <div
-              className="absolute bottom-6 -left-4 lg:-left-10 z-20 px-4 py-2.5 rounded-sm shadow-lg border-l-4"
-              style={{ backgroundColor: "#FBF7F0", borderColor: "#514189" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#514189" }}>Series</p>
-              <p className="text-xs font-semibold" style={{ color: "#0F2137" }}>Book 3 of 3</p>
-            </div>
+            
           </div>
         </div>
 
