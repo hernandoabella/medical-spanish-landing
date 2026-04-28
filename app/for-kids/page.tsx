@@ -20,15 +20,38 @@ const books = [
     ],
   },
   {
-    title: "Medical Spanish for Healthcare Professionals",
+    title: "Juan Cigarron",
     image: "/book-mockupz-2.png",
     description:
-      "A practical Spanish guide for healthcare professionals who want clearer, more confident communication with patients.",
+      "A charming children's story for young readers, now available in the kids collection.",
     accent: "#0B8288",
+    previewPdf: "/pdf-books/juan-cigarron.pdf",
     actions: [
       {
         label: "Buy on Amazon",
-        url: "https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0G9VMBH6W",
+        url: "https://www.amazon.com/-/es/Aluna-Publishing-House-ebook/dp/B0D4LHPBPG",
+      },
+      {
+        label: "View PDF",
+        url: "/pdf-books/juan-cigarron.pdf",
+      },
+    ],
+  },
+  {
+    title: "Cuentos Para Dormir",
+    image: "/cuentos-para-dormir.jpg",
+    description:
+      "A cozy bedtime collection created for children and families who love gentle Spanish stories before sleep.",
+    accent: "#E8773A",
+    previewPdf: "/pdf-books/cuentos-para-dormir.pdf",
+    actions: [
+      {
+        label: "Buy on Amazon",
+        url: "https://www.amazon.com/-/es/Cuentos-para-Dormir-Relatos-Spanish/dp/B0G5YX21SW",
+      },
+      {
+        label: "View PDF",
+        url: "/pdf-books/cuentos-para-dormir.pdf",
       },
     ],
   },

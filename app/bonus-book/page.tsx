@@ -3,6 +3,7 @@ import BookGridPage from "../components/BookGridPage";
 const giftBooks = [
   {
     title: "Juan Cigarron",
+    image: "/book-mockupz-2.png",
     description:
       "Bonus PDF book ready to share by email as a gift download for families and readers.",
     accent: "#E8773A",
@@ -20,6 +21,7 @@ const giftBooks = [
   },
   {
     title: "Cuentos Para Dormir",
+    image: "/cuentos-para-dormir.jpg",
     description:
       "A bedtime bonus book that can be shared as part of your email gift flow.",
     accent: "#0B8288",
@@ -123,12 +125,7 @@ export default function BonusBookPage() {
       />
 
       <section className="mx-auto max-w-6xl px-6 pt-8">
-        <div className="mb-8 max-w-2xl">
-          <h2 className="text-3xl font-bold text-slate-900">Preview Library</h2>
-          <p className="mt-3 text-base leading-7 text-slate-600">
-            The rest of the catalog can also be browsed as previews, with their matching images and direct links.
-          </p>
-        </div>
+        <div className="mb-8 max-w-2xl" />
       </section>
 
       <BookGridPage

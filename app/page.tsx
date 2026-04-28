@@ -96,13 +96,13 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <BonusSection />
       <BookGridPage
         eyebrow="Featured Library"
         title="Explore the full book collection."
-        description="See the complete catalog side by side right from the start, with previews and direct purchase links where available."
+        description="See the complete catalog side by side, with direct purchase links for every title."
         books={featuredBooks}
       />
-      <BonusSection />
       <Hero2 />
       <BooksDivider />
       <RaisingEISection />
