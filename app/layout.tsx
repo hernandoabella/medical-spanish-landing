@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import "./globals.css";
-import Script from 'next/script';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,15 +22,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </div>
 
-        {/* SCRIPT UNIVERSAL + AUTO SHOW */}
         <Script id="mailerlite-auto-show" strategy="afterInteractive">
           {`
             (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
@@ -36,9 +41,7 @@ export default function RootLayout({
             n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);
             })(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
             
-            ml('account', '2052347'); // REEMPLAZA CON TU ID
-            
-            // ESTO HACE QUE CARGUE AUTOMÁTICAMENTE
+            ml('account', '2052347');
             ml('show', '95EugZ', true);
           `}
         </Script>
