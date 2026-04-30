@@ -2,24 +2,6 @@ import BookGridPage from "../components/BookGridPage";
 
 const books = [
   {
-    title: "Raising Emotionally Intelligent Children",
-    image: "/raising.jpg",
-    description:
-      "A practical guide for helping children understand feelings, build empathy, and grow with confidence.",
-    accent: "#1A7A8A",
-    previewPdf: "/pdf-books/raising-emotionally-intelligent-children.pdf",
-    actions: [
-      {
-        label: "Buy on Amazon",
-        url: "https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0GKWC93RZ",
-      },
-      {
-        label: "View PDF",
-        url: "/pdf-books/raising-emotionally-intelligent-children.pdf",
-      },
-    ],
-  },
-  {
     title: "Juan Cigarron",
     image: "/book-mockupz-2.png",
     description:

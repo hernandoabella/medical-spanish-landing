@@ -73,6 +73,24 @@ const books = [
       },
     ],
   },
+  {
+    title: "Raising Emotionally Intelligent Children",
+    image: "/raising.jpg",
+    description:
+      "A practical guide for helping parents nurture empathy, emotional awareness, and confidence in everyday family life.",
+    accent: "#1A7A8A",
+    previewPdf: "/pdf-books/raising-emotionally-intelligent-children.pdf",
+    actions: [
+      {
+        label: "Buy on Amazon",
+        url: "https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0GKWC93RZ",
+      },
+      {
+        label: "View PDF",
+        url: "/pdf-books/raising-emotionally-intelligent-children.pdf",
+      },
+    ],
+  },
 ];
 
 export default function ParentingBooksPage() {
