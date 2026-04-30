@@ -21,7 +21,7 @@ const books = [
   },
   {
     title: "Cuentos Para Dormir",
-    image: "/cuentos-para-dormir.jpg",
+    image: "/cuentos-para-dormir.png",
     description:
       "A cozy bedtime collection created for children and families who love gentle Spanish stories before sleep.",
     accent: "#E8773A",

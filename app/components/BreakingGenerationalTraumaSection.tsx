@@ -49,8 +49,11 @@ export default function BreakingGenerationalTraumaSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen overflow-hidden bg-[#F4FBFA] px-6 md:px-12"
+      className="w-full min-h-screen overflow-hidden bg-[linear-gradient(180deg,var(--surface-soft)_0%,var(--surface-cream)_100%)] px-6 md:px-12"
     >
+      <div className="mx-auto max-w-6xl px-6 md:px-12 pt-8">
+        <div className="section-divider" />
+      </div>
       <div className="mx-auto grid min-h-screen max-w-5xl grid-cols-1 items-center gap-16 py-24 lg:grid-cols-2 lg:py-0">
         <div className="flex justify-center lg:justify-start">
           <div className="relative">
@@ -81,8 +84,8 @@ export default function BreakingGenerationalTraumaSection() {
 
         <div className="flex flex-col gap-6">
           <div className="trauma-fade-up flex items-center gap-3">
-            <div className="h-[2px] w-6 bg-[#0B8288]" />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0B8288]">
+            <div className="h-[2px] w-6 bg-[var(--brand-teal)]" />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--brand-teal)]">
               Science-Based Parenting Guide
             </span>
           </div>
@@ -92,24 +95,24 @@ export default function BreakingGenerationalTraumaSection() {
               className="font-black leading-[1.0] tracking-tight"
               style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)" }}
             >
-              <span className="text-[#264C62]">Breaking</span>{" "}
-              <span className="text-[#264C62]">Generational</span>
+              <span className="text-[var(--brand-navy)]">Breaking</span>{" "}
+              <span className="text-[var(--brand-navy)]">Generational</span>
               <br />
-              <span className="text-[#0B8288]">Trauma</span>{" "}
-              <span className="text-[#264C62]">for Parents</span>
+              <span className="text-[var(--brand-teal)]">Trauma</span>{" "}
+              <span className="text-[var(--brand-navy)]">for Parents</span>
             </h2>
           </div>
 
-          <p className="trauma-fade-up max-w-md text-base leading-relaxed text-[#49606B]">
+          <p className="trauma-fade-up max-w-md text-base leading-relaxed text-[var(--text-muted)]">
             A science-based guide to healing the past and raising a freer generation.
             This book helps parents understand inherited emotional patterns, respond with
             more intention, and create a safer family dynamic at home.
           </p>
 
           <div className="trauma-fade-up flex items-center gap-3">
-            <div className="h-[1px] w-10 bg-[#D96B2B]/40" />
-            <div className="h-[1px] w-6 bg-[#264C62]/30" />
-            <div className="h-[1px] w-4 bg-[#0B8288]/25" />
+            <div className="h-[1px] w-10 bg-[var(--brand-clay)]/40" />
+            <div className="h-[1px] w-6 bg-[var(--brand-navy)]/30" />
+            <div className="h-[1px] w-4 bg-[var(--brand-teal)]/25" />
           </div>
 
           <ul className="trauma-fade-up flex flex-col gap-3">
@@ -134,7 +137,7 @@ export default function BreakingGenerationalTraumaSection() {
                     />
                   </svg>
                 </span>
-                <span className="text-sm leading-relaxed text-[#425660]">
+                <span className="text-sm leading-relaxed text-[var(--text-muted)]">
                   {item.text}
                 </span>
               </li>
@@ -145,7 +148,7 @@ export default function BreakingGenerationalTraumaSection() {
             <Link
               target="_blank"
               href="https://www.amazon.com/-/es/gp/product/B0FNX6ZC6C"
-              className="inline-flex items-center gap-2 rounded-sm bg-[#264C62] px-7 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:bg-[#0B8288]"
+              className="inline-flex items-center gap-2 rounded-sm bg-[var(--brand-navy)] px-7 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:bg-[var(--brand-teal)]"
             >
               Get the Book
               <svg

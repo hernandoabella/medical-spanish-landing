@@ -13,15 +13,38 @@ import Testimonials from "./components/Testimonials";
 
 const featuredBooks = [
   {
-    title: "Medical Spanish for Healthcare Professionals",
+    title: "Juan Cigarron",
     image: "/book-mockupz-2.png",
     description:
-      "A practical guide for healthcare professionals who want clearer, more confident communication with Spanish-speaking patients.",
+      "Kids bonus book with a free PDF download, plus the Amazon edition for readers who want to keep it in their library.",
     accent: "#0B8288",
+    badge: "Free Bonus PDF",
     actions: [
       {
+        label: "Download Bonus Free",
+        url: "/pdf-books/juan-cigarron.pdf",
+      },
+      {
         label: "Buy on Amazon",
-        url: "https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0G9VMBH6W",
+        url: "https://www.amazon.com/-/es/Aluna-Publishing-House-ebook/dp/B0D4LHPBPG",
+      },
+    ],
+  },
+  {
+    title: "Cuentos Para Dormir",
+    image: "/cuentos-para-dormir.png",
+    description:
+      "Bedtime bonus book with a free PDF download for families, alongside the Amazon edition.",
+    accent: "#E8773A",
+    badge: "Free Bonus PDF",
+    actions: [
+      {
+        label: "Download Bonus Free",
+        url: "/pdf-books/cuentos-para-dormir.pdf",
+      },
+      {
+        label: "Buy on Amazon",
+        url: "https://www.amazon.com/-/es/Cuentos-para-Dormir-Relatos-Spanish/dp/B0G5YX21SW",
       },
     ],
   },
@@ -94,7 +117,7 @@ const featuredBooks = [
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-[var(--surface-cream)]">
       <Hero />
       <BonusSection />
       <BookGridPage

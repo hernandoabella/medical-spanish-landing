@@ -9,6 +9,7 @@ type Book = {
   title: string;
   description: string;
   accent: string;
+  badge?: string;
   image?: string;
   previewPdf?: string;
   actions: BookAction[];
@@ -28,21 +29,23 @@ export default function BookGridPage({
   books,
 }: BookGridPageProps) {
   return (
-    <section className="bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_38%,#f5f9f8_100%)]">
+    <section
+      className="bg-[linear-gradient(180deg,var(--surface-cream)_0%,#ffffff_34%,var(--surface-mist)_100%)]"
+    >
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="max-w-3xl">
           {eyebrow ? (
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-[#0B8288]">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-[var(--brand-teal)]">
               {eyebrow}
             </p>
           ) : null}
           {title ? (
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-[var(--brand-navy)] md:text-5xl">
               {title}
             </h1>
           ) : null}
           {description ? (
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--text-muted)]">
               {description}
             </p>
           ) : null}
@@ -52,7 +55,7 @@ export default function BookGridPage({
           {books.map((book) => (
             <article
               key={book.title}
-              className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,33,55,0.08)]"
+              className="overflow-hidden rounded-[28px] border border-[var(--border-soft)] bg-white shadow-[0_24px_60px_rgba(21,48,71,0.08)]"
             >
               <div
                 className="flex min-h-[320px] items-center justify-center p-8"
@@ -80,10 +83,15 @@ export default function BookGridPage({
                 )}
               </div>
               <div className="border-t border-slate-100 p-6">
-                <h2 className="text-xl font-semibold text-slate-900">
+                {book.badge ? (
+                  <div className="mb-4 inline-flex items-center rounded-full bg-[var(--brand-teal)]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--brand-teal)]">
+                    {book.badge}
+                  </div>
+                ) : null}
+                <h2 className="text-xl font-semibold text-[var(--brand-navy)]">
                   {book.title}
                 </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
+                <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">
                   {book.description}
                 </p>
 
@@ -107,7 +115,7 @@ export default function BookGridPage({
                       href={action.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center rounded-full bg-[#0F2137] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0B8288]"
+                      className="inline-flex items-center rounded-full bg-[var(--brand-navy)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--brand-teal)]"
                     >
                       {action.label}
                     </a>

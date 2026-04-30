@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#0F2137] px-6 py-16 text-white">
       <div className="container mx-auto max-w-6xl">
-        <div className="mb-12 h-px w-full bg-gradient-to-r from-transparent via-[#4C8BFF]/70 to-transparent" />
+        <div className="section-divider mb-12" />
 
         <div className="mb-12 flex flex-col items-center justify-between gap-10 lg:flex-row">
           <div className="text-center lg:text-left">

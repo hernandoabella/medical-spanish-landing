@@ -21,7 +21,7 @@ const giftBooks = [
   },
   {
     title: "Cuentos Para Dormir",
-    image: "/cuentos-para-dormir.jpg",
+    image: "/cuentos-para-dormir.png",
     description:
       "A bedtime bonus book that can be shared as part of your email gift flow.",
     accent: "#0B8288",
