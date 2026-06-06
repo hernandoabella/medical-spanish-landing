@@ -13,10 +13,19 @@ const navItems = [
     label: "Programming Books",
     external: true,
   },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    // Para rutas como /blog, cualquier cosa que empiece con /blog/ también cuenta
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur">
@@ -46,7 +55,7 @@ export default function Header() {
                 key={item.label}
                 href={item.href}
                 className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
-                  pathname === item.href
+                  isActive(item.href)
                     ? "border-[#0B8288] bg-[#0B8288] text-white"
                     : "border-slate-200 text-slate-700 hover:border-[#0B8288] hover:text-[#0B8288]"
                 }`}
