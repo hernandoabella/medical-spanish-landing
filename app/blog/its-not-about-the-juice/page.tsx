@@ -341,7 +341,7 @@ export default function JuiceArticlePage() {
               This article draws from <span className="font-medium not-italic">&quot;Anger Management for Explosive Parents&quot;</span> by M. Eliza Rowen.
             </p>
             <Link 
-              href="https://www.amazon.com/-/es/Anger-Management-Explosive-Parents-Understand/dp/B0GGNQCT17"
+              href="https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0FNX6ZC6C"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-[#0B8288] hover:text-[#096d72] transition-colors group"
