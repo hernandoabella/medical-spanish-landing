@@ -49,8 +49,21 @@ export default function HeroSection() {
 
       <div className="w-full max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0 lg:min-h-screen">
 
+        {/* Libro — first on mobile */}
+        <div className="flex items-center justify-center relative order-1 lg:order-2">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-72 h-72 rounded-full bg-[#0B8288]/6" />
+          </div>
+          <img
+            src="/book-mockupz.jpg"
+            alt="Medical Spanish Book"
+            className="book-img relative z-10 w-[70%] md:w-[55%] lg:w-[80%] max-w-[360px] h-auto object-contain"
+            style={{ filter: "drop-shadow(0 20px 40px rgba(15,33,55,0.15))" }}
+          />
+        </div>
+
         {/* Texto */}
-        <div className="flex flex-col gap-7">
+        <div className="flex flex-col gap-7 order-2 lg:order-1">
 
           <div className="fade-up flex items-center gap-3">
             <div className="w-6 h-[2px] bg-[#0B8288]" />
@@ -94,19 +107,6 @@ export default function HeroSection() {
               </span>
             </div>
           </div>
-        </div>
-
-        {/* Libro */}
-        <div className="flex items-center justify-center relative">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-72 h-72 rounded-full bg-[#0B8288]/6" />
-          </div>
-          <img
-            src="/book-mockupz.jpg"
-            alt="Medical Spanish Book"
-            className="book-img relative z-10 w-[70%] md:w-[55%] lg:w-[80%] max-w-[360px] h-auto object-contain"
-            style={{ filter: "drop-shadow(0 20px 40px rgba(15,33,55,0.15))" }}
-          />
         </div>
 
       </div>

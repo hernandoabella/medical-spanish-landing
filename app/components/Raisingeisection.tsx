@@ -56,8 +56,30 @@ export default function RaisingEISection() {
     >
       <div className="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0">
 
-        {/* Text — left */}
-        <div className="flex flex-col gap-6">
+        {/* Book — first on mobile */}
+        <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+          <div className="relative">
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full blur-[70px] opacity-25 pointer-events-none"
+              style={{ background: "radial-gradient(circle at 40% 50%, #E8773A 0%, #1A7A8A 60%, #1A3A5C 100%)" }}
+            />
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[105%] rounded-full border"
+              style={{ borderColor: "#1A7A8A22" }}
+            />
+            <img
+              src="/raising.jpg"
+              alt="Raising Emotionally Intelligent Children by M. Eliza Rowen"
+              className="book-img relative z-10 w-full max-w-[360px] h-auto object-contain"
+              style={{
+                filter: "drop-shadow(0 24px 48px rgba(26,58,92,0.15)) drop-shadow(0 6px 16px rgba(232,119,58,0.1))",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Text */}
+        <div className="flex flex-col gap-6 order-2 lg:order-1">
 
           <div className="fade-up flex items-center gap-3">
             <div className="w-6 h-[2px]" style={{ backgroundColor: "#1A7A8A" }} />
@@ -136,34 +158,6 @@ export default function RaisingEISection() {
                 <strong style={{ color: "#1A3A5C" }}>4.4</strong> · Verified readers
               </span>
             </div>
-          </div>
-        </div>
-
-        {/* Book — right */}
-        <div className="flex justify-center lg:justify-end">
-          <div className="relative">
-            {/* Glow matching the cover's soft watercolor teal/orange */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full blur-[70px] opacity-25 pointer-events-none"
-              style={{ background: "radial-gradient(circle at 40% 50%, #E8773A 0%, #1A7A8A 60%, #1A3A5C 100%)" }}
-            />
-
-            {/* Soft ring */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[105%] rounded-full border"
-              style={{ borderColor: "#1A7A8A22" }}
-            />
-
-            <img
-              src="/raising.jpg"
-              alt="Raising Emotionally Intelligent Children by M. Eliza Rowen"
-              className="book-img relative z-10 w-full max-w-[360px] h-auto object-contain"
-              style={{
-                filter: "drop-shadow(0 24px 48px rgba(26,58,92,0.15)) drop-shadow(0 6px 16px rgba(232,119,58,0.1))",
-              }}
-            />
-
-           
           </div>
         </div>
 

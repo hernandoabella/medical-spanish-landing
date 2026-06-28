@@ -55,10 +55,31 @@ export default function AnxiousAttachmentSection() {
     >
       <div className="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0">
 
-        {/* ── Text left ── */}
-        <div className="flex flex-col gap-6">
+        {/* ── Book — first on mobile ── */}
+        <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+          <div className="relative">
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full blur-[70px] opacity-30 pointer-events-none"
+              style={{ background: "radial-gradient(circle at 40% 50%, #E7650D 0%, #514189 45%, #11756C 100%)" }}
+            />
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[105%] rounded-full border"
+              style={{ borderColor: "#E7650D22" }}
+            />
+            <img
+              src="/anxius.jpg"
+              alt="Anxious Attachment Workbook For Parents by M. Eliza Rowen"
+              className="book-img relative z-10 w-full max-w-[360px] h-auto object-contain"
+              style={{
+                filter: "drop-shadow(0 24px 48px rgba(81,65,137,0.18)) drop-shadow(0 6px 16px rgba(231,101,13,0.12))",
+              }}
+            />
+          </div>
+        </div>
 
-          {/* Series label */}
+        {/* ── Text ── */}
+        <div className="flex flex-col gap-6 order-2 lg:order-1">
+
           <div className="fade-up flex items-center gap-3">
             <div className="w-6 h-[2px]" style={{ backgroundColor: "#11756C" }} />
             <span className="text-xs font-semibold tracking-[0.2em] uppercase" style={{ color: "#11756C" }}>
@@ -66,7 +87,6 @@ export default function AnxiousAttachmentSection() {
             </span>
           </div>
 
-          {/* Headline */}
           <div className="fade-up">
             <h2
               className="font-black leading-[1.0] tracking-tight"
@@ -79,7 +99,6 @@ export default function AnxiousAttachmentSection() {
             </h2>
           </div>
 
-          {/* Subheadline */}
           <p
             className="fade-up text-base leading-relaxed max-w-md"
             style={{ color: "#5a4e42" }}
@@ -89,14 +108,12 @@ export default function AnxiousAttachmentSection() {
             <strong style={{ color: "#11756C" }}>safe, secure, and confident.</strong>
           </p>
 
-          {/* Divider */}
           <div className="fade-up flex items-center gap-3">
             <div className="h-[1px] w-10" style={{ backgroundColor: "#E7650D", opacity: 0.4 }} />
             <div className="h-[1px] w-6" style={{ backgroundColor: "#514189", opacity: 0.3 }} />
             <div className="h-[1px] w-4" style={{ backgroundColor: "#11756C", opacity: 0.25 }} />
           </div>
 
-          {/* Checklist */}
           <ul className="fade-up flex flex-col gap-3">
             {points.map((item, i) => (
               <li key={i} className="flex items-start gap-3">
@@ -118,7 +135,6 @@ export default function AnxiousAttachmentSection() {
             ))}
           </ul>
 
-          {/* CTA */}
           <div className="fade-up flex items-center gap-5 pt-2">
             <Link
               target="_blank"
@@ -142,34 +158,6 @@ export default function AnxiousAttachmentSection() {
                 <strong style={{ color: "#0F2137" }}>4.9</strong> · Readers love it
               </span>
             </div>
-          </div>
-        </div>
-
-        {/* ── Book right ── */}
-        <div className="flex justify-center lg:justify-end">
-          <div className="relative">
-            {/* Warm multi-color glow matching the book cover */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full blur-[70px] opacity-30 pointer-events-none"
-              style={{ background: "radial-gradient(circle at 40% 50%, #E7650D 0%, #514189 45%, #11756C 100%)" }}
-            />
-
-            {/* Decorative cream ring */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[105%] rounded-full border"
-              style={{ borderColor: "#E7650D22" }}
-            />
-
-            <img
-              src="/anxius.jpg"
-              alt="Anxious Attachment Workbook For Parents by M. Eliza Rowen"
-              className="book-img relative z-10 w-full max-w-[360px] h-auto object-contain"
-              style={{
-                filter: "drop-shadow(0 24px 48px rgba(81,65,137,0.18)) drop-shadow(0 6px 16px rgba(231,101,13,0.12))",
-              }}
-            />
-
-            
           </div>
         </div>
 
