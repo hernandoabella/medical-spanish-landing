@@ -1,5 +1,6 @@
 "use client";
 
+import { FaAmazon } from "react-icons/fa";
 import {
   CheckCircle,
   BookOpen,
@@ -222,7 +223,8 @@ const WhatMakesItDifferent = () => {
               Spanish communication skills with this specialized resource.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-3 bg-gradient-to-r from-[#002EC1] to-[#0B316D] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#002EC1]/30 transition-all duration-300 hover:scale-[1.02]">
+              <button className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#002EC1] to-[#0B316D] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#002EC1]/30 transition-all duration-300 hover:scale-[1.02]">
+                <FaAmazon className="w-4 h-4" />
                 Get the Book Now
               </button>
               <button className="px-8 py-3 bg-white text-[#002EC1] font-semibold rounded-xl border-2 border-[#002EC1]/20 hover:border-[#002EC1]/40 transition-all duration-300">

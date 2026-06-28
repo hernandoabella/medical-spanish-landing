@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaAmazon } from "react-icons/fa";
 
 type BookAction = {
   label: string;
@@ -58,7 +59,7 @@ export default function BookGridPage({
               className="overflow-hidden rounded-[28px] border border-[var(--border-soft)] bg-white shadow-[0_24px_60px_rgba(21,48,71,0.08)]"
             >
               <div
-                className="flex min-h-[320px] items-center justify-center p-8"
+                className="flex min-h-[240px] sm:min-h-[320px] items-center justify-center p-6 sm:p-8"
                 style={{
                   background: `radial-gradient(circle at top, ${book.accent}20 0%, #ffffff 68%)`,
                 }}
@@ -115,8 +116,16 @@ export default function BookGridPage({
                       href={action.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center rounded-full bg-[var(--brand-navy)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--brand-teal)]"
+                      className="inline-flex items-center gap-2 rounded-full bg-[var(--brand-navy)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--brand-teal)]"
                     >
+                      {action.label.includes("Amazon") && (
+                        <FaAmazon className="h-4 w-4" />
+                      )}
+                      {action.label.includes("Download") && (
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                      )}
                       {action.label}
                     </a>
                   ))}

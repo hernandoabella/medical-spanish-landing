@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { FaAmazon } from "react-icons/fa";
 
 export default function BreakingGenerationalTraumaSection() {
   const sectionRef = useRef(null);
@@ -51,10 +52,10 @@ export default function BreakingGenerationalTraumaSection() {
       ref={sectionRef}
       className="w-full min-h-screen overflow-hidden bg-[linear-gradient(180deg,var(--surface-soft)_0%,var(--surface-cream)_100%)] px-6 md:px-12"
     >
-      <div className="mx-auto max-w-6xl px-6 md:px-12 pt-8">
+      <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="section-divider" />
       </div>
-      <div className="mx-auto grid min-h-screen max-w-5xl grid-cols-1 items-center gap-16 py-24 lg:grid-cols-2 lg:py-0">
+      <div className="mx-auto max-w-5xl grid-cols-1 items-center gap-8 py-16 lg:grid-cols-2 lg:gap-16 lg:py-0 lg:min-h-screen grid">
         <div className="flex justify-center lg:justify-start">
           <div className="relative">
             <div
@@ -150,20 +151,8 @@ export default function BreakingGenerationalTraumaSection() {
               href="https://www.amazon.com/-/es/gp/product/B0FNX6ZC6C"
               className="inline-flex items-center gap-2 rounded-sm bg-[var(--brand-navy)] px-7 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:bg-[var(--brand-teal)]"
             >
+              <FaAmazon className="w-4 h-4" />
               Get the Book
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
             </Link>
           </div>
         </div>

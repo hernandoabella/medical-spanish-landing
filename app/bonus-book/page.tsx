@@ -53,7 +53,7 @@ const previewBooks = [
         url: "/pdf-books/raising-emotionally-intelligent-children.pdf",
       },
       {
-        label: "Buy on Amazon",
+        label: "Get on Amazon",
         url: "https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0GKWC93RZ",
       },
     ],
@@ -71,7 +71,7 @@ const previewBooks = [
         url: "/pdf-books/anger-managment-for-explosive-parents.pdf",
       },
       {
-        label: "Buy on Amazon",
+        label: "Get on Amazon",
         url: "https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0GGJ3GPDF",
       },
     ],
@@ -89,7 +89,7 @@ const previewBooks = [
         url: "/pdf-books/manejo-de-la-ira-para-padres-explosivos.pdf",
       },
       {
-        label: "Buy on Amazon",
+        label: "Get on Amazon",
         url: "https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0GT6T8SWK",
       },
     ],
@@ -107,7 +107,7 @@ const previewBooks = [
         url: "/pdf-books/breaking-generational-trauma-for-parents.pdf",
       },
       {
-        label: "Buy on Amazon",
+        label: "Get on Amazon",
         url: "https://www.amazon.com/-/es/gp/product/B0FNX6ZC6C",
       },
     ],

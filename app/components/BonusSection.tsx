@@ -64,7 +64,7 @@ const AudioDownload = () => {
   };
 
   return (
-    <section ref={containerRef} className="w-full bg-[#0F2137] py-24 px-6">
+    <section ref={containerRef} className="w-full bg-[#0F2137] py-16 md:py-24 px-6">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
@@ -114,7 +114,7 @@ const AudioDownload = () => {
             </div>
 
             {/* Device support */}
-            <div className="flex items-center gap-8 pt-2">
+            <div className="flex items-center gap-6 pt-2 flex-wrap">
               {[
                 { icon: Smartphone, label: "Mobile" },
                 { icon: Car, label: "CarPlay" },
@@ -177,7 +177,7 @@ const AudioDownload = () => {
             <button
               onClick={handleDownloadAll}
               disabled={isDownloading}
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-[#0F2137] text-sm font-semibold tracking-wide hover:bg-[#0B8288] hover:text-white transition-colors duration-300 rounded-sm disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white text-[#0F2137] text-sm font-semibold tracking-wide hover:bg-[#0B8288] hover:text-white transition-colors duration-300 rounded-sm disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {isDownloading ? "Downloading…" : "Download All Tracks"}
               {!isDownloading && <Download className="w-4 h-4" />}

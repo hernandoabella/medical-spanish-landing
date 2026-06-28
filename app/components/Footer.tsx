@@ -5,8 +5,6 @@ const Footer = () => {
   return (
     <footer className="bg-[#0F2137] px-6 py-16 text-white">
       <div className="container mx-auto max-w-6xl">
-        <div className="section-divider mb-12" />
-
         <div className="mb-12 flex flex-col items-center justify-between gap-10 lg:flex-row">
           <div className="text-center lg:text-left">
             <p className="mb-4 text-xl font-semibold">Get in touch with us</p>
@@ -19,7 +17,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="flex justify-center gap-8">
+          <div className="flex justify-center gap-4 md:gap-8 flex-wrap">
             <a
               href="#"
               className="transform rounded-full bg-white/5 p-3 text-3xl transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:text-[#4C8BFF]"

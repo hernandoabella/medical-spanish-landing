@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { FaAmazon } from "react-icons/fa";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,7 +47,7 @@ export default function HeroSection() {
       {/* Línea de acento superior */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#0B8288]" />
 
-      <div className="w-full max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-24 lg:py-0 min-h-screen">
+      <div className="w-full max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0 lg:min-h-screen">
 
         {/* Texto */}
         <div className="flex flex-col gap-7">
@@ -71,18 +72,16 @@ export default function HeroSection() {
 
           <div className="fade-up w-12 h-[1px] bg-gray-200" />
 
-          <div className="fade-up flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="fade-up flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
             <Link
               href="https://www.amazon.com/dp/B0G92L65ZB"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#0F2137] text-white text-sm font-semibold tracking-wide hover:bg-[#0B8288] transition-colors duration-300 rounded-sm"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#0F2137] text-white text-sm font-semibold tracking-wide hover:bg-[#0B8288] transition-colors duration-300 rounded-sm sm:inline-flex"
             >
+              <FaAmazon className="w-4 h-4" />
               Get the Book
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
             </Link>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 justify-center">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="w-3.5 h-3.5 text-[#0B8288]" fill="currentColor" viewBox="0 0 20 20">

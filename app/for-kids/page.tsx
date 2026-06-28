@@ -7,14 +7,13 @@ const books = [
     description:
       "A charming children's story for young readers, now available in the kids collection.",
     accent: "#0B8288",
-    previewPdf: "/pdf-books/juan-cigarron.pdf",
     actions: [
       {
-        label: "Buy on Amazon",
+        label: "Get on Amazon",
         url: "https://www.amazon.com/-/es/Aluna-Publishing-House-ebook/dp/B0D4LHPBPG",
       },
       {
-        label: "View PDF",
+        label: "Download PDF",
         url: "/pdf-books/juan-cigarron.pdf",
       },
     ],
@@ -25,14 +24,13 @@ const books = [
     description:
       "A cozy bedtime collection created for children and families who love gentle Spanish stories before sleep.",
     accent: "#E8773A",
-    previewPdf: "/pdf-books/cuentos-para-dormir.pdf",
     actions: [
       {
-        label: "Buy on Amazon",
+        label: "Get on Amazon",
         url: "https://www.amazon.com/-/es/Cuentos-para-Dormir-Relatos-Spanish/dp/B0G5YX21SW",
       },
       {
-        label: "View PDF",
+        label: "Download PDF",
         url: "/pdf-books/cuentos-para-dormir.pdf",
       },
     ],

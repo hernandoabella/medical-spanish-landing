@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { FaAmazon } from "react-icons/fa";
 
 export default function AnxiousAttachmentSection() {
   const sectionRef = useRef(null);
@@ -49,10 +50,10 @@ export default function AnxiousAttachmentSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen flex items-center overflow-hidden px-6 md:px-12"
+      className="w-full min-h-screen flex items-center overflow-hidden px-4 md:px-12"
       style={{ backgroundColor: "#FBF7F0" }}
     >
-      <div className="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-24 lg:py-0">
+      <div className="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0">
 
         {/* ── Text left ── */}
         <div className="flex flex-col gap-6">
@@ -127,10 +128,8 @@ export default function AnxiousAttachmentSection() {
               onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#11756C")}
               onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#E7650D")}
             >
-              Get the Workbook
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <FaAmazon className="w-4 h-4" />
+              Get on Amazon
             </Link>
 
             <div className="flex items-center gap-2">

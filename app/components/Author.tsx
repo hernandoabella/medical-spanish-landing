@@ -49,7 +49,7 @@ const Author = () => {
       />
 
       <div className="max-w-4xl mx-auto">
-        <div className="author-card bg-white rounded-[2.5rem] p-10 md:p-20 shadow-[0_30px_100px_rgba(20,43,71,0.06)] border border-gray-100 relative">
+        <div className="author-card bg-white rounded-[2.5rem] p-8 md:p-20 shadow-[0_30px_100px_rgba(20,43,71,0.06)] border border-gray-100 relative">
           
           {/* Comilla decorativa para estilo editorial */}
           <div className="absolute top-10 left-10 text-9xl font-serif text-[#142B47]/5 leading-none select-none">

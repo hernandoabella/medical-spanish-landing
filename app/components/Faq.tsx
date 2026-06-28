@@ -1,20 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  ChevronDown,
-  HelpCircle,
-  BookOpen,
-  Users,
-  Clock,
-  Download,
-  Mail,
-  FileText,
-  Volume2,
-  GraduationCap,
-  Sparkles,
-  MessageCircle
-} from "lucide-react";
+import { ChevronDown, FileText, BookOpen, Volume2, HelpCircle } from "lucide-react";
 
 const faqs = [
   {
@@ -29,78 +16,87 @@ const faqs = [
     question: "Are the audio tracks included?",
     answer: "Yes—you receive free lifetime access to downloadable MP3 audio files featuring native Spanish-speaking healthcare professionals. The audio library includes pronunciation of all medical terms, complete dialogues from clinical scenarios, and both slow and normal-speed recordings for practice."
   },
+  {
+    question: "Is this book suitable for beginners in Spanish?",
+    answer: "Absolutely. The book is designed for healthcare professionals at any Spanish level. It starts with foundational vocabulary and builds up to complex clinical dialogues. Every phrase includes phonetic pronunciation, and the audio tracks help you develop correct pronunciation from day one."
+  },
+  {
+    question: "Can I use this book for exam preparation?",
+    answer: "Yes. The structured system-based approach makes it ideal for exam prep. Each chapter covers a specific medical system with key vocabulary, common patient complaints, and physician responses. The review questions at the end of each section help reinforce your learning."
+  },
 ];
 
-const Faq = () => {
+export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const getIconForFaq = (index: number) => {
+  const getIcon = (index: number) => {
     const question = faqs[index].question.toLowerCase();
-    const iconClass = "w-6 h-6 transition-transform duration-500 group-hover:rotate-12";
-
-    if (question.includes('case')) return <FileText className={iconClass} />;
-    if (question.includes('glossary')) return <BookOpen className={iconClass} />;
-    if (question.includes('audio')) return <Volume2 className={iconClass} />;
-    return <HelpCircle className={iconClass} />;
+    const cls = "w-6 h-6 transition-transform duration-500 group-hover:rotate-12";
+    if (question.includes('case')) return <FileText className={cls} />;
+    if (question.includes('glossary')) return <BookOpen className={cls} />;
+    if (question.includes('audio')) return <Volume2 className={cls} />;
+    return <HelpCircle className={cls} />;
   };
 
   return (
     <section className="py-24 bg-[#f8faff] relative overflow-hidden">
-      {/* Círculos decorativos de fondo */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[600px] h-[600px] bg-[#002EC1]/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-teal-100/40 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[600px] h-[600px] bg-[#0B8288]/5 rounded-full blur-3xl" />
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
-
-        {/* Header Animado */}
-        <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">
-            Common <span className="text-[#002EC1]">Questions</span>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-[#0B8288]/10 px-4 py-1.5 rounded-full mb-4">
+            <span className="text-[#0B8288] text-xs font-semibold tracking-wider uppercase">FAQ</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
+            Common <span className="text-[#0B8288]">Questions</span>
           </h2>
+          <p className="text-gray-500 max-w-lg mx-auto">
+            Everything you need to know about the Medical Spanish for Healthcare Professionals book.
+          </p>
         </div>
 
-        {/* FAQ List con Efecto de Enfoque */}
-        <div className="space-y-4 mb-20">
+        <div className="space-y-3">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={index}
-                className={`group transition-all duration-500 rounded-[2rem] border-2 
+                className={`group transition-all duration-500 rounded-2xl border
                   ${isOpen
-                    ? "bg-white border-[#002EC1] shadow-[0_20px_40px_rgba(0,46,193,0.08)] scale-[1.02]"
-                    : "bg-white/50 border-gray-100 hover:border-blue-200 hover:bg-white"}`}
+                    ? "bg-white border-[#0B8288] shadow-[0_12px_40px_rgba(11,130,136,0.08)]"
+                    : "bg-white/60 border-gray-100 hover:border-[#0B8288]/30 hover:bg-white"}`}
               >
                 <button
                   onClick={() => toggle(index)}
-                  className="w-full p-6 md:p-8 flex justify-between items-center text-left"
+                  className="w-full p-5 md:p-6 flex justify-between items-center text-left gap-4"
                 >
-                  <div className="flex items-center gap-6">
-                    <div className={`p-4 rounded-2xl transition-all duration-500 
-                      ${isOpen ? "bg-[#002EC1] text-white" : "bg-white text-[#002EC1] shadow-sm border border-gray-50"}`}>
-                      {getIconForFaq(index)}
+                  <div className="flex items-center gap-4">
+                    <div className={`p-3 rounded-xl transition-all duration-500 
+                      ${isOpen ? "bg-[#0B8288] text-white" : "bg-white text-[#0B8288] shadow-sm border border-gray-100"}`}>
+                      {getIcon(index)}
                     </div>
-                    <h3 className={`text-xl font-bold transition-colors duration-300 
-                      ${isOpen ? "text-gray-900" : "text-gray-600"}`}>
+                    <h3 className={`text-base md:text-lg font-bold transition-colors duration-300 
+                      ${isOpen ? "text-gray-900" : "text-gray-700"}`}>
                       {faq.question}
                     </h3>
                   </div>
 
-                  <div className={`transition-all duration-500 rounded-full p-2 
-                    ${isOpen ? "bg-gray-100 rotate-180" : "bg-gray-50 group-hover:bg-blue-50"}`}>
-                    <ChevronDown className={`w-6 h-6 ${isOpen ? "text-[#002EC1]" : "text-gray-400"}`} />
+                  <div className={`shrink-0 transition-all duration-500 rounded-full p-1.5 
+                    ${isOpen ? "bg-[#0B8288]/10 rotate-180" : "bg-gray-50 group-hover:bg-[#0B8288]/5"}`}>
+                    <ChevronDown className={`w-5 h-5 ${isOpen ? "text-[#0B8288]" : "text-gray-400"}`} />
                   </div>
                 </button>
 
                 <div className={`overflow-hidden transition-all duration-500 ease-in-out 
                   ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
-                  <div className="px-8 pb-8 md:pl-[104px] md:pr-12">
-                    <div className="h-px bg-gray-100 mb-6" />
-                    <p className="text-gray-500 text-lg leading-relaxed font-medium">
+                  <div className="px-5 pb-6 md:px-20 md:pb-8">
+                    <div className="h-px bg-gray-100 mb-5" />
+                    <p className="text-gray-500 text-base leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
@@ -109,10 +105,7 @@ const Faq = () => {
             );
           })}
         </div>
-
       </div>
     </section>
   );
-};
-
-export default Faq;
+}

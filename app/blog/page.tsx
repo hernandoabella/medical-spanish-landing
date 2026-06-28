@@ -449,6 +449,7 @@ export default function BlogPage() {
                   <PostCard key={post.slug} post={post} />
                 ))}
               </div>
+
             </div>
           )
         })}
