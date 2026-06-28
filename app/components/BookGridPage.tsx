@@ -109,14 +109,14 @@ export default function BookGridPage({
                   </div>
                 ) : null}
 
-                <div className="mt-5 flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-wrap gap-2">
                   {book.actions.map((action) => (
                     <a
                       key={`${book.title}-${action.label}`}
                       href={action.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-[var(--brand-navy)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--brand-teal)]"
+                      className="inline-flex items-center justify-center gap-1.5 rounded-full bg-[var(--brand-navy)] px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-[var(--brand-teal)] flex-1 min-w-0"
                     >
                       {action.label.includes("Amazon") && (
                         <FaAmazon className="h-4 w-4" />
