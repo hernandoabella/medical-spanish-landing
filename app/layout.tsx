@@ -31,6 +31,7 @@ export default function RootLayout({
         <div className="flex min-h-screen flex-col">
           <Header />
           <div className="flex-1">{children}</div>
+          <div className="h-16 md:h-24 bg-gradient-to-b from-transparent to-[#0A1628]" />
           <Footer />
         </div>
 

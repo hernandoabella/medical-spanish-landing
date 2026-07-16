@@ -42,22 +42,22 @@ export default function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-screen flex items-center bg-white overflow-hidden"
+      className="relative w-full min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-7rem)] flex items-center bg-white overflow-hidden"
     >
       {/* Línea de acento superior */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#0B8288]" />
 
-      <div className="w-full max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0 lg:min-h-screen">
+      <div className="w-full max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0">
 
         {/* Libro — first on mobile */}
         <div className="flex items-center justify-center relative order-1">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-72 h-72 rounded-full bg-[#0B8288]/6" />
+            <div className="w-56 h-56 rounded-full bg-[#0B8288]/6" />
           </div>
           <img
             src="/book-mockupz.jpg"
             alt="Medical Spanish Book"
-            className="book-img relative z-10 w-[70%] md:w-[55%] lg:w-[80%] max-w-[360px] h-auto object-contain"
+            className="book-img relative z-10 w-[60%] md:w-[50%] lg:w-[70%] max-w-[280px] h-auto object-contain"
             style={{ filter: "drop-shadow(0 20px 40px rgba(15,33,55,0.15))" }}
           />
         </div>
@@ -65,14 +65,7 @@ export default function HeroSection() {
         {/* Texto */}
         <div className="flex flex-col gap-7 order-2">
 
-          <div className="fade-up flex items-center gap-3">
-            <div className="w-6 h-[2px] bg-[#0B8288]" />
-            <span className="text-[#0B8288] text-xs font-semibold tracking-[0.2em] uppercase">
-              Medical Spanish
-            </span>
-          </div>
-
-          <h1 className="fade-up text-[clamp(2.8rem,5.5vw,4.5rem)] font-bold text-[#0F2137] leading-[1.05] tracking-tight">
+<h1 className="fade-up text-[clamp(2rem,3.5vw,3rem)] font-bold text-[#0F2137] leading-[1.05] tracking-tight">
             Communicate with<br />
             every patient,<br />
             <span className="text-[#0B8288]">confidently.</span>

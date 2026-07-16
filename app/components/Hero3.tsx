@@ -50,7 +50,7 @@ export default function AnxiousAttachmentSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen flex items-center overflow-hidden px-4 md:px-12"
+      className="w-full min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-7rem)] flex items-center overflow-hidden px-4 md:px-12"
       style={{ backgroundColor: "#FBF7F0" }}
     >
       <div className="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0">

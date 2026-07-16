@@ -50,7 +50,7 @@ export default function AngerManagementSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen flex items-center bg-white px-6 md:px-12 overflow-hidden"
+      className="w-full min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-7rem)] flex items-center bg-white px-6 md:px-12 overflow-hidden"
     >
       <div className="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0">
 

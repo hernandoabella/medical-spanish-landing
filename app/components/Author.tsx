@@ -91,10 +91,6 @@ const Author = () => {
           </div>
         </div>
 
-        {/* Badge inferior de certificación o confianza */}
-        <div className="mt-12 flex justify-center items-center gap-8 opacity-40 grayscale">
-          <span className="text-xs font-bold tracking-[0.3em] text-[#142B47] uppercase">Evidence Based Content</span>
-        </div>
       </div>
     </section>
   );

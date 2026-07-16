@@ -47,7 +47,7 @@ export default function Header() {
             alt="PRAXMED Publishing logo"
             width={72}
             height={72}
-            className="h-10 w-auto object-contain md:h-20"
+            className="h-10 w-auto object-contain md:h-20 drop-shadow-none"
           />
         </Link>
 
@@ -59,13 +59,13 @@ export default function Header() {
           {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
-        <nav className="hidden items-center md:flex">
+        <nav className="hidden items-stretch self-stretch md:flex">
           {navItems.map((item) =>
             item.external ? (
               <a
                 key={item.label}
                 href={item.href}
-                className="border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-[#0B8288] hover:text-[#0B8288]"
+                className="flex items-center border border-slate-200 px-4 text-sm font-medium text-slate-700 transition hover:border-[#0B8288] hover:text-[#0B8288]"
                 style={{ clipPath: "polygon(0% 0%, 100% 0%, 92% 100%, 8% 100%)" }}
               >
                 <span className="flex items-center gap-1.5">{navIcons[item.href]} {item.label}</span>
@@ -74,7 +74,7 @@ export default function Header() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`border px-4 py-2 text-sm font-medium transition ${
+                className={`flex items-center border px-4 text-sm font-medium transition ${
                   isActive(item.href)
                     ? "border-[#0B8288] bg-[#0B8288] text-white"
                     : "border-slate-200 text-slate-700 hover:border-[#0B8288] hover:text-[#0B8288]"
