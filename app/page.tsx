@@ -1,5 +1,6 @@
 import Author from "./components/Author";
 import BreakingGenerationalTraumaSection from "./components/BreakingGenerationalTraumaSection";
+import HealingInnerChildSection from "./components/HealingInnerChildSection";
 import BookGridPage from "./components/BookGridPage";
 import BonusSection from "./components/BonusSection";
 import Faq from "./components/Faq";
@@ -77,41 +78,19 @@ const featuredBooks = [
     ],
   },
   {
-    title: "Juan Cigarron",
-    image: "/book-mockupz-2.png",
+    title: "Healing Your Inner Child",
+    image: "/ebook-portada-healing-your-inner-child.jpg",
     description:
-      "Kids bonus book with a free PDF download, plus the Amazon edition for readers who want to keep it in their library.",
-    accent: "#0B8288",
-    badge: "Free Bonus PDF",
+      "A compassionate guide to understanding and reparenting your inner child, breaking free from old patterns, and building a life rooted in self-worth and emotional freedom.",
+    accent: "#D96B2B",
     actions: [
       {
-        label: "Download Bonus Free",
-        url: "/pdf-books/juan-cigarron.pdf",
-      },
-      {
         label: "Get on Amazon",
-        url: "https://www.amazon.com/-/es/Aluna-Publishing-House-ebook/dp/B0D4LHPBPG",
+        url: "https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0H6NZXSZ3",
       },
     ],
   },
-  {
-    title: "Cuentos Para Dormir",
-    image: "/cuentos-para-dormir.png",
-    description:
-      "Bedtime bonus book with a free PDF download for families, alongside the Amazon edition.",
-    accent: "#E8773A",
-    badge: "Free Bonus PDF",
-    actions: [
-      {
-        label: "Download Bonus Free",
-        url: "/pdf-books/cuentos-para-dormir.pdf",
-      },
-      {
-        label: "Get on Amazon",
-        url: "https://www.amazon.com/-/es/Cuentos-para-Dormir-Relatos-Spanish/dp/B0G5YX21SW",
-      },
-    ],
-  },
+
 ];
 
 export default function Home() {
@@ -129,6 +108,7 @@ export default function Home() {
       <RaisingEISection />
       <Hero3 />
       <BreakingGenerationalTraumaSection />
+      <HealingInnerChildSection />
       <Testimonials />
       <Faq />
       <Nwesletter />

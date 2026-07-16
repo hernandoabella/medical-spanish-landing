@@ -3,9 +3,9 @@ import BookGridPage from "../components/BookGridPage";
 const books = [
   {
     title: "Juan Cigarron",
-    image: "/book-mockupz-2.png",
+    image: "/juan-cigarron.jpg",
     description:
-      "A charming children's story for young readers, now available in the kids collection.",
+      "BILINGUAL SPANISH - ENGLISH STORIES FOR KIDS 7 - 12",
     accent: "#0B8288",
     actions: [
       {

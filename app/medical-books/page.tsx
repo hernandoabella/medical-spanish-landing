@@ -4,7 +4,7 @@ import AudioDownload from "../components/BonusSection";
 const books = [
   {
     title: "Medical Spanish",
-    image: "/book-mockupz.png",
+    image: "/book-mockupz.jpg",
     description:
       "Essential Spanish for healthcare professionals — phrases, patient history, emergency vocabulary, and clinical communication.",
     accent: "#C47A6B",

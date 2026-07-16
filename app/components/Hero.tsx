@@ -50,7 +50,7 @@ export default function HeroSection() {
       <div className="w-full max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0 lg:min-h-screen">
 
         {/* Libro — first on mobile */}
-        <div className="flex items-center justify-center relative order-1 lg:order-2">
+        <div className="flex items-center justify-center relative order-1">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-72 h-72 rounded-full bg-[#0B8288]/6" />
           </div>
@@ -63,7 +63,7 @@ export default function HeroSection() {
         </div>
 
         {/* Texto */}
-        <div className="flex flex-col gap-7 order-2 lg:order-1">
+        <div className="flex flex-col gap-7 order-2">
 
           <div className="fade-up flex items-center gap-3">
             <div className="w-6 h-[2px] bg-[#0B8288]" />
@@ -109,12 +109,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2">
-        <div className="w-[1px] h-8 bg-gray-300" />
-        <span className="text-[9px] tracking-[0.3em] uppercase text-gray-400 font-medium">Scroll</span>
       </div>
     </section>
   );

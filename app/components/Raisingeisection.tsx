@@ -57,7 +57,7 @@ export default function RaisingEISection() {
       <div className="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0">
 
         {/* Book — first on mobile */}
-        <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+        <div className="flex justify-center lg:justify-start order-1">
           <div className="relative">
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full blur-[70px] opacity-25 pointer-events-none"
@@ -79,7 +79,7 @@ export default function RaisingEISection() {
         </div>
 
         {/* Text */}
-        <div className="flex flex-col gap-6 order-2 lg:order-1">
+        <div className="flex flex-col gap-6 order-2">
 
           <div className="fade-up flex items-center gap-3">
             <div className="w-6 h-[2px]" style={{ backgroundColor: "#1A7A8A" }} />

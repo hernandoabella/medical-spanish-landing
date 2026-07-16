@@ -5,10 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { FaHome, FaBook, FaUsers, FaHeartbeat, FaLaptop, FaNewspaper } from "react-icons/fa";
+
+const navIcons: Record<string, React.ReactNode> = {
+  "/": <FaHome className="h-3.5 w-3.5" />,
+  "/childrens-books": <FaBook className="h-3.5 w-3.5" />,
+  "/parenting-books": <FaUsers className="h-3.5 w-3.5" />,
+  "/medical-books": <FaHeartbeat className="h-3.5 w-3.5" />,
+  "https://hernandoabella.com": <FaLaptop className="h-3.5 w-3.5" />,
+  "/blog": <FaNewspaper className="h-3.5 w-3.5" />,
+};
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/for-kids", label: "For Kids" },
+  { href: "/childrens-books", label: "Children's Books" },
   { href: "/parenting-books", label: "Parenting Books" },
   { href: "/medical-books", label: "Medical Books" },
   {
@@ -49,27 +59,29 @@ export default function Header() {
           {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
-        <nav className="hidden items-center gap-2 md:flex">
+        <nav className="hidden items-center md:flex">
           {navItems.map((item) =>
             item.external ? (
               <a
                 key={item.label}
                 href={item.href}
-                className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-[#0B8288] hover:text-[#0B8288]"
+                className="border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-[#0B8288] hover:text-[#0B8288]"
+                style={{ clipPath: "polygon(0% 0%, 100% 0%, 92% 100%, 8% 100%)" }}
               >
-                {item.label}
+                <span className="flex items-center gap-1.5">{navIcons[item.href]} {item.label}</span>
               </a>
             ) : (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                className={`border px-4 py-2 text-sm font-medium transition ${
                   isActive(item.href)
                     ? "border-[#0B8288] bg-[#0B8288] text-white"
                     : "border-slate-200 text-slate-700 hover:border-[#0B8288] hover:text-[#0B8288]"
                 }`}
+                style={{ clipPath: "polygon(0% 0%, 100% 0%, 92% 100%, 8% 100%)" }}
               >
-                {item.label}
+                <span className="flex items-center gap-1.5">{navIcons[item.href]} {item.label}</span>
               </Link>
             )
           )}
@@ -87,7 +99,7 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   className="rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
                 >
-                  {item.label}
+                  <span className="flex items-center gap-2">{navIcons[item.href]} {item.label}</span>
                 </a>
               ) : (
                 <Link
@@ -100,7 +112,7 @@ export default function Header() {
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
                 >
-                  {item.label}
+                  <span className="flex items-center gap-2">{navIcons[item.href]} {item.label}</span>
                 </Link>
               )
             )}

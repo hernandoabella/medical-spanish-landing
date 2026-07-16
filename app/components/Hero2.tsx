@@ -55,7 +55,7 @@ export default function AngerManagementSection() {
       <div className="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0">
 
         {/* Book */}
-        <div className="flex justify-center lg:justify-start order-1">
+        <div className="flex justify-center lg:justify-end order-1 lg:order-2">
           <div className="relative">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-64 h-64 rounded-full bg-[#264C62]/6" />
@@ -70,7 +70,7 @@ export default function AngerManagementSection() {
         </div>
 
         {/* Text */}
-        <div className="flex flex-col gap-7 order-2">
+        <div className="flex flex-col gap-7 order-2 lg:order-1">
 
           <div className="fade-up flex items-center gap-3">
             <div className="w-6 h-[2px] bg-[#264C62]" />
