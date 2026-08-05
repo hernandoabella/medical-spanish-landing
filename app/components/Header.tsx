@@ -5,13 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { FaHome, FaBook, FaUsers, FaHeartbeat, FaLaptop, FaNewspaper } from "react-icons/fa";
+import { FaHome, FaBook, FaUsers, FaHeartbeat, FaLaptop, FaNewspaper, FaHeadphones } from "react-icons/fa";
 
 const navIcons: Record<string, React.ReactNode> = {
   "/": <FaHome className="h-3.5 w-3.5" />,
   "/childrens-books": <FaBook className="h-3.5 w-3.5" />,
   "/parenting-books": <FaUsers className="h-3.5 w-3.5" />,
   "/medical-books": <FaHeartbeat className="h-3.5 w-3.5" />,
+  "/audio-books": <FaHeadphones className="h-3.5 w-3.5" />,
   "https://hernandoabella.com": <FaLaptop className="h-3.5 w-3.5" />,
   "/blog": <FaNewspaper className="h-3.5 w-3.5" />,
 };
@@ -21,6 +22,7 @@ const navItems = [
   { href: "/childrens-books", label: "Children's Books" },
   { href: "/parenting-books", label: "Parenting Books" },
   { href: "/medical-books", label: "Medical Books" },
+  { href: "/audio-books", label: "Audio Books" },
   {
     href: "https://hernandoabella.com",
     label: "Programming Books",

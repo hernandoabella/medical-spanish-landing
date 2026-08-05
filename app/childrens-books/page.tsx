@@ -27,7 +27,7 @@ const books = [
     actions: [
       {
         label: "Get on Amazon",
-        url: "https://www.amazon.com/-/es/Cuentos-para-Dormir-Relatos-Spanish/dp/B0G5YX21SW",
+        url: "https://www.amazon.com/dp/B0G9TVPB8K",
       },
       {
         label: "Download PDF",
