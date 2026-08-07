@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import SalesChat from "./components/SalesChat";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -33,6 +34,8 @@ export default function RootLayout({
           <div className="flex-1">{children}</div>
           <div className="h-16 md:h-24 bg-gradient-to-b from-transparent to-[#0A1628]" />
           <Footer />
+          {/* Floating Sales Chat Widget — available 24/7 on all pages */}
+          <SalesChat key="floating-chat" />
         </div>
 
         <Script id="mailerlite-auto-show" strategy="afterInteractive">
