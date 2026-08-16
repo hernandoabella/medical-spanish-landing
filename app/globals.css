@@ -55,3 +55,27 @@ body {
     transparent 100%
   );
 }
+
+/* Center the embedded MailerLite subscribe form inside the newsletter section.
+   The embed ships its own stylesheet, so these overrides use !important. */
+.ml-embedded {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100%;
+}
+
+.ml-embedded form {
+  width: 100% !important;
+  max-width: 360px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.ml-embedded .ml-form-formContent,
+.ml-embedded .ml-form-fieldRow,
+.ml-embedded .ml-form-embedSubmit,
+.ml-embedded .ml-form-embedPermissions {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
