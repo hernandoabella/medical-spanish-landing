@@ -69,12 +69,15 @@ const COMPANY_INFO = {
 
 export const maxDuration = 30;
 
+const CHAT_MODEL =
+  process.env.CHAT_MODEL ?? "google/gemma-4-26b-a4b-it:free";
+
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
 
     const result = streamText({
-      model: openrouter("google/gemma-4-26b-a4b-it:free"),
+      model: openrouter(CHAT_MODEL),
       system: `You are Praxmed — a friendly, knowledgeable Sales Assistant for Praxmed Publishing.
 
 You are a real person helping visitors find books. Think of yourself as a helpful bookstore employee who genuinely cares about getting people the right resource.

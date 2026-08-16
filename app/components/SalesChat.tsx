@@ -154,7 +154,7 @@ export default function SalesChat({
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [minimized, setMinimized] = useState(false);
+  const [minimized, setMinimized] = useState(true);
   const [size, setSize] = useState<"compact" | "expanded">("compact");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -199,7 +199,19 @@ export default function SalesChat({
       content: message,
     };
 
-    setMessages((prev) => [...prev, userMessage]);
+    // Snapshot current history so the request is never stale
+    const requestMessages = [
+      ...messages.map((m) => ({ role: m.role, content: m.content })),
+      { role: "user", content: message },
+    ];
+
+    const assistantMessage: Message = {
+      id: (Date.now() + 1).toString(),
+      role: "assistant",
+      content: "",
+    };
+
+    setMessages((prev) => [...prev, userMessage, assistantMessage]);
     setInput("");
     setIsLoading(true);
     setShowSuggestions(false);
@@ -210,34 +222,21 @@ export default function SalesChat({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          messages: [
-            ...messages.map((m) => ({ role: m.role, content: m.content })),
-            { role: "user", content: userMessage.content },
-          ],
-        }),
+        body: JSON.stringify({ messages: requestMessages }),
       });
 
       if (!response.ok) throw new Error("Failed to get response");
 
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder();
       let assistantContent = "";
+      const body = response.body;
 
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: "assistant",
-        content: "",
-      };
-
-      setMessages((prev) => [...prev, assistantMessage]);
-
-      if (reader) {
+      if (body && typeof body.getReader === "function") {
+        const reader = body.getReader();
+        const decoder = new TextDecoder();
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
-          const text = decoder.decode(value, { stream: true });
-          assistantContent += text;
+          assistantContent += decoder.decode(value, { stream: true });
           setMessages((prev) =>
             prev.map((m) =>
               m.id === assistantMessage.id
@@ -246,18 +245,39 @@ export default function SalesChat({
             ),
           );
         }
+        // flush decoder state
+        assistantContent += decoder.decode();
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantMessage.id
+              ? { ...m, content: assistantContent }
+              : m,
+          ),
+        );
+      } else {
+        // Fallback for browsers without streaming body support (some mobiles)
+        assistantContent = await response.text();
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantMessage.id
+              ? { ...m, content: assistantContent }
+              : m,
+          ),
+        );
       }
     } catch (error) {
       console.error("Chat error:", error);
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: (Date.now() + 2).toString(),
-          role: "assistant",
-          content:
-            "I'm sorry, I'm having trouble connecting right now. Please try again in a moment, or reach out to contact@praxmedpublishing.com!",
-        },
-      ]);
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantMessage.id
+            ? {
+                ...m,
+                content:
+                  "I'm sorry, I'm having trouble connecting right now. Please try again in a moment, or reach out to contact@praxmedpublishing.com!",
+              }
+            : m,
+        ),
+      );
     } finally {
       setIsLoading(false);
       inputRef.current?.focus();

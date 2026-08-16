@@ -132,7 +132,7 @@ export default function Header() {
             {/* Dropdown Menu */}
             {booksOpen && (
               <div
-                className="absolute top-full left-0 mt-0.5 flex flex-col rounded-lg border border-slate-200 bg-white py-2 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
+                className="absolute top-full left-0 mt-0.5 flex w-56 min-w-[220px] flex-col rounded-lg border border-slate-200 bg-white py-2 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
                 style={{ zIndex: 100 }}
               >
                 {bookCategories.map((cat) => (

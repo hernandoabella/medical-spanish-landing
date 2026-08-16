@@ -59,23 +59,24 @@ export default function AudioBookGridPage({
             className="overflow-hidden rounded-[28px] border border-[var(--border-soft)] bg-white shadow-[0_24px_60px_rgba(21,48,71,0.08)]"
           >
             <div
-              className="relative flex min-h-[240px] sm:min-h-[320px] items-center justify-center p-6 sm:p-8"
+              className="relative aspect-[1774/887] w-full overflow-hidden"
               style={{
                 background: `radial-gradient(circle at top, ${audiobook.accent}20 0%, #ffffff 68%)`,
               }}
             >
+              <Image
+                src={audiobook.image}
+                alt={audiobook.title}
+                fill
+                sizes="(min-width: 768px) 1152px, 100vw"
+                className="absolute inset-0 h-full w-full object-cover"
+                priority
+              />
               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-10">
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
                   <FaHeadphones className="h-8 w-8 text-[var(--brand-teal)]" />
                 </div>
               </div>
-              <Image
-                src={audiobook.image}
-                alt={audiobook.title}
-                width={260}
-                height={360}
-                className="relative z-0 h-auto max-h-[280px] w-auto rounded-xl object-contain shadow-[0_16px_40px_rgba(0,0,0,0.15)]"
-              />
             </div>
 
             <div className="border-t border-slate-100 p-8">

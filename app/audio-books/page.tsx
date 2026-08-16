@@ -2,7 +2,7 @@ import AudioBookGridPage from "../components/AudioBookGridPage";
 
 const audiobook = {
   title: "Anger Management for Explosive Parents",
-  image: "/manejo-de-la-ira.jpg",
+  image: "/anger-managment-for-explosive-parents-bg.png",
   description:
     "Stop Yelling, Understand Your Triggers, and Break the Cycle Without Breaking Yourself. A practical, judgment-free audiobook for parents who feel overwhelmed and want to regain control of their emotions.",
   accent: "#264C62",
