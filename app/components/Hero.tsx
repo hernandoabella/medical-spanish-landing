@@ -3,7 +3,15 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
-import { FaAmazon } from "react-icons/fa";
+import { FaAmazon, FaStar } from "react-icons/fa";
+import { Headphones, BookOpen, Users } from "lucide-react";
+
+const stats = [
+  { icon: Users, value: "500+", label: "Professionals trained" },
+  { icon: Headphones, value: "40", label: "Native audio tracks" },
+  { icon: FaStar, value: "4.9/5", label: "Average rating" },
+  { icon: BookOpen, value: "1,000+", label: "Glossary terms" },
+];
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,25 +22,45 @@ export default function HeroSection() {
         y: 24,
         opacity: 0,
         duration: 0.9,
-        stagger: 0.12,
+        stagger: 0.1,
         ease: "power3.out",
-        delay: 0.2,
+        delay: 0.15,
       });
 
       gsap.from(".book-img", {
         opacity: 0,
-        x: 30,
+        scale: 0.92,
+        y: 30,
         duration: 1.1,
         ease: "power3.out",
-        delay: 0.4,
+        delay: 0.35,
+      });
+
+      gsap.from(".hero-chip", {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "back.out(1.7)",
+        delay: 0.9,
+      });
+
+      gsap.from(".hero-stat", {
+        y: 24,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power3.out",
+        delay: 0.7,
       });
 
       gsap.to(".book-img", {
-        y: -10,
+        y: -12,
         duration: 4,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
+        delay: 1.5,
       });
     }, containerRef);
 
@@ -42,66 +70,132 @@ export default function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-7rem)] flex items-center bg-white overflow-hidden"
+      className="relative w-full overflow-hidden bg-white"
     >
       {/* Línea de acento superior */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#0B8288]" />
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#0B8288] via-[#1A9D9D] to-[#D96B2B]" />
 
-      <div className="w-full max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-0">
+      {/* Patrón de puntos médico sutil */}
+      <div
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(#153047 1px, transparent 0)",
+          backgroundSize: "36px 36px",
+        }}
+      />
 
-        {/* Libro — first on mobile */}
-        <div className="flex items-center justify-center relative order-1">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-56 h-56 rounded-full bg-[#0B8288]/6" />
+      {/* Resplandores de fondo */}
+      <div className="absolute -top-24 -right-24 w-[480px] h-[480px] rounded-full bg-[radial-gradient(circle,rgba(11,130,136,0.10),transparent_70%)] blur-2xl pointer-events-none" />
+      <div className="absolute -bottom-32 -left-24 w-[420px] h-[420px] rounded-full bg-[radial-gradient(circle,rgba(217,107,43,0.08),transparent_70%)] blur-2xl pointer-events-none" />
+
+      <div className="relative max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center pt-14 pb-10 md:pt-24 md:pb-14">
+
+        {/* Texto */}
+        <div className="flex flex-col gap-6 order-2 lg:order-1">
+          <div className="fade-up inline-flex items-center gap-2.5 self-start rounded-full border border-[#0B8288]/20 bg-[#0B8288]/5 px-4 py-1.5">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0B8288] opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0B8288]" />
+            </span>
+            <span className="text-[11px] md:text-xs font-semibold tracking-wide text-[#0B8288] uppercase">
+              The complete clinical Spanish guide
+            </span>
           </div>
+
+          <h1 className="fade-up text-[clamp(2.4rem,4.5vw,3.6rem)] font-black text-[#0F2137] leading-[1.04] tracking-tight">
+            Communicate with
+            <br />
+            every patient,{" "}
+            <span className="bg-gradient-to-r from-[#0B8288] to-[#1A9D9D] bg-clip-text text-transparent">
+              confidently.
+            </span>
+          </h1>
+
+          <p className="fade-up text-lg text-gray-500 leading-relaxed max-w-lg">
+            Real clinical dialogues, essential vocabulary, and native
+            pronunciation — built for busy healthcare professionals who want to
+            connect with Spanish-speaking patients today.
+          </p>
+
+          <div className="fade-up flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <Link
+              href="https://www.amazon.com/dp/B0G92L65ZB"
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#0F2137] text-white text-sm font-bold tracking-wide rounded-md hover:bg-[#0B8288] transition-all duration-300 shadow-[0_12px_30px_rgba(15,33,55,0.25)] hover:shadow-[0_16px_36px_rgba(11,130,136,0.3)] hover:-translate-y-0.5"
+            >
+              <FaAmazon className="w-4 h-4" />
+              Get the Book on Amazon
+            </Link>
+            <Link
+              href="#library"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-slate-200 bg-white text-[#0F2137] text-sm font-semibold rounded-md hover:border-[#0B8288] hover:text-[#0B8288] transition-all duration-300"
+            >
+              Explore all books
+            </Link>
+          </div>
+
+          <div className="fade-up flex items-center gap-2.5">
+            <div className="flex">
+              {[...Array(5)].map((_, i) => (
+                <FaStar key={i} className="w-4 h-4 text-[#0B8288]" />
+              ))}
+            </div>
+            <span className="text-sm text-gray-500">
+              <strong className="text-gray-800">4.9</strong> · 500+ professionals
+              trained
+            </span>
+          </div>
+        </div>
+
+        {/* Libro */}
+        <div className="relative flex items-center justify-center order-1 lg:order-2 py-6">
+          <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-[radial-gradient(circle,rgba(11,130,136,0.14),transparent_65%)] blur-2xl pointer-events-none" />
+          <div className="absolute w-[105%] h-[105%] rounded-full border border-[#0B8288]/10 pointer-events-none" />
+
           <img
             src="/book-mockupz.jpg"
             alt="Medical Spanish Book"
-            className="book-img relative z-10 w-[60%] md:w-[50%] lg:w-[70%] max-w-[280px] h-auto object-contain"
-            style={{ filter: "drop-shadow(0 20px 40px rgba(15,33,55,0.15))" }}
+            className="book-img relative z-10 w-[70%] md:w-[62%] lg:w-[78%] max-w-[320px] h-auto object-contain"
+            style={{ filter: "drop-shadow(0 30px 60px rgba(15,33,55,0.22))" }}
           />
-        </div>
 
-        {/* Texto */}
-        <div className="flex flex-col gap-7 order-2">
+          {/* Chip flotante: audio */}
+          <div className="hero-chip absolute top-4 -left-2 md:top-10 md:left-0 z-20 flex items-center gap-2.5 rounded-xl bg-white/90 backdrop-blur px-3.5 py-2.5 shadow-[0_12px_32px_rgba(15,33,55,0.14)] border border-white">
+            <div className="w-8 h-8 rounded-lg bg-[#0B8288]/10 flex items-center justify-center">
+              <Headphones className="w-4 h-4 text-[#0B8288]" />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-[#0F2137]">40 audio tracks</p>
+              <p className="text-[10px] text-gray-500">Native pronunciation</p>
+            </div>
+          </div>
 
-<h1 className="fade-up text-[clamp(2rem,3.5vw,3rem)] font-bold text-[#0F2137] leading-[1.05] tracking-tight">
-            Communicate with<br />
-            every patient,<br />
-            <span className="text-[#0B8288]">confidently.</span>
-          </h1>
-
-          <p className="fade-up text-[1.05rem] text-gray-500 leading-relaxed max-w-md">
-            A practical guide for healthcare professionals. Real clinical dialogues,
-            essential vocabulary, and pronunciation tools — built for busy clinicians.
-          </p>
-
-          <div className="fade-up w-12 h-[1px] bg-gray-200" />
-
-          <div className="fade-up flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
-            <Link
-              href="https://www.amazon.com/dp/B0G92L65ZB"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#0F2137] text-white text-sm font-semibold tracking-wide hover:bg-[#0B8288] transition-colors duration-300 rounded-sm sm:inline-flex"
-            >
-              <FaAmazon className="w-4 h-4" />
-              Get the Book
-            </Link>
-
-            <div className="flex items-center gap-2 justify-center">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-3.5 h-3.5 text-[#0B8288]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <span className="text-sm text-gray-500">
-                <strong className="text-gray-800">4.9</strong> · 500+ professionals
-              </span>
+          {/* Chip flotante: glosario */}
+          <div className="hero-chip absolute bottom-4 -right-1 md:bottom-10 md:right-0 z-20 flex items-center gap-2.5 rounded-xl bg-white/90 backdrop-blur px-3.5 py-2.5 shadow-[0_12px_32px_rgba(15,33,55,0.14)] border border-white">
+            <div className="w-8 h-8 rounded-lg bg-[#D96B2B]/10 flex items-center justify-center">
+              <BookOpen className="w-4 h-4 text-[#D96B2B]" />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-[#0F2137]">1,000+ glossary</p>
+              <p className="text-[10px] text-gray-500">Clinical terms</p>
             </div>
           </div>
         </div>
+      </div>
 
+      {/* Franja de estadísticas */}
+      <div className="relative max-w-6xl mx-auto px-6 md:px-12 pb-12 md:pb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-slate-100 bg-slate-100 shadow-[0_16px_40px_rgba(21,48,71,0.06)]">
+          {stats.map(({ icon: Icon, value, label }) => (
+            <div
+              key={label}
+              className="hero-stat flex flex-col items-center gap-1.5 bg-white px-4 py-6 text-center"
+            >
+              <Icon className="w-5 h-5 text-[#0B8288]" />
+              <span className="text-2xl font-black text-[#0F2137]">{value}</span>
+              <span className="text-xs text-gray-500 font-medium">{label}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

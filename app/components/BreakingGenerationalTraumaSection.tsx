@@ -3,7 +3,10 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaAmazon } from "react-icons/fa";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function BreakingGenerationalTraumaSection() {
   const sectionRef = useRef(null);
@@ -11,20 +14,26 @@ export default function BreakingGenerationalTraumaSection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".trauma-fade-up", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 78%",
+        },
         y: 28,
         opacity: 0,
         duration: 1,
         stagger: 0.12,
         ease: "power3.out",
-        delay: 0.15,
       });
 
       gsap.from(".trauma-book-img", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 78%",
+        },
         opacity: 0,
         x: -40,
         duration: 1.15,
         ease: "power3.out",
-        delay: 0.3,
       });
 
       gsap.to(".trauma-book-img", {

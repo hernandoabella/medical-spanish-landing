@@ -1,8 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { useState, useRef, useEffect } from "react";
-import { Send, Bot, User, Minimize2, Maximize2, X, MessageCircle } from "lucide-react";
+import { Send, User, Minimize2, Maximize2, X, MessageCircle, Square, RotateCcw } from "lucide-react";
 import Image from "next/image";
 
 type Message = {
@@ -26,6 +25,19 @@ const SUGGESTED_QUESTIONS = [
   "💰 What are your prices?",
   "🚚 Shipping and return policy?",
 ];
+
+// How long we wait for the model to finish before considering the request stalled.
+const REQUEST_TIMEOUT_MS = 60_000;
+
+// Module-scope counter so message ids stay unique and stable (no Date.now in
+// the component body, which would break React's purity rules). Seeded randomly
+// so ids stay unique even if the module is hot-reloaded during development
+// (Fast Refresh resets module state, which used to collide message ids).
+let messageIdCounter = Math.floor(Math.random() * 1_000_000);
+function createMessageId(): string {
+  messageIdCounter += 1;
+  return `msg-${messageIdCounter}`;
+}
 
 // Render message content with clickable markdown links, bold, paragraph breaks, bullets
 function renderMessageContent(content: string) {
@@ -156,65 +168,87 @@ export default function SalesChat({
   const [isLoading, setIsLoading] = useState(false);
   const [minimized, setMinimized] = useState(true);
   const [size, setSize] = useState<"compact" | "expanded">("compact");
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [error, setError] = useState(false);
+  // { offset: px the mobile keyboard covers at the bottom of the screen,
+  //   height: current visible viewport height in px }
+  const [viewport, setViewport] = useState({ offset: 0, height: 0 });
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const userStoppedRef = useRef(false);
+  const lastUserMessageRef = useRef<string>("");
+
+  // Track the on-screen keyboard so fixed-position chat stays above it on
+  // mobile browsers where `interactive-widget=resizes-content` is not honored.
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (typeof window === "undefined" || !window.visualViewport) return;
+    const vv = window.visualViewport;
+    const onViewportChange = () => {
+      const gap = Math.max(0, window.innerHeight - vv.height);
+      setViewport({
+        offset: gap > 120 ? gap : 0,
+        height: Math.floor(vv.height),
+      });
+    };
+    onViewportChange();
+    vv.addEventListener("resize", onViewportChange);
+    vv.addEventListener("scroll", onViewportChange);
+    return () => {
+      vv.removeEventListener("resize", onViewportChange);
+      vv.removeEventListener("scroll", onViewportChange);
+    };
+  }, []);
+
+  // Scroll the messages list to the bottom. Scrolls the container directly
+  // instead of scrollIntoView({ smooth }), which is unreliable on iOS.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const raf = requestAnimationFrame(() => {
+      el.scrollTop = el.scrollHeight;
+    });
+    return () => cancelAnimationFrame(raf);
   }, [messages]);
 
   useEffect(() => {
     if (productName && messages.length === 1) {
       const greeting = `I see you're interested in "${productName}". Let me tell you more about it — it's one of our bestsellers!`;
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now().toString(),
-          role: "assistant",
-          content: greeting,
-        },
-      ]);
+      // Deferred so the setState is not synchronous inside the effect body.
+      const raf = requestAnimationFrame(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: createMessageId(),
+            role: "assistant",
+            content: greeting,
+          },
+        ]);
+      });
+      return () => cancelAnimationFrame(raf);
     }
   }, [productName, messages.length]);
 
-  useEffect(() => {
-    // Show suggestions only on first render (after greeting)
-    if (messages.length > 1) setShowSuggestions(false);
-  }, [messages.length]);
+  // Suggestions are only shown before the first exchange (single greeting message).
+  const showSuggestions = messages.length <= 1;
 
-  const handleSuggestedQuestion = (question: string) => {
-    setInput(question);
-    handleSubmit(new Event("submit") as any, question);
+  const updateMessage = (id: string, content: string) => {
+    setMessages((prev) =>
+      prev.map((m) => (m.id === id ? { ...m, content } : m)),
+    );
   };
 
-  const handleSubmit = async (e: React.FormEvent | any, customMessage?: string) => {
-    e.preventDefault();
-    const message = customMessage || input.trim();
-    if (!message || isLoading) return;
-
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      role: "user",
-      content: message,
-    };
-
-    // Snapshot current history so the request is never stale
-    const requestMessages = [
-      ...messages.map((m) => ({ role: m.role, content: m.content })),
-      { role: "user", content: message },
-    ];
-
-    const assistantMessage: Message = {
-      id: (Date.now() + 1).toString(),
-      role: "assistant",
-      content: "",
-    };
-
-    setMessages((prev) => [...prev, userMessage, assistantMessage]);
-    setInput("");
+  // Core request/streaming logic shared by send and retry.
+  const doSend = async (
+    requestMessages: { role: "user" | "assistant"; content: string }[],
+    assistantId: string,
+  ) => {
+    userStoppedRef.current = false;
+    const controller = new AbortController();
+    abortRef.current = controller;
+    const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
     setIsLoading(true);
-    setShowSuggestions(false);
 
     try {
       const response = await fetch("/api/sales-agent", {
@@ -223,6 +257,7 @@ export default function SalesChat({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ messages: requestMessages }),
+        signal: controller.signal,
       });
 
       if (!response.ok) throw new Error("Failed to get response");
@@ -237,63 +272,136 @@ export default function SalesChat({
           const { done, value } = await reader.read();
           if (done) break;
           assistantContent += decoder.decode(value, { stream: true });
-          setMessages((prev) =>
-            prev.map((m) =>
-              m.id === assistantMessage.id
-                ? { ...m, content: assistantContent }
-                : m,
-            ),
-          );
+          updateMessage(assistantId, assistantContent);
         }
         // flush decoder state
         assistantContent += decoder.decode();
-        setMessages((prev) =>
-          prev.map((m) =>
-            m.id === assistantMessage.id
-              ? { ...m, content: assistantContent }
-              : m,
-          ),
-        );
+        updateMessage(assistantId, assistantContent);
       } else {
         // Fallback for browsers without streaming body support (some mobiles)
         assistantContent = await response.text();
-        setMessages((prev) =>
-          prev.map((m) =>
-            m.id === assistantMessage.id
-              ? { ...m, content: assistantContent }
-              : m,
-          ),
-        );
+        updateMessage(assistantId, assistantContent);
       }
-    } catch (error) {
-      console.error("Chat error:", error);
-      setMessages((prev) =>
-        prev.map((m) =>
-          m.id === assistantMessage.id
-            ? {
-                ...m,
-                content:
-                  "I'm sorry, I'm having trouble connecting right now. Please try again in a moment, or reach out to contact@praxmedpublishing.com!",
-              }
-            : m,
-        ),
+
+      // A 200 with no content (e.g. the model was rate-limited and returned
+      // nothing) should still surface as a retryable error, not a silent empty bubble.
+      if (!assistantContent.trim()) {
+        throw new Error("Empty response");
+      }
+    } catch (err) {
+      if (userStoppedRef.current) {
+        // User pressed Stop — keep whatever partial response arrived.
+        setError(false);
+        return;
+      }
+      const timedOut =
+        err instanceof DOMException && err.name === "AbortError";
+      setError(true);
+      updateMessage(
+        assistantId,
+        timedOut
+          ? "⚠️ The request timed out. Please try again, or reach out to contact@praxmedpublishing.com!"
+          : "⚠️ Something went wrong. Please try again, or reach out to contact@praxmedpublishing.com!",
       );
     } finally {
+      clearTimeout(timeoutId);
+      abortRef.current = null;
       setIsLoading(false);
-      inputRef.current?.focus();
     }
+  };
+
+  const handleSubmit = async (
+    e?: React.FormEvent<HTMLFormElement>,
+    customMessage?: string,
+  ) => {
+    e?.preventDefault();
+    const message = customMessage || input.trim();
+    if (!message || isLoading) return;
+
+    lastUserMessageRef.current = message;
+    setError(false);
+
+    // Snapshot current history so the request is never stale
+    const requestMessages = [
+      ...messages.map((m) => ({ role: m.role, content: m.content })),
+      { role: "user" as const, content: message },
+    ];
+
+    const userMessage: Message = {
+      id: createMessageId(),
+      role: "user",
+      content: message,
+    };
+    const assistantMessage: Message = {
+      id: createMessageId(),
+      role: "assistant",
+      content: "",
+    };
+
+    setMessages((prev) => [...prev, userMessage, assistantMessage]);
+    setInput("");
+
+    await doSend(requestMessages, assistantMessage.id);
+  };
+
+  const handleSuggestedQuestion = (question: string) => {
+    if (isLoading) return;
+    handleSubmit(undefined, question);
+  };
+
+  const handleStop = () => {
+    userStoppedRef.current = true;
+    abortRef.current?.abort();
+  };
+
+  // Re-send the last user message after a failure. The failed assistant bubble
+  // (the last message) is dropped from history and reused for the new reply.
+  const handleRetry = () => {
+    if (isLoading || !lastUserMessageRef.current) return;
+
+    const history = [...messages];
+    let assistantId: string;
+    const last = history[history.length - 1];
+    if (last && last.role === "assistant") {
+      assistantId = last.id;
+      history.pop();
+    } else {
+      assistantId = createMessageId();
+      setMessages((prev) => [
+        ...prev,
+        { id: assistantId, role: "assistant", content: "" },
+      ]);
+    }
+
+    setError(false);
+    const requestMessages = history.map((m) => ({
+      role: m.role,
+      content: m.content,
+    }));
+    doSend(requestMessages, assistantId);
   };
 
   const toggleSize = () => {
     setSize(size === "compact" ? "expanded" : "compact");
   };
 
+  // Widget positioning: lifts above the mobile keyboard and home-indicator.
+  // Falls back to the Tailwind height classes until the viewport effect runs.
+  const bottomStyle = `calc(1.5rem + ${viewport.offset}px + env(safe-area-inset-bottom, 0px))`;
+  const heightStyle =
+    viewport.height > 0
+      ? `min(${size === "compact" ? "480px" : "640px"}, calc(${viewport.height}px - 6rem))`
+      : undefined;
+
   /* Embedded mode — integrated chat inside the sales-agent page */
   if (embedded) {
     return (
       <div className="flex h-[500px] flex-col rounded-xl border border-slate-200 bg-white shadow-sm">
         {/* Messages Area */}
-        <div className="flex-1 space-y-4 overflow-y-auto p-4">
+        <div
+          ref={scrollRef}
+          className="flex-1 space-y-4 overflow-y-auto overscroll-y-contain p-4"
+        >
           {messages.map((message) => (
             <div
               key={message.id}
@@ -304,7 +412,7 @@ export default function SalesChat({
               {message.role === "assistant" && (
                 <div className="relative flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full">
                   <Image
-                    src="/doctor-chatbot.jpg"
+                    src={productImage || "/doctor-chatbot.jpg"}
                     alt="Praxmed AI Assistant"
                     width={32}
                     height={32}
@@ -328,11 +436,27 @@ export default function SalesChat({
               )}
             </div>
           ))}
-          <div ref={messagesEndRef} />
         </div>
+
+        {/* Error banner */}
+        {error && (
+          <div className="flex items-center gap-2 border-t border-red-100 bg-red-50 px-3 py-2">
+            <span className="flex-1 text-xs text-red-600">
+              Connection lost — your message did not go through.
+            </span>
+            <button
+              onClick={handleRetry}
+              className="flex items-center gap-1 rounded-md bg-red-600 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
+            >
+              <RotateCcw className="h-3 w-3" />
+              Retry
+            </button>
+          </div>
+        )}
 
         {/* Input Area */}
         <form
+          ref={formRef}
           onSubmit={handleSubmit}
           className="flex items-center gap-2 border-t border-slate-200 p-3"
         >
@@ -342,16 +466,19 @@ export default function SalesChat({
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about books, audiobooks, pricing..."
             disabled={isLoading}
-            className="flex-1 border-0 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0B8288] disabled:cursor-not-allowed"
+            className="flex-1 border-0 bg-slate-50 px-4 py-2.5 text-base text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0B8288] disabled:cursor-not-allowed sm:text-sm"
           />
           <button
-            type="submit"
-            disabled={isLoading || !input.trim()}
+            type="button"
+            onClick={() =>
+              isLoading ? handleStop() : formRef.current?.requestSubmit()
+            }
+            disabled={!isLoading && !input.trim()}
             className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-[#0B8288] to-[#1A9D9D] text-white transition-all duration-200 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
-            aria-label="Send message"
+            aria-label={isLoading ? "Stop generating" : "Send message"}
           >
             {isLoading ? (
-              <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              <Square className="h-4 w-4" />
             ) : (
               <Send className="h-4 w-4" />
             )}
@@ -361,10 +488,10 @@ export default function SalesChat({
     );
   }
 
-  {/* Floating widget mode — always render on all pages */}
+  /* Floating widget mode — always render on all pages */
   if (minimized) {
     return (
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed right-6 z-50" style={{ bottom: bottomStyle }}>
         <button
           onClick={() => setMinimized(false)}
           className="flex items-center gap-3 rounded-full bg-gradient-to-r from-[#0B8288] to-[#1A9D9D] px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:scale-105"
@@ -378,18 +505,22 @@ export default function SalesChat({
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-50 flex flex-col rounded-2xl border border-slate-200 bg-white shadow-[0_24px_60px_rgba(21,48,71,0.12)] transition-all duration-300 ${
+      className={`fixed right-6 z-50 flex flex-col rounded-2xl border border-slate-200 bg-white shadow-[0_24px_60px_rgba(21,48,71,0.12)] transition-all duration-300 ${
         size === "compact"
-          ? "h-[480px] w-80 max-w-[90vw] sm:w-96"
-          : "h-[640px] w-[90vw] max-w-[640px]"
+          ? "h-[480px] w-[min(384px,calc(100vw-1.5rem))]"
+          : "h-[640px] w-[min(640px,calc(100vw-1.5rem))]"
       }`}
+      style={{
+        bottom: bottomStyle,
+        height: heightStyle,
+      }}
     >
       {/* Header */}
       <div className="flex items-center justify-between rounded-t-xl bg-gradient-to-r from-[#0B8288] to-[#1A9D9D] px-4 py-3 text-white">
         <div className="flex items-center gap-3">
           <div className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/20">
             <Image
-              src="/doctor-chatbot.jpg"
+              src={productImage || "/doctor-chatbot.jpg"}
               alt="Praxmed AI Assistant"
               width={40}
               height={40}
@@ -426,7 +557,10 @@ export default function SalesChat({
       </div>
 
       {/* Messages */}
-      <div className="flex-1 space-y-4 overflow-y-auto p-4">
+      <div
+        ref={scrollRef}
+        className="flex-1 space-y-4 overflow-y-auto overscroll-y-contain p-4"
+      >
         {messages.map((message) => (
           <div
             key={message.id}
@@ -437,7 +571,7 @@ export default function SalesChat({
             {message.role === "assistant" && (
               <div className="relative flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full">
                 <Image
-                  src="/doctor-chatbot.jpg"
+                  src={productImage || "/doctor-chatbot.jpg"}
                   alt="Praxmed AI Assistant"
                   width={32}
                   height={32}
@@ -472,7 +606,7 @@ export default function SalesChat({
         ))}
 
         {/* Suggested Questions */}
-        {showSuggestions && (
+        {showSuggestions && !isLoading && (
           <div className="flex flex-col gap-2">
             <div className="text-xs font-semibold text-slate-500">
               Quick questions:
@@ -489,12 +623,27 @@ export default function SalesChat({
             ))}
           </div>
         )}
-
-        <div ref={messagesEndRef} />
       </div>
+
+      {/* Error banner */}
+      {error && (
+        <div className="flex items-center gap-2 border-t border-red-100 bg-red-50 px-3 py-2">
+          <span className="flex-1 text-xs text-red-600">
+            Connection lost — your message did not go through.
+          </span>
+          <button
+            onClick={handleRetry}
+            className="flex items-center gap-1 rounded-md bg-red-600 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
+          >
+            <RotateCcw className="h-3 w-3" />
+            Retry
+          </button>
+        </div>
+      )}
 
       {/* Input */}
       <form
+        ref={formRef}
         onSubmit={handleSubmit}
         className="flex items-center gap-2 border-t border-slate-200 p-3"
       >
@@ -504,16 +653,19 @@ export default function SalesChat({
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask about our books or audiobooks..."
           disabled={isLoading}
-          className="flex-1 border-0 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0B8288] disabled:cursor-not-allowed"
+          className="flex-1 border-0 bg-slate-50 px-4 py-2.5 text-base text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0B8288] disabled:cursor-not-allowed sm:text-sm"
         />
         <button
-          type="submit"
-          disabled={isLoading || !input.trim()}
+          type="button"
+          onClick={() =>
+            isLoading ? handleStop() : formRef.current?.requestSubmit()
+          }
+          disabled={!isLoading && !input.trim()}
           className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-[#0B8288] to-[#1A9D9D] text-white transition-all duration-200 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
-          aria-label="Send message"
+          aria-label={isLoading ? "Stop generating" : "Send message"}
         >
           {isLoading ? (
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+            <Square className="h-4 w-4" />
           ) : (
             <Send className="h-4 w-4" />
           )}

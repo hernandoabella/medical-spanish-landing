@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Headphones, Download, CheckCircle, Volume2, Smartphone, Car, PlayCircle, Brain } from "lucide-react";
+import { Download, CheckCircle, Volume2, Smartphone, Car, PlayCircle, Brain } from "lucide-react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AudioDownload = () => {
   const [isDownloading, setIsDownloading] = useState(false);
@@ -13,12 +16,15 @@ const AudioDownload = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".fade-up", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 78%",
+        },
         y: 24,
         opacity: 0,
         duration: 0.9,
         stagger: 0.1,
         ease: "power3.out",
-        delay: 0.2,
       });
     }, containerRef);
     return () => ctx.revert();

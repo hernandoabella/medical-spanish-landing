@@ -78,6 +78,10 @@ export async function POST(req: Request) {
 
     const result = streamText({
       model: openrouter(CHAT_MODEL),
+      // Fail fast instead of hanging through retries: the free model is often
+      // rate-limited, and waiting through backoff makes the chat feel frozen.
+      // The client shows a friendly error + retry button instead.
+      maxRetries: 1,
       system: `You are Praxmed — a friendly, knowledgeable Sales Assistant for Praxmed Publishing.
 
 You are a real person helping visitors find books. Think of yourself as a helpful bookstore employee who genuinely cares about getting people the right resource.

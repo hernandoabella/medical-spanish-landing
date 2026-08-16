@@ -1,6 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 import { ChevronDown, FileText, BookOpen, Volume2, HelpCircle } from "lucide-react";
 
 const faqs = [
@@ -28,6 +32,35 @@ const faqs = [
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".faq-head", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+
+      gsap.from(".faq-item", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 72%",
+        },
+        y: 28,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -43,12 +76,12 @@ export default function Faq() {
   };
 
   return (
-    <section className="py-24 bg-[#f8faff] relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-[#f8faff] relative overflow-hidden">
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-teal-100/40 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[600px] h-[600px] bg-[#0B8288]/5 rounded-full blur-3xl" />
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
+        <div className="faq-head text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-[#0B8288]/10 px-4 py-1.5 rounded-full mb-4">
             <span className="text-[#0B8288] text-xs font-semibold tracking-wider uppercase">FAQ</span>
           </div>
@@ -66,7 +99,7 @@ export default function Faq() {
             return (
               <div
                 key={index}
-                className={`group transition-all duration-500 rounded-2xl border
+                className={`faq-item group transition-all duration-500 rounded-2xl border
                   ${isOpen
                     ? "bg-white border-[#0B8288] shadow-[0_12px_40px_rgba(11,130,136,0.08)]"
                     : "bg-white/60 border-gray-100 hover:border-[#0B8288]/30 hover:bg-white"}`}

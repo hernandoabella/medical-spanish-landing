@@ -1,5 +1,12 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { FaAmazon } from "react-icons/fa";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type BookAction = {
   label: string;
@@ -29,8 +36,29 @@ export default function BookGridPage({
   description,
   books,
 }: BookGridPageProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".book-card", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      id="library"
+      ref={sectionRef}
       className="bg-[linear-gradient(180deg,var(--surface-cream)_0%,#ffffff_34%,var(--surface-mist)_100%)]"
     >
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
@@ -56,7 +84,7 @@ export default function BookGridPage({
           {books.map((book) => (
             <article
               key={book.title}
-              className="overflow-hidden rounded-[28px] border border-[var(--border-soft)] bg-white shadow-[0_24px_60px_rgba(21,48,71,0.08)]"
+              className="book-card overflow-hidden rounded-[28px] border border-[var(--border-soft)] bg-white shadow-[0_24px_60px_rgba(21,48,71,0.08)] transition-shadow duration-300 hover:shadow-[0_32px_80px_rgba(21,48,71,0.14)]"
             >
               <div
                 className="flex min-h-[240px] sm:min-h-[320px] items-center justify-center p-6 sm:p-8"

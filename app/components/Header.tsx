@@ -75,12 +75,17 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
         <Link href="/" className="flex items-center gap-3 text-slate-900">
+          {/* width/height match the real 2800x1653 aspect ratio, and `sizes`
+              makes next/image serve a sharp resolution for retina/desktop
+              (72x72 used to cap the served width at ~96px, which looked blurry) */}
           <Image
             src="/logo.png"
             alt="PRAXMED Publishing logo"
-            width={72}
-            height={72}
-            className="h-10 w-auto object-contain md:h-20 drop-shadow-none"
+            width={560}
+            height={330}
+            sizes="(min-width: 768px) 136px, 68px"
+            quality={90}
+            className="h-10 w-[68px] object-contain md:h-20 md:w-[136px] drop-shadow-none"
           />
         </Link>
 

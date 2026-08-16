@@ -3,7 +3,10 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaAmazon } from "react-icons/fa";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AngerManagementSection() {
   const sectionRef = useRef(null);
@@ -11,20 +14,26 @@ export default function AngerManagementSection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".fade-up", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 78%",
+        },
         y: 24,
         opacity: 0,
         duration: 0.9,
         stagger: 0.12,
         ease: "power3.out",
-        delay: 0.2,
       });
 
       gsap.from(".book-img", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 78%",
+        },
         opacity: 0,
         x: -30,
         duration: 1.1,
         ease: "power3.out",
-        delay: 0.4,
       });
 
       gsap.to(".book-img", {

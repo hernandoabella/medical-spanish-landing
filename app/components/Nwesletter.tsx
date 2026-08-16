@@ -1,8 +1,31 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Script from "next/script";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function NewsletterEmbedded() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".news-head", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
     <>
       <Script id="mailerlite-universal" strategy="afterInteractive">
@@ -15,8 +38,8 @@ export default function NewsletterEmbedded() {
         `}
       </Script>
 
-      <section className="w-full bg-[#0F2137] py-20 px-6">
-        <div className="max-w-xl mx-auto flex flex-col gap-8">
+      <section ref={sectionRef} className="w-full bg-[#0F2137] py-20 px-6">
+        <div className="news-head max-w-xl mx-auto flex flex-col gap-8">
 
           {/* Header */}
           <div className="flex flex-col gap-4">

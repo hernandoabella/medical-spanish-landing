@@ -1,6 +1,11 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 import {
   FaUserMd,
   FaHospital,
@@ -34,13 +39,57 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".testi-head", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+
+      gsap.from(".testi-card", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+      });
+
+      gsap.from(".testi-trust", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "bottom 92%",
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="bg-[#0F2137] py-24 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="bg-[#0F2137] py-24 relative overflow-hidden"
+    >
       <div className="absolute top-10 left-10 w-32 h-32 bg-[#0B8288]/20 rounded-full blur-2xl"></div>
       <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#0B8288]/20 rounded-full blur-2xl"></div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
+        <div className="testi-head text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full mb-4">
             <div className="flex items-center text-amber-300 gap-0.5">
               <FaStar className="w-4 h-4" />
@@ -64,7 +113,7 @@ const Testimonials = () => {
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group"
+              className="testi-card bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group"
             >
               <div className="mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#0B8288]/10 to-[#0B8288]/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -116,7 +165,7 @@ const Testimonials = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="testi-trust mt-16 text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-3 rounded-xl border border-white/10">
             <span className="text-white/60 text-sm font-medium">Trusted by professionals at</span>
             <div className="flex items-center gap-4 text-white/40">

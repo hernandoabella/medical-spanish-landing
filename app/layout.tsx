@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import Footer from "./components/Footer";
@@ -17,8 +17,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PRAXMED Publishing",
-  description: "",
+  title: "PRAXMED Publishing — Medical Spanish & Parenting Books",
+  description:
+    "Practical, evidence-based books and audiobooks for healthcare professionals and parents. Medical Spanish, anger management, emotional intelligence, and generational healing resources.",
+};
+
+// Makes the layout viewport shrink when the mobile keyboard opens so the
+// floating chat widget (and its input) stays visible above the keyboard.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  interactiveWidget: "resizes-content",
 };
 
 export default function RootLayout({
