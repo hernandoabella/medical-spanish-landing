@@ -4,6 +4,7 @@ import Script from "next/script";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import SalesChat from "./components/SalesChat";
+import ScrollSync from "./components/ScrollSync";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -46,6 +47,9 @@ export default function RootLayout({
           {/* Floating Sales Chat Widget — available 24/7 on all pages */}
           <SalesChat key="floating-chat" />
         </div>
+
+        {/* Keeps scroll-reveal animations firing after images/fonts load */}
+        <ScrollSync />
 
         <Script id="mailerlite-auto-show" strategy="afterInteractive">
           {`

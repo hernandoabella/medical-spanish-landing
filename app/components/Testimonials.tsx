@@ -47,6 +47,7 @@ const Testimonials = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
+          once: true,
         },
         y: 30,
         opacity: 0,
@@ -58,6 +59,7 @@ const Testimonials = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
+          once: true,
         },
         y: 40,
         opacity: 0,
@@ -70,6 +72,7 @@ const Testimonials = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "bottom 92%",
+          once: true,
         },
         y: 20,
         opacity: 0,
@@ -77,7 +80,19 @@ const Testimonials = () => {
         ease: "power3.out",
       });
     }, sectionRef);
-    return () => ctx.revert();
+
+    // Recalcular posiciones cuando cargan las imágenes (evita animaciones
+    // que nunca se disparan y dejan la sección invisible).
+    const refresh = () => ScrollTrigger.refresh();
+    refresh();
+    const t = setTimeout(refresh, 500);
+    window.addEventListener("load", refresh);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(t);
+      window.removeEventListener("load", refresh);
+    };
   }, []);
 
   return (
@@ -113,7 +128,7 @@ const Testimonials = () => {
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="testi-card bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group"
+              className="testi-card bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-[box-shadow,translate] duration-300 group"
             >
               <div className="mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#0B8288]/10 to-[#0B8288]/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

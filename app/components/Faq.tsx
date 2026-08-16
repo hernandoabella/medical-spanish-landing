@@ -40,6 +40,7 @@ export default function Faq() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
+          once: true,
         },
         y: 30,
         opacity: 0,
@@ -51,6 +52,7 @@ export default function Faq() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 72%",
+          once: true,
         },
         y: 28,
         opacity: 0,
@@ -59,7 +61,19 @@ export default function Faq() {
         ease: "power3.out",
       });
     }, sectionRef);
-    return () => ctx.revert();
+
+    // Recalcular posiciones cuando cargan las imágenes (evita animaciones
+    // que nunca se disparan y dejan la sección invisible).
+    const refresh = () => ScrollTrigger.refresh();
+    refresh();
+    const t = setTimeout(refresh, 500);
+    window.addEventListener("load", refresh);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(t);
+      window.removeEventListener("load", refresh);
+    };
   }, []);
 
   const toggle = (index: number) => {
@@ -99,7 +113,7 @@ export default function Faq() {
             return (
               <div
                 key={index}
-                className={`faq-item group transition-all duration-500 rounded-2xl border
+                className={`faq-item group transition-[background-color,border-color,box-shadow,color] duration-500 rounded-2xl border
                   ${isOpen
                     ? "bg-white border-[#0B8288] shadow-[0_12px_40px_rgba(11,130,136,0.08)]"
                     : "bg-white/60 border-gray-100 hover:border-[#0B8288]/30 hover:bg-white"}`}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send, User, Minimize2, Maximize2, X, MessageCircle, Square, RotateCcw } from "lucide-react";
+import { Send, User, Minimize2, Maximize2, X, MessageCircle, Square, RotateCcw, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 type Message = {
@@ -27,7 +27,32 @@ const SUGGESTED_QUESTIONS = [
 ];
 
 // How long we wait for the model to finish before considering the request stalled.
-const REQUEST_TIMEOUT_MS = 60_000;
+const REQUEST_TIMEOUT_MS = 45_000;
+
+// After a failure we quietly retry once (transient rate-limits and network
+// blips usually recover) before showing the error banner.
+const MAX_AUTO_RETRIES = 1;
+const RETRY_DELAY_MS = 1_600;
+
+const DEFAULT_ERROR_MESSAGE = "Something went wrong. Please try again.";
+
+// Turn a failed request into a short, friendly, specific explanation.
+function describeError(err: unknown): string {
+  if (err instanceof DOMException && err.name === "AbortError") {
+    return "The assistant is taking too long. Please try again.";
+  }
+  const message = err instanceof Error ? err.message : "";
+  if (message === "HTTP 429") {
+    return "Our assistant is busy right now. Please try again in a moment.";
+  }
+  if (/^HTTP 5/.test(message)) {
+    return "Our assistant hit a temporary glitch. Please try again in a moment.";
+  }
+  if (message === "Empty response") {
+    return "The assistant didn't respond. Please try again in a moment.";
+  }
+  return "Connection lost — please check your internet and try again.";
+}
 
 // Module-scope counter so message ids stay unique and stable (no Date.now in
 // the component body, which would break React's purity rules). Seeded randomly
@@ -67,9 +92,24 @@ function renderMessageContent(content: string) {
       });
       renderedParagraphs.push(<ul key={`ul-${pIdx}`} className="mb-3 ml-4 list-none pl-0">{bullets}</ul>);
     } else {
+      // Mixed paragraphs: a lead-in line followed by bullets (models often
+      // write "Here are the options:\n* item"). Render those lines as bullets
+      // too instead of showing the raw "*" markdown.
+      const paraLines = trimmed.split("\n");
       renderedParagraphs.push(
         <p key={`p-${pIdx}`} className="mb-3 last:mb-0">
-          {renderInlineMarkdown(trimmed)}
+          {paraLines.map((line, li) =>
+            bulletRegex.test(line) ? (
+              <span key={`l-${li}`} className="block">
+                <span className="text-[#0B8288] mr-1.5">•</span>
+                {renderInlineMarkdown(line.replace(/^[\s]*[-*]\s+/, ""))}
+              </span>
+            ) : (
+              <span key={`l-${li}`} className="block">
+                {renderInlineMarkdown(line)}
+              </span>
+            ),
+          )}
         </p>,
       );
     }
@@ -169,6 +209,8 @@ export default function SalesChat({
   const [minimized, setMinimized] = useState(true);
   const [size, setSize] = useState<"compact" | "expanded">("compact");
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isReconnecting, setIsReconnecting] = useState(false);
   // { offset: px the mobile keyboard covers at the bottom of the screen,
   //   height: current visible viewport height in px }
   const [viewport, setViewport] = useState({ offset: 0, height: 0 });
@@ -239,75 +281,104 @@ export default function SalesChat({
     );
   };
 
-  // Core request/streaming logic shared by send and retry.
+  // Core request/streaming logic shared by send and retry. On failure it
+  // quietly retries once before giving up, so a transient rate-limit or
+  // network blip usually resolves on its own instead of scaring the user
+  // with an error banner.
   const doSend = async (
     requestMessages: { role: "user" | "assistant"; content: string }[],
     assistantId: string,
   ) => {
     userStoppedRef.current = false;
-    const controller = new AbortController();
-    abortRef.current = controller;
-    const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-    setIsLoading(true);
+    setError(false);
+    setErrorMessage(null);
 
-    try {
-      const response = await fetch("/api/sales-agent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ messages: requestMessages }),
-        signal: controller.signal,
-      });
+    let lastError: string | null = null;
 
-      if (!response.ok) throw new Error("Failed to get response");
+    for (
+      let attempt = 0;
+      attempt <= MAX_AUTO_RETRIES && !userStoppedRef.current;
+      attempt++
+    ) {
+      const controller = new AbortController();
+      abortRef.current = controller;
+      const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+      setIsLoading(true);
+      setIsReconnecting(attempt > 0);
 
-      let assistantContent = "";
-      const body = response.body;
+      try {
+        const response = await fetch("/api/sales-agent", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ messages: requestMessages }),
+          signal: controller.signal,
+        });
 
-      if (body && typeof body.getReader === "function") {
-        const reader = body.getReader();
-        const decoder = new TextDecoder();
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          assistantContent += decoder.decode(value, { stream: true });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        let assistantContent = "";
+        const body = response.body;
+
+        if (body && typeof body.getReader === "function") {
+          const reader = body.getReader();
+          const decoder = new TextDecoder();
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            assistantContent += decoder.decode(value, { stream: true });
+            updateMessage(assistantId, assistantContent);
+          }
+          // flush decoder state
+          assistantContent += decoder.decode();
+          updateMessage(assistantId, assistantContent);
+        } else {
+          // Fallback for browsers without streaming body support (some mobiles)
+          assistantContent = await response.text();
           updateMessage(assistantId, assistantContent);
         }
-        // flush decoder state
-        assistantContent += decoder.decode();
-        updateMessage(assistantId, assistantContent);
-      } else {
-        // Fallback for browsers without streaming body support (some mobiles)
-        assistantContent = await response.text();
-        updateMessage(assistantId, assistantContent);
-      }
 
-      // A 200 with no content (e.g. the model was rate-limited and returned
-      // nothing) should still surface as a retryable error, not a silent empty bubble.
-      if (!assistantContent.trim()) {
-        throw new Error("Empty response");
-      }
-    } catch (err) {
-      if (userStoppedRef.current) {
-        // User pressed Stop — keep whatever partial response arrived.
+        // A 200 with no content (e.g. every model in the chain was
+        // rate-limited) should still surface as a retryable error.
+        if (!assistantContent.trim()) {
+          throw new Error("Empty response");
+        }
+
+        // Success.
         setError(false);
+        setErrorMessage(null);
+        setIsReconnecting(false);
+        setIsLoading(false);
         return;
+      } catch (err) {
+        if (userStoppedRef.current) break;
+        lastError = describeError(err);
+        // Clear any partial/⚠️ content before trying again.
+        updateMessage(assistantId, "");
+        if (attempt < MAX_AUTO_RETRIES) {
+          await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+        }
+      } finally {
+        clearTimeout(timeoutId);
+        abortRef.current = null;
       }
-      const timedOut =
-        err instanceof DOMException && err.name === "AbortError";
-      setError(true);
-      updateMessage(
-        assistantId,
-        timedOut
-          ? "⚠️ The request timed out. Please try again, or reach out to contact@praxmedpublishing.com!"
-          : "⚠️ Something went wrong. Please try again, or reach out to contact@praxmedpublishing.com!",
-      );
-    } finally {
-      clearTimeout(timeoutId);
-      abortRef.current = null;
-      setIsLoading(false);
     }
+
+    setIsReconnecting(false);
+    setIsLoading(false);
+
+    if (userStoppedRef.current) {
+      // User pressed Stop — keep whatever partial response arrived.
+      setError(false);
+      setErrorMessage(null);
+      return;
+    }
+
+    const message = lastError ?? DEFAULT_ERROR_MESSAGE;
+    setError(true);
+    setErrorMessage(message);
+    updateMessage(assistantId, `⚠️ ${message}`);
   };
 
   const handleSubmit = async (
@@ -438,19 +509,36 @@ export default function SalesChat({
           ))}
         </div>
 
-        {/* Error banner */}
-        {error && (
-          <div className="flex items-center gap-2 border-t border-red-100 bg-red-50 px-3 py-2">
-            <span className="flex-1 text-xs text-red-600">
-              Connection lost — your message did not go through.
-            </span>
-            <button
-              onClick={handleRetry}
-              className="flex items-center gap-1 rounded-md bg-red-600 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
-            >
-              <RotateCcw className="h-3 w-3" />
-              Retry
-            </button>
+        {/* Status / error banner */}
+        {(isReconnecting || error) && (
+          <div
+            className={`flex items-center gap-2 border-t px-3 py-2 ${
+              error
+                ? "border-red-100 bg-red-50"
+                : "border-teal-100 bg-teal-50"
+            }`}
+          >
+            {isReconnecting ? (
+              <>
+                <Loader2 className="h-3.5 w-3.5 shrink-0 animate-spin text-[#0B8288]" />
+                <span className="flex-1 text-xs text-[#0B8288]">
+                  Still trying…
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="flex-1 text-xs text-red-600">
+                  {errorMessage ?? DEFAULT_ERROR_MESSAGE}
+                </span>
+                <button
+                  onClick={handleRetry}
+                  className="flex shrink-0 items-center gap-1 rounded-md bg-red-600 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
+                >
+                  <RotateCcw className="h-3 w-3" />
+                  Retry
+                </button>
+              </>
+            )}
           </div>
         )}
 
@@ -464,10 +552,11 @@ export default function SalesChat({
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about books, audiobooks, pricing..."
-            disabled={isLoading}
-            className="flex-1 border-0 bg-slate-50 px-4 py-2.5 text-base text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0B8288] disabled:cursor-not-allowed sm:text-sm"
-          />
+          placeholder="Ask about books, audiobooks, pricing..."
+          disabled={isLoading}
+          enterKeyHint="send"
+          className="h-11 flex-1 border-0 bg-slate-50 px-4 text-base text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0B8288] disabled:cursor-not-allowed sm:text-sm"
+        />
           <button
             type="button"
             onClick={() =>
@@ -505,10 +594,10 @@ export default function SalesChat({
 
   return (
     <div
-      className={`fixed right-6 z-50 flex flex-col rounded-2xl border border-slate-200 bg-white shadow-[0_24px_60px_rgba(21,48,71,0.12)] transition-all duration-300 ${
+      className={`fixed right-6 z-50 flex flex-col overflow-hidden overscroll-y-contain rounded-2xl border border-slate-200 bg-white shadow-[0_24px_60px_rgba(21,48,71,0.12)] transition-all duration-300 ${
         size === "compact"
-          ? "h-[480px] w-[min(384px,calc(100vw-1.5rem))]"
-          : "h-[640px] w-[min(640px,calc(100vw-1.5rem))]"
+          ? "h-[480px] w-[min(384px,calc(100vw-2rem))]"
+          : "h-[640px] w-[min(640px,calc(100vw-2rem))]"
       }`}
       style={{
         bottom: bottomStyle,
@@ -516,9 +605,9 @@ export default function SalesChat({
       }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between rounded-t-xl bg-gradient-to-r from-[#0B8288] to-[#1A9D9D] px-4 py-3 text-white">
-        <div className="flex items-center gap-3">
-          <div className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/20">
+      <div className="flex items-center justify-between rounded-t-xl bg-gradient-to-r from-[#0B8288] to-[#1A9D9D] px-3 py-2 text-white sm:px-4 sm:py-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="relative flex h-9 w-9 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/20 sm:h-10 sm:w-10">
             <Image
               src={productImage || "/doctor-chatbot.jpg"}
               alt="Praxmed AI Assistant"
@@ -605,39 +694,58 @@ export default function SalesChat({
           </div>
         ))}
 
-        {/* Suggested Questions */}
+        {/* Suggested Questions — compact chips that wrap on small screens */}
         {showSuggestions && !isLoading && (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2.5">
             <div className="text-xs font-semibold text-slate-500">
               Quick questions:
             </div>
-            {SUGGESTED_QUESTIONS.map((q) => (
-              <button
-                key={q}
-                onClick={() => handleSuggestedQuestion(q)}
-                disabled={isLoading}
-                className="rounded-lg border border-slate-200 px-3 py-2 text-left text-xs text-slate-700 transition-all hover:bg-slate-50 hover:border-[#0B8288]"
-              >
-                {q}
-              </button>
-            ))}
+            <div className="flex flex-wrap gap-2">
+              {SUGGESTED_QUESTIONS.map((q) => (
+                <button
+                  key={q}
+                  onClick={() => handleSuggestedQuestion(q)}
+                  disabled={isLoading}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-left text-xs text-slate-700 transition-all hover:border-[#0B8288] hover:bg-[#0B8288]/5 hover:text-[#0B8288] active:scale-95"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>
 
-      {/* Error banner */}
-      {error && (
-        <div className="flex items-center gap-2 border-t border-red-100 bg-red-50 px-3 py-2">
-          <span className="flex-1 text-xs text-red-600">
-            Connection lost — your message did not go through.
-          </span>
-          <button
-            onClick={handleRetry}
-            className="flex items-center gap-1 rounded-md bg-red-600 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
-          >
-            <RotateCcw className="h-3 w-3" />
-            Retry
-          </button>
+      {/* Status / error banner */}
+      {(isReconnecting || error) && (
+        <div
+          className={`flex items-center gap-2 border-t px-3 py-2 ${
+            error
+              ? "border-red-100 bg-red-50"
+              : "border-teal-100 bg-teal-50"
+          }`}
+        >
+          {isReconnecting ? (
+            <>
+              <Loader2 className="h-3.5 w-3.5 shrink-0 animate-spin text-[#0B8288]" />
+              <span className="flex-1 text-xs text-[#0B8288]">
+                Still trying…
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="flex-1 text-xs text-red-600">
+                {errorMessage ?? DEFAULT_ERROR_MESSAGE}
+              </span>
+              <button
+                onClick={handleRetry}
+                className="flex shrink-0 items-center gap-1 rounded-md bg-red-600 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
+              >
+                <RotateCcw className="h-3 w-3" />
+                Retry
+              </button>
+            </>
+          )}
         </div>
       )}
 
@@ -653,7 +761,8 @@ export default function SalesChat({
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask about our books or audiobooks..."
           disabled={isLoading}
-          className="flex-1 border-0 bg-slate-50 px-4 py-2.5 text-base text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0B8288] disabled:cursor-not-allowed sm:text-sm"
+          enterKeyHint="send"
+          className="h-11 flex-1 border-0 bg-slate-50 px-4 text-base text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0B8288] disabled:cursor-not-allowed sm:text-sm"
         />
         <button
           type="button"
@@ -661,7 +770,7 @@ export default function SalesChat({
             isLoading ? handleStop() : formRef.current?.requestSubmit()
           }
           disabled={!isLoading && !input.trim()}
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-[#0B8288] to-[#1A9D9D] text-white transition-all duration-200 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#0B8288] to-[#1A9D9D] text-white transition-all duration-200 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
           aria-label={isLoading ? "Stop generating" : "Send message"}
         >
           {isLoading ? (

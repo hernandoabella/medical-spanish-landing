@@ -67,21 +67,46 @@ const COMPANY_INFO = {
   contact: "contact@praxmedpublishing.com",
 };
 
-export const maxDuration = 30;
+export const maxDuration = 60;
 
-const CHAT_MODEL =
+const PRIMARY_MODEL =
   process.env.CHAT_MODEL ?? "google/gemma-4-26b-a4b-it:free";
+
+// Fallback chain: OpenRouter automatically tries each model in priority order
+// when the previous one is rate-limited, down, or refuses. The free tier is a
+// heavily shared pool, so a single model fails often — these backups are what
+// keep the chat from dying mid-conversation.
+// NOTE: OpenRouter rejects chains longer than 3 models, so cap the array.
+const FALLBACK_MODELS = (
+  process.env.CHAT_FALLBACK_MODELS ??
+  "google/gemma-4-31b-it:free,openai/gpt-oss-20b:free"
+)
+  .split(",")
+  .map((m) => m.trim())
+  .filter(Boolean);
+
+const MODEL_CHAIN = [
+  PRIMARY_MODEL,
+  ...FALLBACK_MODELS.filter((m) => m !== PRIMARY_MODEL),
+].slice(0, 3);
 
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
 
     const result = streamText({
-      model: openrouter(CHAT_MODEL),
+      model: openrouter(PRIMARY_MODEL),
       // Fail fast instead of hanging through retries: the free model is often
       // rate-limited, and waiting through backoff makes the chat feel frozen.
-      // The client shows a friendly error + retry button instead.
+      // OpenRouter's models array below handles cross-model fallback, and the
+      // client shows a friendly error + retry button as a last resort.
       maxRetries: 1,
+      providerOptions: {
+        openrouter: {
+          // Primary + fallbacks, tried in order by OpenRouter itself.
+          models: MODEL_CHAIN,
+        },
+      },
       system: `You are Praxmed — a friendly, knowledgeable Sales Assistant for Praxmed Publishing.
 
 You are a real person helping visitors find books. Think of yourself as a helpful bookstore employee who genuinely cares about getting people the right resource.
