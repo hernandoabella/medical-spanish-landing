@@ -105,7 +105,9 @@ export default function Home() {
         books={featuredBooks}
       />
       <Hero2 />
+      <div aria-hidden className="h-16 w-full" style={{ background: "linear-gradient(180deg,#ffffff 0%,#FBF7F0 100%)" }} />
       <RaisingEISection />
+      <div aria-hidden className="h-16 w-full" style={{ background: "linear-gradient(180deg,#FBF7F0 0%,#FBF7F0 100%)" }} />
       <Hero3 />
       <BreakingGenerationalTraumaSection />
       <HealingInnerChildSection />
