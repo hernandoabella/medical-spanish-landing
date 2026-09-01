@@ -56,6 +56,36 @@ body {
   );
 }
 
+/* Smooth section transitions */
+.section-transition-white-to-cream {
+  background: linear-gradient(180deg, #ffffff 0%, var(--surface-cream) 100%);
+}
+
+.section-transition-cream-to-white {
+  background: linear-gradient(180deg, var(--surface-cream) 0%, #ffffff 100%);
+}
+
+.section-transition-cream-to-soft {
+  background: linear-gradient(180deg, var(--surface-cream) 0%, var(--surface-soft) 100%);
+}
+
+.section-transition-soft-to-cream {
+  background: linear-gradient(180deg, var(--surface-soft) 0%, var(--surface-cream) 100%);
+}
+
+.section-transition-white-to-light {
+  background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+}
+
+/* Standard CTA button base */
+.btn-cta-primary {
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-bold tracking-wide text-white rounded-lg transition-all duration-300 shadow-[0_8px_24px_rgba(15,33,55,0.18)] hover:shadow-[0_12px_32px_rgba(15,33,55,0.24)] hover:-translate-y-0.5;
+}
+
+.btn-cta-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold rounded-lg border transition-all duration-300;
+}
+
 /* Center the embedded MailerLite subscribe form inside the newsletter section.
    The embed ships its own stylesheet, so these overrides use !important. */
 .ml-embedded {

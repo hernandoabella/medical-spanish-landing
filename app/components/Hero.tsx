@@ -120,14 +120,14 @@ export default function HeroSection() {
           <div className="fade-up flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
             <Link
               href="https://www.amazon.com/dp/B0G92L65ZB"
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#0F2137] text-white text-sm font-bold tracking-wide rounded-md hover:bg-[#0B8288] transition-all duration-300 shadow-[0_12px_30px_rgba(15,33,55,0.25)] hover:shadow-[0_16px_36px_rgba(11,130,136,0.3)] hover:-translate-y-0.5"
+              className="btn-cta-primary bg-[#0F2137] hover:bg-[#0B8288]"
             >
               <FaAmazon className="w-4 h-4" />
               Get the Book on Amazon
             </Link>
             <Link
               href="#library"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-slate-200 bg-white text-[#0F2137] text-sm font-semibold rounded-md hover:border-[#0B8288] hover:text-[#0B8288] transition-all duration-300"
+              className="btn-cta-secondary border-slate-200 bg-white text-[#0F2137] hover:border-[#0B8288] hover:text-[#0B8288]"
             >
               Explore all books
             </Link>

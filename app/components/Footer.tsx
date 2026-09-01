@@ -3,57 +3,47 @@ import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0A1628] px-6 py-16 text-white">
-      <div className="container mx-auto max-w-6xl">
+    <footer className="bg-[#0A1628] px-6 py-16 md:py-20 text-white relative overflow-hidden">
+      {/* Subtle background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(circle,rgba(11,130,136,0.06),transparent_70%)] blur-3xl pointer-events-none" />
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="mb-12 flex flex-col items-center justify-between gap-10 lg:flex-row">
           <div className="text-center lg:text-left">
             <p className="mb-4 text-xl font-semibold">Get in touch with us</p>
             <a
               href="mailto:contact@praxmedpublishing.com"
-              className="inline-flex items-center justify-center gap-3 text-xl font-semibold text-[#4C8BFF] transition-colors duration-300 hover:text-[#8DA9FF]"
+              className="inline-flex items-center justify-center gap-3 text-lg font-medium text-[#4C8BFF] transition-colors duration-300 hover:text-[#8DA9FF]"
             >
-              <MdEmail className="text-2xl" />
+              <MdEmail className="text-xl" />
               contact@praxmedpublishing.com
             </a>
           </div>
 
-          <div className="flex justify-center gap-4 md:gap-8 flex-wrap">
-            <a
-              href="#"
-              className="transform rounded-full bg-white/5 p-3 text-3xl transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:text-[#4C8BFF]"
-              aria-label="Facebook"
-            >
-              <FaFacebook />
-            </a>
-            <a
-              href="#"
-              className="transform rounded-full bg-white/5 p-3 text-3xl transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:text-[#4C8BFF]"
-              aria-label="Twitter"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="#"
-              className="transform rounded-full bg-white/5 p-3 text-3xl transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:text-[#4C8BFF]"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin />
-            </a>
-            <a
-              href="#"
-              className="transform rounded-full bg-white/5 p-3 text-3xl transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:text-[#4C8BFF]"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
+          <div className="flex justify-center gap-3 md:gap-5 flex-wrap">
+            {[
+              { icon: <FaFacebook />, label: "Facebook" },
+              { icon: <FaTwitter />, label: "Twitter" },
+              { icon: <FaLinkedin />, label: "LinkedIn" },
+              { icon: <FaInstagram />, label: "Instagram" },
+            ].map(({ icon, label }) => (
+              <a
+                key={label}
+                href="#"
+                className="transform rounded-xl bg-white/5 p-3 text-2xl transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:text-[#4C8BFF]"
+                aria-label={label}
+              >
+                {icon}
+              </a>
+            ))}
           </div>
         </div>
 
-        <div className="border-t border-white/20 pt-8 text-center">
-          <p className="text-lg text-white/90">
+        <div className="border-t border-white/10 pt-8 text-center">
+          <p className="text-base text-white/80">
             © {new Date().getFullYear()} PRAXMED Publishing. All rights reserved.
           </p>
-          <p className="mt-3 text-white/60">
+          <p className="mt-2 text-sm text-white/40">
             Empowering healthcare through innovative medical publishing
           </p>
         </div>

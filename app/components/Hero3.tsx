@@ -145,12 +145,12 @@ export default function AnxiousAttachmentSection() {
           <div className="fade-up">
             <h2
               className="font-black leading-[1.0] tracking-tight"
-              style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)", color: "#191432" }}
+              style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)" }}
             >
-              <span style={{ color: "#E7650D" }}>Anxious</span>{" "}
-              <span style={{ color: "#11756C" }}>about</span>
+              <span className="text-[var(--brand-navy)]">Anxious </span>
+              <span className="text-[var(--brand-teal)]">about</span>
               <br />
-              <span style={{ color: "#191432" }}>your parenting?</span>
+              <span className="text-[var(--brand-navy)]">your parenting?</span>
             </h2>
           </div>
 
@@ -209,7 +209,7 @@ export default function AnxiousAttachmentSection() {
             <Link
               target="_blank"
               href="https://www.amazon.com/dp/B0GR68K3WM"
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-white text-sm font-bold tracking-wide rounded-full transition-all duration-300 shadow-lg"
+              className="btn-cta-primary rounded-full"
               style={{ backgroundColor: "#E7650D" }}
               onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#11756C")}
               onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#E7650D")}

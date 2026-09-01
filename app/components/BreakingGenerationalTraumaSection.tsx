@@ -158,7 +158,7 @@ export default function BreakingGenerationalTraumaSection() {
             <Link
               target="_blank"
               href="https://www.amazon.com/-/es/gp/product/B0FNX6ZC6C"
-              className="inline-flex items-center gap-2 rounded-sm bg-[var(--brand-navy)] px-7 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:bg-[var(--brand-teal)]"
+              className="btn-cta-primary bg-[var(--brand-navy)] hover:bg-[var(--brand-teal)]"
             >
               <FaAmazon className="w-4 h-4" />
               Get the Book

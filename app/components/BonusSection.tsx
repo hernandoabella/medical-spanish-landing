@@ -183,7 +183,7 @@ const AudioDownload = () => {
             <button
               onClick={handleDownloadAll}
               disabled={isDownloading}
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white text-[#0F2137] text-sm font-semibold tracking-wide hover:bg-[#0B8288] hover:text-white transition-colors duration-300 rounded-sm disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white text-[#0F2137] text-sm font-bold tracking-wide hover:bg-[#0B8288] hover:text-white transition-colors duration-300 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed shadow-[0_8px_24px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_32px_rgba(11,130,136,0.25)]"
             >
               {isDownloading ? "Downloading…" : "Download All Tracks"}
               {!isDownloading && <Download className="w-4 h-4" />}

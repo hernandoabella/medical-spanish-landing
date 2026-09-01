@@ -7,11 +7,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 import {
-  FaUserMd,
-  FaHospital,
   FaStar,
-  FaStethoscope,
   FaQuoteLeft,
+  FaHospital,
+  FaUserMd,
+  FaStethoscope,
 } from "react-icons/fa";
 
 const testimonials = [
@@ -98,81 +98,77 @@ const Testimonials = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0F2137] py-24 relative overflow-hidden"
+      className="bg-[#0F2137] py-24 md:py-32 relative overflow-hidden"
     >
-      <div className="absolute top-10 left-10 w-32 h-32 bg-[#0B8288]/20 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#0B8288]/20 rounded-full blur-2xl"></div>
+      {/* Ambient glows */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(11,130,136,0.12),transparent_70%)] blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(217,107,43,0.08),transparent_70%)] blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="testi-head text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full mb-4">
+          <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full mb-5">
             <div className="flex items-center text-amber-300 gap-0.5">
-              <FaStar className="w-4 h-4" />
-              <FaStar className="w-4 h-4" />
-              <FaStar className="w-4 h-4" />
-              <FaStar className="w-4 h-4" />
-              <FaStar className="w-4 h-4" />
+              {[...Array(5)].map((_, i) => (
+                <FaStar key={i} className="w-4 h-4" />
+              ))}
             </div>
             <span className="text-white/80 text-sm font-medium">4.9/5 Average Rating</span>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
             What Healthcare Professionals Are Saying
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
+          <p className="text-white/50 max-w-2xl mx-auto text-base leading-relaxed">
             Real feedback from doctors, nurses, and medical students who have improved their patient communication
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="testi-card bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-[box-shadow,translate] duration-300 group"
+              className="testi-card bg-white rounded-2xl p-7 md:p-8 shadow-xl hover:shadow-2xl hover:-translate-y-1.5 transition-[box-shadow,transform] duration-300 group flex flex-col"
             >
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#0B8288]/10 to-[#0B8288]/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <FaQuoteLeft className="w-6 h-6 text-[#0B8288]" />
+              <div className="mb-5">
+                <div className="w-10 h-10 bg-gradient-to-br from-[#0B8288]/10 to-[#0B8288]/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <FaQuoteLeft className="w-5 h-5 text-[#0B8288]" />
                 </div>
               </div>
 
-              <div className="relative mb-8">
-                <p className="text-gray-700 leading-relaxed text-lg pl-4 border-l-2 border-[#0B8288]/20">
+              <div className="relative mb-6 flex-1">
+                <p className="text-gray-700 leading-relaxed text-[15px] pl-4 border-l-2 border-[#0B8288]/20">
                   &ldquo;{item.quote}&rdquo;
                 </p>
               </div>
 
-              <div className="h-px bg-gradient-to-r from-transparent via-[#0B8288]/20 to-transparent mb-6"></div>
+              <div className="h-px bg-gradient-to-r from-transparent via-[#0B8288]/20 to-transparent mb-5"></div>
 
-              <div className="flex items-center gap-4">
-                <div className="relative">
+              <div className="flex items-center gap-3.5">
+                <div className="relative shrink-0">
                   <div className="absolute -inset-1 bg-[#0B8288]/20 rounded-full opacity-60 blur-sm"></div>
                   <Image
                     src={item.avatar}
                     alt={item.name}
-                    width={56}
-                    height={56}
+                    width={48}
+                    height={48}
                     className="rounded-full relative z-10 border-2 border-white shadow-md"
                   />
                 </div>
 
                 <div>
-                  <p className="font-bold text-gray-900">
+                  <p className="font-bold text-gray-900 text-sm">
                     {item.name}
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-xs text-gray-500">
                     {item.role}
                   </p>
-
                   <div className="flex items-center gap-1 mt-1">
                     <div className="flex text-amber-400 gap-0.5">
-                      <FaStar className="w-3 h-3" />
-                      <FaStar className="w-3 h-3" />
-                      <FaStar className="w-3 h-3" />
-                      <FaStar className="w-3 h-3" />
-                      <FaStar className="w-3 h-3" />
+                      {[...Array(5)].map((_, i) => (
+                        <FaStar key={i} className="w-3 h-3" />
+                      ))}
                     </div>
-                    <span className="text-xs text-gray-400">5.0</span>
+                    <span className="text-[10px] text-gray-400">5.0</span>
                   </div>
                 </div>
               </div>
@@ -180,14 +176,14 @@ const Testimonials = () => {
           ))}
         </div>
 
-        <div className="testi-trust mt-16 text-center">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-3 rounded-xl border border-white/10">
-            <span className="text-white/60 text-sm font-medium">Trusted by professionals at</span>
-            <div className="flex items-center gap-4 text-white/40">
+        <div className="testi-trust mt-14 text-center">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-3.5 rounded-xl border border-white/10">
+            <span className="text-white/50 text-sm font-medium">Trusted by professionals at</span>
+            <div className="flex items-center gap-5 text-white/30">
               <FaHospital className="w-5 h-5" />
               <FaUserMd className="w-5 h-5" />
               <FaStethoscope className="w-5 h-5" />
-              <span className="text-xs font-semibold text-white/30 tracking-wider">+ more</span>
+              <span className="text-xs font-semibold text-white/25 tracking-wider">+ more</span>
             </div>
           </div>
         </div>

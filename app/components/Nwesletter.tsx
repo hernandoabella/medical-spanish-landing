@@ -38,8 +38,12 @@ export default function NewsletterEmbedded() {
         `}
       </Script>
 
-      <section ref={sectionRef} className="w-full bg-[#0F2137] py-20 px-6">
-        <div className="news-head max-w-xl mx-auto flex flex-col items-center gap-8 text-center">
+      <section ref={sectionRef} className="w-full bg-[#0F2137] py-24 md:py-32 px-6 relative overflow-hidden">
+        {/* Ambient glows */}
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(11,130,136,0.10),transparent_70%)] blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(circle,rgba(217,107,43,0.06),transparent_70%)] blur-3xl pointer-events-none" />
+
+        <div className="news-head max-w-xl mx-auto flex flex-col items-center gap-8 text-center relative z-10">
 
           {/* Header */}
           <div className="flex flex-col items-center gap-4">
@@ -55,7 +59,7 @@ export default function NewsletterEmbedded() {
               <span className="text-[#0B8288]">early access</span> to new books.
             </h2>
 
-            <p className="text-white/50 text-sm leading-relaxed max-w-sm text-center">
+            <p className="text-white/40 text-sm leading-relaxed max-w-sm text-center">
               Join thousands of healthcare professionals and parents who receive practical guides, tips, and exclusive offers — no spam, ever.
             </p>
           </div>

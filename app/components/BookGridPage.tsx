@@ -111,7 +111,7 @@ export default function BookGridPage({
                   </div>
                 )}
               </div>
-              <div className="border-t border-slate-100 p-6">
+              <div className="border-t border-slate-100 p-6 transition-colors duration-300 group-hover:bg-slate-50/50">
                 {book.badge ? (
                   <div className="mb-4 inline-flex items-center rounded-full bg-[var(--brand-teal)]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--brand-teal)]">
                     {book.badge}

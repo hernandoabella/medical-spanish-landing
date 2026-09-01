@@ -105,11 +105,10 @@ export default function HealingInnerChildSection() {
               className="font-black leading-[1.0] tracking-tight"
               style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)" }}
             >
-              <span className="text-[var(--brand-navy)]">Healing</span>{" "}
-              <span className="text-[var(--brand-teal)]">Your</span>
+              <span className="text-[var(--brand-navy)]">Healing </span>
+              <span className="text-[var(--brand-clay)]">Your</span>
               <br />
-              <span className="text-[var(--brand-clay)]">Inner</span>{" "}
-              <span className="text-[var(--brand-navy)]">Child</span>
+              <span className="text-[var(--brand-navy)]">Inner Child</span>
             </h2>
           </div>
 
@@ -159,7 +158,7 @@ export default function HealingInnerChildSection() {
             <Link
               target="_blank"
               href="https://www.amazon.com/-/es/Praxmed-Publishing-ebook/dp/B0H6NZXSZ3"
-              className="inline-flex items-center gap-2 rounded-sm bg-[var(--brand-navy)] px-7 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:bg-[var(--brand-teal)]"
+              className="btn-cta-primary bg-[var(--brand-navy)] hover:bg-[var(--brand-teal)]"
             >
               <FaAmazon className="w-4 h-4" />
               Get the Book

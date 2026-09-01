@@ -11,6 +11,17 @@ import Nwesletter from "./components/Nwesletter";
 import RaisingEISection from "./components/Raisingeisection";
 import Testimonials from "./components/Testimonials";
 
+/** Smooth gradient divider between sections with contrasting backgrounds */
+function TransitionDivider({ from, to }: { from: string; to: string }) {
+  return (
+    <div
+      aria-hidden
+      className="h-16 md:h-20 w-full"
+      style={{ background: `linear-gradient(180deg, ${from} 0%, ${to} 100%)` }}
+    />
+  );
+}
+
 const featuredBooks = [
   {
     title: "Raising Emotionally Intelligent Children",
@@ -98,22 +109,25 @@ export default function Home() {
     <main className="bg-white">
       <Hero />
       <BonusSection />
+      <TransitionDivider from="#0F2137" to="#fffdf7" />
       <BookGridPage
         eyebrow="Featured Library"
         title="Explore the full book collection."
         description="See the complete catalog side by side, with direct purchase links for every title."
         books={featuredBooks}
       />
+      <TransitionDivider from="#eef7f6" to="#ffffff" />
       <Hero2 />
-      <div aria-hidden className="h-16 w-full" style={{ background: "linear-gradient(180deg,#ffffff 0%,#FBF7F0 100%)" }} />
       <RaisingEISection />
-      <div aria-hidden className="h-16 w-full" style={{ background: "linear-gradient(180deg,#FBF7F0 0%,#FBF7F0 100%)" }} />
       <Hero3 />
       <BreakingGenerationalTraumaSection />
       <HealingInnerChildSection />
+      <TransitionDivider from="#FBF7F0" to="#0F2137" />
       <Testimonials />
+      <TransitionDivider from="#0F2137" to="#f8faff" />
       <Faq />
       <Nwesletter />
+      <TransitionDivider from="#0F2137" to="#fdfdfd" />
       <Author />
     </main>
   );

@@ -145,13 +145,12 @@ export default function RaisingEISection() {
 
           <div
             className="fade-up font-black leading-[1.0] tracking-tight"
-            style={{ fontSize: "clamp(2.4rem,5vw,3.8rem)", color: "#173A5C" }}
+            style={{ fontSize: "clamp(2.4rem,5vw,3.8rem)" }}
           >
-            <span style={{ color: "#E8773A" }}>Raise</span>{" "}
-            <span style={{ color: "#1A7A8A" }}>emotionally</span>
+            <span className="text-[var(--brand-navy)]">Raise </span>
+            <span className="text-[var(--brand-teal)]">emotionally</span>
             <br />
-            <span style={{ color: "#173A5C" }}>intelligent</span>{" "}
-            <span style={{ color: "#1A7A8A" }}>kids.</span>
+            <span className="text-[var(--brand-navy)]">intelligent kids.</span>
           </div>
 
           <p
@@ -209,7 +208,7 @@ export default function RaisingEISection() {
             <Link
               target="_blank"
               href="https://www.amazon.com/Raising-Emotionally-Intelligent-Children-Strategies-ebook/dp/B0GKWC93RZ"
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-white text-sm font-bold tracking-wide rounded-full transition-all duration-300 shadow-lg"
+              className="btn-cta-primary rounded-full"
               style={{ backgroundColor: "#173A5C" }}
               onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#1A7A8A")}
               onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#173A5C")}
